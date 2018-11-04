@@ -1,0 +1,11 @@
+##Instruction: Modify zip1_number and/or zip2_number to find the distance 'as the crow flies' between them
+
+#install.packages("geosphere")
+require(geosphere)
+zip1_number = 1 #row number in warehouseDF of first zipcode
+zip2_number = 3# row number in warehouseDF of second zipcode
+zip1 <- c(warehouseDF[zip1_number,"Longitude"],warehouseDF[zip1_number,"Latitude"]) #makes vector (longitude,latitude)
+zip2 <- c(warehouseDF[zip2_number,"Longitude"],warehouseDF[zip2_number,"Latitude"]) #makes vector (longitude,latitude)
+r <- distHaversine(zip1, zip2)  ## This function gives the shortest distance (in meters) between two coordinate pairs of (longitude,latitude) 'as the crow flies'
+d <- r*0.000621371 ##converts to miles 
+d #outputs distance in miles between two zipcodes
