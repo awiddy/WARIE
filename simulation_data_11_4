@@ -18,9 +18,9 @@ require(password)
 #########################################################################################################
 
 ##Number of users## Only change the number of lessees
-num_lessees = 5000
-num_warehouses = num_lessees *0.5
-num_owners = num_warehouses*0.75
+num_lessees = 5000 #total number of lessees generated
+num_warehouses = num_lessees *0.5 #total number of warehouses generated
+num_owners = num_warehouses*0.75 #total number of owners generated
 
 
 #Lessee Sim
