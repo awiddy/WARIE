@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Lesees</title>
+		<title>Register</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -26,9 +26,9 @@
 				<ul class="links">
 					<li><a href="index.html">Home</a></li>
 					<li><a href="browse.html">Browse Warehouses</a></li>
-					<li><a href="lesees.html">Lease a warehouse</a></li>
+					<li><a href="lessees.html">Lease a warehouse</a></li>
 					<li><a href="owners.html">List your warehouse</a></li>
-					<li><a href="register.html">Login or Register</a></li>
+					<li><a href="login.html">Login</a></li>
 				</ul>
 			</nav>
 
@@ -36,16 +36,41 @@
 			<section id="main">
 				<div class="inner">
 					<div class="image fit">
-						<img src="images/dock_short.jpeg" alt="" />
+						<img src="images/pic11.jpg" alt="" />
 					</div>
 					<header>
-						<h2>Find a warehouse to lease</h2>
+						<h2>Login with WARIE</h2>
 					</header>
-					<p><font color="black">
-						If you're looking to lease, create an account with us today!</br>
-						When you find a space you like, the owner will be notified and you can create a leasing agreement.
-					</font></p>
-					<a href="register.html" class="button special">Register</a>
+					<h3>View or update account information, listings, or contracts</h3>
+					<form method="post" action="#">
+						<div class="row uniform 50%">
+							<div class="12u$"><!--
+								<div class="select-wrapper">
+									<h4>Select an action:</h4>
+									<select name="category" id="category">
+										<option value="">- User -</option>
+										<option value="1">New Lesee</option>
+										<option value="2">New Owner</option>
+										<option value="3">Lesee Login</option>
+										<option value="3">Owner Login</option>
+									</select>
+								</div>
+								-->
+								</br>
+								<h4>Credentials</h4>
+								<div class="6u$ 12u$(small)">
+									<input type="email" name="email" id="email" value="" placeholder="Email" />
+								</div>
+								</br>
+								<div class="6u$ 12u$(small)">
+									<input type="text" name="password" id="password" value="" placeholder="Password" />
+								</div>
+							</div>
+						</div>
+					</form>
+					<a href="login.html" class="button special">Lessee Login</a>
+					&emsp;&emsp;
+					<a href="login.html" class="button special">Owner Login</a>
 				</div>
 			</section>
 
