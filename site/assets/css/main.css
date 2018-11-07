@@ -3591,10 +3591,10 @@
 		#banner_lessees {
 			padding: 8em 0 10em 0;
 			background-image: url(../../images/dock_short.jpeg);
-			filter: saturate(80%); 
+			filter: saturate(70%);
 			/* Can't figure out how to filter just image without applying it to text */
 			/* filter: grayscale(70%); */
-			filter: brightness(70%);
+			filter: brightness(40%);
 			/* opacity: 0.9; */
 			background-size: cover;
 			background-position: bottom;
