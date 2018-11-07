@@ -1,0 +1,311 @@
+1,New York, New York,8622698,8175133,0.0547,301.5 sq mi,780.9 km2,"28,317/sq mi","10,933/km2"
+2,Los Angeles, California,3999759,3792621,0.0546,468.7 sq mi,"1,213.9 km2","8,484/sq mi","3,276/km2"
+3,Chicago, Illinois,2716450,2695598,0.0077,227.3 sq mi,588.7 km2,"11,900/sq mi","4,600/km2"
+4,Houston, Texas,2312717,2100263,0.1012,637.5 sq mi,"1,651.1 km2","3,613/sq mi","1,395/km2"
+5,Phoenix, Arizona,1626078,1445632,0.1248,517.6 sq mi,"1,340.6 km2","3,120/sq mi","1,200/km2"
+6,Philadelphia, Pennsylvania,1580863,1526006,0.0359,134.2 sq mi,347.6 km2,"11,683/sq mi","4,511/km2"
+7,San Antonio, Texas,1511946,1327407,0.139,461.0 sq mi,"1,194.0 km2","3,238/sq mi","1,250/km2"
+8,San Diego, California,1419516,1307402,0.0858,325.2 sq mi,842.3 km2,"4,325/sq mi","1,670/km2"
+9,Dallas, Texas,1341075,1197816,0.1196,340.9 sq mi,882.9 km2,"3,866/sq mi","1,493/km2"
+10,San Jose, California,1035317,945942,0.0945,177.5 sq mi,459.7 km2,"5,777/sq mi","2,231/km2"
+11,Austin, Texas,950715,790390,0.2028,312.7 sq mi,809.9 km2,"3,031/sq mi","1,170/km2"
+12,Jacksonville, Florida,892062,821784,0.0855,747.4 sq mi,"1,935.8 km2","1,178/sq mi",455/km2
+13,San Francisco, California,884363,805235,0.0983,46.9 sq mi,121.5 km2,"18,569/sq mi","7,170/km2"
+14,Columbus, Ohio,879170,787033,0.1171,218.5 sq mi,565.9 km2,"3,936/sq mi","1,520/km2"
+15,Fort Worth, Texas,874168,741206,0.1794,342.9 sq mi,888.1 km2,"2,491/sq mi",962/km2
+16,Indianapolis, Indiana,863002,820445,0.0519,361.5 sq mi,936.3 km2,"2,366/sq mi",914/km2
+17,Charlotte, North Carolina,859035,731424,0.1745,305.4 sq mi,791.0 km2,"2,757/sq mi","1,064/km2"
+18,Seattle, Washington,724745,608660,0.1907,83.8 sq mi,217.0 km2,"8,405/sq mi","3,245/km2"
+19,Denver, Colorado,704621,600158,0.1741,153.3 sq mi,397.0 km2,"4,521/sq mi","1,746/km2"
+20,Washington, District of Columbia,693972,601723,0.1533,61.1 sq mi,158.2 km2,"11,148/sq mi","4,304/km2"
+21,Boston, Massachusetts,685094,617594,0.1093,48.3 sq mi,125.1 km2,"13,938/sq mi","5,381/km2"
+22,El Paso, Texas,683577,649121,0.0531,256.8 sq mi,665.1 km2,"2,660/sq mi","1,030/km2"
+23,Detroit, Michigan,673104,713777,?5.70%,138.8 sq mi,359.5 km2,"4,847/sq mi","1,871/km2"
+24,Nashville, Tennessee,667560,601222,0.1103,475.9 sq mi,"1,232.6 km2","1,388/sq mi",536/km2
+25,Memphis, Tennessee,652236,646889,0.0083,317.4 sq mi,822.1 km2,"2,056/sq mi",794/km2
+26,Portland, Oregon,647805,583776,0.1097,133.5 sq mi,345.8 km2,"4,793/sq mi","1,851/km2"
+27,Oklahoma City, Oklahoma,643648,579999,0.1097,606.3 sq mi,"1,570.3 km2","1,053/sq mi",407/km2
+28,Las Vegas, Nevada,641676,583756,0.0992,134.4 sq mi,348.1 km2,"4,709/sq mi","1,818/km2"
+29,Louisville, Kentucky,621349,597337,0.0402,263.5 sq mi,682.5 km2,"2,339/sq mi",903/km2
+30,Baltimore, Maryland,611648,620961,?1.50%,80.9 sq mi,209.5 km2,"7,598/sq mi","2,934/km2"
+31,Milwaukee, Wisconsin,595351,594833,0.0009,96.2 sq mi,249.2 km2,"6,186/sq mi","2,388/km2"
+32,Albuquerque, New Mexico,558545,545852,0.0233,188.2 sq mi,487.4 km2,"2,972/sq mi","1,147/km2"
+33,Tucson, Arizona,535677,520116,0.0299,230.8 sq mi,597.8 km2,"2,299/sq mi",888/km2
+34,Fresno, California,527438,494665,0.0663,114.4 sq mi,296.3 km2,"4,563/sq mi","1,762/km2"
+35,Sacramento, California,501901,466488,0.0759,97.9 sq mi,253.6 km2,"5,059/sq mi","1,953/km2"
+36,Mesa, Arizona,496401,439041,0.1306,137.9 sq mi,357.2 km2,"3,514/sq mi","1,357/km2"
+37,Kansas City, Missouri,488943,459787,0.0634,315.0 sq mi,815.8 km2,"1,528/sq mi",590/km2
+38,Atlanta, Georgia,486290,420003,0.1578,133.5 sq mi,345.8 km2,"3,539/sq mi","1,366/km2"
+39,Long Beach, California,469450,462257,0.0156,50.3 sq mi,130.3 km2,"9,347/sq mi","3,609/km2"
+40,Omaha, Nebraska,466893,408958,0.1417,133.2 sq mi,345.0 km2,"3,356/sq mi","1,296/km2"
+41,Raleigh, North Carolina,464758,403892,0.1507,145.1 sq mi,375.8 km2,"3,163/sq mi","1,221/km2"
+42,Colorado Springs, Colorado,464474,416427,0.1154,195.6 sq mi,506.6 km2,"2,378/sq mi",918/km2
+43,Miami, Florida,463347,399457,0.1599,36.0 sq mi,93.2 km2,"12,599/sq mi","4,865/km2"
+44,Virginia Beach, Virginia,450435,437994,0.0284,244.7 sq mi,633.8 km2,"1,850/sq mi",710/km2
+45,Oakland, California,425195,390724,0.0882,55.9 sq mi,144.8 km2,"7,514/sq mi","2,901/km2"
+46,Minneapolis, Minnesota,422331,382578,0.1039,54.0 sq mi,139.9 km2,"7,660/sq mi","2,960/km2"
+47,Tulsa, Oklahoma,401800,391906,0.0252,196.8 sq mi,509.7 km2,"2,048/sq mi",791/km2
+48,Arlington, Texas,396394,365438,0.0847,95.8 sq mi,248.1 km2,"4,100/sq mi","1,600/km2"
+49,New Orleans, Louisiana,393292,343829,0.1439,169.4 sq mi,438.7 km2,"2,311/sq mi",892/km2
+50,Wichita, Kansas,390591,382368,0.0215,160.4 sq mi,415.4 km2,"2,431/sq mi",939/km2
+51,Cleveland, Ohio,385525,396815,?2.85%,77.7 sq mi,201.2 km2,"4,965/sq mi","1,917/km2"
+52,Tampa, Florida,385430,335709,0.1481,113.4 sq mi,293.7 km2,"3,326/sq mi","1,284/km2"
+53,Bakersfield, California,380874,347483,0.0961,148.8 sq mi,385.4 km2,"2,529/sq mi",976/km2
+54,Aurora, Colorado,366623,325078,0.1278,153.5 sq mi,397.6 km2,"2,356/sq mi",910/km2
+55,Anaheim, California,352497,336265,0.0483,50.0 sq mi,129.5 km2,"7,021/sq mi","2,711/km2"
+56,Honolulu, Hawaii,350395,337256,0.039,60.5 sq mi,156.7 km2,"5,815/sq mi","2,245/km2"
+57,Santa Ana, California,334136,324528,0.0296,27.1 sq mi,70.2 km2,"12,333/sq mi","4,762/km2"
+58,Riverside, California,327728,303871,0.0785,81.2 sq mi,210.3 km2,"3,999/sq mi","1,544/km2"
+59,Corpus Christi, Texas,325605,305215,0.0668,174.6 sq mi,452.2 km2,"1,866/sq mi",720/km2
+60,Lexington, Kentucky,321959,295803,0.0884,283.6 sq mi,734.5 km2,"1,123/sq mi",434/km2
+61,Stockton, California,310496,291707,0.0644,61.7 sq mi,159.8 km2,"4,977/sq mi","1,922/km2"
+62,St. Louis, Missouri,308626,319294,?3.34%,62.0 sq mi,160.6 km2,"5,023/sq mi","1,939/km2"
+63,Saint Paul, Minnesota,306621,285068,0.0756,52.0 sq mi,134.7 km2,"5,815/sq mi","2,245/km2"
+64,Henderson, Nevada,302539,257729,0.1739,104.7 sq mi,271.2 km2,"2,798/sq mi","1,080/km2"
+65,Pittsburgh, Pennsylvania,302407,305704,?1.08%,55.4 sq mi,143.5 km2,"5,481/sq mi","2,116/km2"
+66,Cincinnati, Ohio,301301,296943,0.0147,77.4 sq mi,200.5 km2,"3,860/sq mi","1,490/km2"
+67,Anchorage, Alaska,294356,291826,0.0087,"1,706.6 sq mi","4,420.1 km2",175/sq mi,68/km2
+68,Greensboro, North Carolina,290222,269666,0.0762,128.3 sq mi,332.3 km2,"2,237/sq mi",864/km2
+69,Plano, Texas,286143,259841,0.1012,71.7 sq mi,185.7 km2,"3,990/sq mi","1,540/km2"
+70,Newark, New Jersey,285154,277140,0.0289,24.1 sq mi,62.4 km2,"11,691/sq mi","4,514/km2"
+71,Lincoln, Nebraska,284736,258379,0.102,92.1 sq mi,238.5 km2,"3,044/sq mi","1,175/km2"
+72,Orlando, Florida,280257,238300,0.1761,105.2 sq mi,272.5 km2,"2,635/sq mi","1,017/km2"
+73,Irvine, California,277453,212375,0.3064,65.6 sq mi,169.9 km2,"4,057/sq mi","1,566/km2"
+74,Toledo, Ohio,276491,287208,?3.73%,80.7 sq mi,209.0 km2,"3,451/sq mi","1,332/km2"
+75,Jersey City, New Jersey,270753,247597,0.0935,14.8 sq mi,38.3 km2,"17,848/sq mi","6,891/km2"
+76,Chula Vista, California,270471,243916,0.1089,49.6 sq mi,128.5 km2,"5,387/sq mi","2,080/km2"
+77,Durham, North Carolina,267743,228330,0.1726,109.8 sq mi,284.4 km2,"2,395/sq mi",925/km2
+78,Fort Wayne, Indiana,265904,253691,0.0481,110.6 sq mi,286.5 km2,"2,391/sq mi",923/km2
+79,St. Petersburg, Florida,263255,244769,0.0755,61.8 sq mi,160.1 km2,"4,223/sq mi","1,631/km2"
+80,Laredo, Texas,260654,236091,0.104,101.1 sq mi,261.8 km2,"2,544/sq mi",982/km2
+81,Buffalo, New York,258612,261310,?1.03%,40.4 sq mi,104.6 km2,"6,359/sq mi","2,455/km2"
+82,Madison, Wisconsin,255214,233209,0.0944,77.0 sq mi,199.4 km2,"3,280/sq mi","1,270/km2"
+83,Lubbock, Texas,253888,229573,0.1059,124.6 sq mi,322.7 km2,"2,027/sq mi",783/km2
+84,Chandler, Arizona,253458,236123,0.0734,64.9 sq mi,168.1 km2,"3,813/sq mi","1,472/km2"
+85,Scottsdale, Arizona,249950,217385,0.1498,183.9 sq mi,476.3 km2,"1,341/sq mi",518/km2
+86,Reno, Nevada,248853,225221,0.1049,107.3 sq mi,277.9 km2,"2,286/sq mi",883/km2
+87,Glendale, Arizona,246709,226721,0.0882,59.1 sq mi,153.1 km2,"4,161/sq mi","1,607/km2"
+88,Norfolk, Virginia,244703,242803,0.0078,53.3 sq mi,138.0 km2,"4,599/sq mi","1,776/km2"
+89,Winston–Salem, North Carolina,244605,229617,0.0653,132.5 sq mi,343.2 km2,"1,828/sq mi",706/km2
+90,North Las Vegas, Nevada,242975,216961,0.1199,98.0 sq mi,253.8 km2,"2,436/sq mi",941/km2
+91,Gilbert, Arizona,242354,208453,0.1626,68.0 sq mi,176.1 km2,"3,487/sq mi","1,346/km2"
+92,Chesapeake, Virginia,240397,222209,0.0819,338.5 sq mi,876.7 km2,703/sq mi,271/km2
+93,Irving, Texas,240373,216290,0.1113,67.0 sq mi,173.5 km2,"3,557/sq mi","1,373/km2"
+94,Hialeah, Florida,239673,224669,0.0668,21.5 sq mi,55.7 km2,"10,995/sq mi","4,245/km2"
+95,Garland, Texas,238002,226876,0.049,57.0 sq mi,147.6 km2,"4,122/sq mi","1,592/km2"
+96,Fremont, California,234962,214089,0.0975,77.5 sq mi,200.7 km2,"3,008/sq mi","1,161/km2"
+97,Richmond, Virginia,227032,204214,0.1117,59.8 sq mi,154.9 km2,"3,732/sq mi","1,441/km2"
+98,Boise, Idaho,226570,205671,0.1016,82.1 sq mi,212.6 km2,"2,718/sq mi","1,049/km2"
+99,Baton Rouge, Louisiana,225374,229493,?1.79%,85.9 sq mi,222.5 km2,"2,651/sq mi","1,024/km2"
+100,Des Moines, Iowa,217521,203433,0.0693,88.9 sq mi,230.2 km2,"2,424/sq mi",936/km2
+101,Spokane, Washington,217108,208916,0.0392,68.7 sq mi,177.9 km2,"3,144/sq mi","1,214/km2"
+102,San Bernardino, California,216995,209924,0.0337,61.5 sq mi,159.3 km2,"3,516/sq mi","1,358/km2"
+103,Modesto, California,214221,201165,0.0649,43.0 sq mi,111.4 km2,"4,934/sq mi","1,905/km2"
+104,Tacoma, Washington,213418,198397,0.0757,49.7 sq mi,128.7 km2,"4,251/sq mi","1,641/km2"
+105,Fontana, California,211815,196069,0.0803,43.0 sq mi,111.4 km2,"4,876/sq mi","1,883/km2"
+106,Santa Clarita, California,210888,176320,0.1961,52.8 sq mi,136.8 km2,"3,446/sq mi","1,331/km2"
+107,Birmingham, Alabama,210710,212237,?0.72%,146.1 sq mi,378.4 km2,"1,452/sq mi",561/km2
+108,Oxnard, California,210037,197899,0.0613,26.9 sq mi,69.7 km2,"7,729/sq mi","2,984/km2"
+109,Fayetteville, North Carolina,209889,200564,0.0465,147.7 sq mi,382.5 km2,"1,386/sq mi",535/km2
+110,Rochester, New York,208046,210565,?1.20%,35.8 sq mi,92.7 km2,"5,835/sq mi","2,253/km2"
+111,Moreno Valley, California,207226,193365,0.0717,51.3 sq mi,132.9 km2,"4,006/sq mi","1,547/km2"
+112,Glendale, California,203054,191719,0.0591,30.4 sq mi,78.7 km2,"6,606/sq mi","2,551/km2"
+113,Yonkers, New York,202019,195976,0.0308,18.0 sq mi,46.6 km2,"11,156/sq mi","4,307/km2"
+114,Huntington Beach, California,201874,189992,0.0625,26.9 sq mi,69.7 km2,"7,459/sq mi","2,880/km2"
+115,Aurora, Illinois,200965,197899,0.0155,44.9 sq mi,116.3 km2,"4,479/sq mi","1,729/km2"
+116,Salt Lake City, Utah,200544,186440,0.0756,111.2 sq mi,288.0 km2,"1,742/sq mi",673/km2
+117,Amarillo, Texas,199826,190695,0.0479,101.4 sq mi,262.6 km2,"1,968/sq mi",760/km2
+118,Montgomery, Alabama,199518,205764,?3.04%,159.8 sq mi,413.9 km2,"1,252/sq mi",483/km2
+119,Grand Rapids, Michigan,198829,188040,0.0574,44.4 sq mi,115.0 km2,"4,424/sq mi","1,708/km2"
+120,Little Rock, Arkansas,198606,193524,0.0263,118.7 sq mi,307.4 km2,"1,673/sq mi",646/km2
+121,Akron, Ohio,197846,199110,?0.63%,62.0 sq mi,160.6 km2,"3,188/sq mi","1,231/km2"
+122,Augusta, Georgia,197166,195844,0.0068,302.5 sq mi,783.5 km2,652/sq mi,252/km2
+123,Huntsville, Alabama,194585,180105,0.0804,213.4 sq mi,552.7 km2,905/sq mi,349/km2
+124,Columbus, Georgia,194058,189885,0.022,216.4 sq mi,560.5 km2,913/sq mi,353/km2
+125,Grand Prairie, Texas,193837,175396,0.1051,72.3 sq mi,187.3 km2,"2,637/sq mi","1,018/km2"
+126,Shreveport, Louisiana,192036,199311,?3.65%,107.1 sq mi,277.4 km2,"1,820/sq mi",700/km2
+127,Overland Park, Kansas,191278,173372,0.1033,75.1 sq mi,194.5 km2,"2,516/sq mi",971/km2
+128,Tallahassee, Florida,191049,181376,0.0533,100.4 sq mi,260.0 km2,"1,901/sq mi",734/km2
+129,Mobile, Alabama,190265,195111,?2.48%,139.4 sq mi,361.0 km2,"1,384/sq mi",534/km2
+130,Port St. Lucie, Florida,189344,164603,0.1503,118.9 sq mi,307.9 km2,"1,557/sq mi",601/km2
+131,Knoxville, Tennessee,187347,178874,0.0474,98.5 sq mi,255.1 km2,"1,891/sq mi",730/km2
+132,Worcester, Massachusetts,185677,181045,0.0256,37.4 sq mi,96.9 km2,"4,933/sq mi","1,905/km2"
+133,Tempe, Arizona,185038,161719,0.1442,40.0 sq mi,103.6 km2,"4,562/sq mi","1,761/km2"
+134,Cape Coral, Florida,183365,154305,0.1883,105.6 sq mi,273.5 km2,"1,703/sq mi",658/km2
+135,Brownsville, Texas,183299,175023,0.0473,132.5 sq mi,343.2 km2,"1,387/sq mi",536/km2
+136,McKinney, Texas,181330,131117,0.383,63.0 sq mi,163.2 km2,"2,735/sq mi","1,056/km2"
+137,Providence, Rhode Island,180393,178042,0.0132,18.4 sq mi,47.7 km2,"9,740/sq mi","3,760/km2"
+138,Fort Lauderdale, Florida,180072,165521,0.0879,34.6 sq mi,89.6 km2,"5,166/sq mi","1,995/km2"
+139,Newport News, Virginia,179388,180719,?0.74%,69.1 sq mi,179.0 km2,"2,631/sq mi","1,016/km2"
+140,Chattanooga, Tennessee,179139,167674,0.0684,143.1 sq mi,370.6 km2,"1,241/sq mi",479/km2
+141,Rancho Cucamonga, California,177452,165269,0.0737,40.0 sq mi,103.6 km2,"4,413/sq mi","1,704/km2"
+142,Frisco, Texas,177286,116989,0.5154,67.7 sq mi,175.3 km2,"2,417/sq mi",933/km2
+143,Sioux Falls, South Dakota,176888,153888,0.1495,75.4 sq mi,195.3 km2,"2,312/sq mi",893/km2
+144,Oceanside, California,176193,167086,0.0545,41.3 sq mi,107.0 km2,"4,249/sq mi","1,641/km2"
+145,Ontario, California,175841,163924,0.0727,49.9 sq mi,129.2 km2,"3,471/sq mi","1,340/km2"
+146,Vancouver, Washington,175673,161791,0.0858,46.9 sq mi,121.5 km2,"3,728/sq mi","1,439/km2"
+147,Santa Rosa, California,175269,167815,0.0444,41.3 sq mi,107.0 km2,"4,241/sq mi","1,637/km2"
+148,Garden Grove, California,174226,170883,0.0196,18.0 sq mi,46.6 km2,"9,714/sq mi","3,751/km2"
+149,Elk Grove, California,171844,153015,0.1231,42.2 sq mi,109.3 km2,"4,022/sq mi","1,553/km2"
+150,Pembroke Pines, Florida,170712,154019,0.1084,33.0 sq mi,85.5 km2,"5,109/sq mi","1,973/km2"
+151,Salem, Oregon,169798,154637,0.098,48.6 sq mi,125.9 km2,"3,445/sq mi","1,330/km2"
+152,Eugene, Oregon,168916,156185,0.0815,44.1 sq mi,114.2 km2,"3,777/sq mi","1,458/km2"
+153,Peoria, Arizona,168181,154065,0.0916,175.7 sq mi,455.1 km2,934/sq mi,361/km2
+154,Corona, California,167836,152374,0.1015,39.5 sq mi,102.3 km2,"4,222/sq mi","1,630/km2"
+155,Springfield, Missouri,167376,159498,0.0494,82.3 sq mi,213.2 km2,"2,033/sq mi",785/km2
+156,Jackson, Mississippi,166965,173514,?3.77%,111.0 sq mi,287.5 km2,"1,524/sq mi",588/km2
+157,Cary, North Carolina,165904,135234,0.2268,56.5 sq mi,146.3 km2,"2,873/sq mi","1,109/km2"
+158,Fort Collins, Colorado,165080,143986,0.1465,55.8 sq mi,144.5 km2,"2,943/sq mi","1,136/km2"
+159,Hayward, California,160500,144186,0.1131,45.5 sq mi,117.8 km2,"3,493/sq mi","1,349/km2"
+160,Lancaster, California,160316,156633,0.0235,94.3 sq mi,244.2 km2,"1,698/sq mi",656/km2
+161,Alexandria, Virginia,160035,139966,0.1434,15.0 sq mi,38.8 km2,"10,387/sq mi","4,010/km2"
+162,Salinas, California,157596,150441,0.0476,23.6 sq mi,61.1 km2,"6,662/sq mi","2,572/km2"
+163,Palmdale, California,157519,152750,0.0312,106.0 sq mi,274.5 km2,"1,484/sq mi",573/km2
+164,Lakewood, Colorado,154958,142980,0.0838,42.9 sq mi,111.1 km2,"3,599/sq mi","1,390/km2"
+165,Springfield, Massachusetts,154758,153060,0.0111,31.9 sq mi,82.6 km2,"4,830/sq mi","1,860/km2"
+166,Sunnyvale, California,153656,140081,0.0969,22.0 sq mi,57.0 km2,"6,944/sq mi","2,681/km2"
+167,Hollywood, Florida,153627,140768,0.0913,27.3 sq mi,70.7 km2,"5,568/sq mi","2,150/km2"
+168,Pasadena, Texas,153520,149043,0.03,43.5 sq mi,112.7 km2,"3,525/sq mi","1,361/km2"
+169,Clarksville, Tennessee,153205,132929,0.1525,98.3 sq mi,254.6 km2,"1,529/sq mi",590/km2
+170,Pomona, California,152939,149058,0.026,23.0 sq mi,59.6 km2,"6,630/sq mi","2,560/km2"
+171,Kansas City, Kansas,152938,145786,0.0491,124.8 sq mi,323.2 km2,"1,216/sq mi",470/km2
+172,Macon, Georgia,152663,91351,0.6712,249.3 sq mi,645.7 km2,612/sq mi,236/km2
+173,Escondido, California,151969,143911,0.056,37.1 sq mi,96.1 km2,"4,087/sq mi","1,578/km2"
+174,Paterson, New Jersey,148678,146199,0.017,8.4 sq mi,21.8 km2,"17,500/sq mi","6,800/km2"
+175,Joliet, Illinois,148462,147433,0.007,64.4 sq mi,166.8 km2,"2,302/sq mi",889/km2
+176,Naperville, Illinois,147682,141853,0.0411,38.7 sq mi,100.2 km2,"3,802/sq mi","1,468/km2"
+177,Rockford, Illinois,147051,152871,?3.81%,63.5 sq mi,164.5 km2,"2,325/sq mi",898/km2
+178,Torrance, California,146758,145438,0.0091,20.5 sq mi,53.1 km2,"7,180/sq mi","2,770/km2"
+179,Bridgeport, Connecticut,146579,144229,0.0163,16.1 sq mi,41.7 km2,"9,064/sq mi","3,500/km2"
+180,Savannah, Georgia,146444,136286,0.0745,103.6 sq mi,268.3 km2,"1,417/sq mi",547/km2
+181,Killeen, Texas,145482,127921,0.1373,53.5 sq mi,138.6 km2,"2,680/sq mi","1,030/km2"
+182,Bellevue, Washington,144444,122363,0.1805,33.5 sq mi,86.8 km2,"4,221/sq mi","1,630/km2"
+183,Mesquite, Texas,143949,139824,0.0295,47.2 sq mi,122.2 km2,"3,045/sq mi","1,176/km2"
+184,Syracuse, New York,143396,145170,?1.22%,25.0 sq mi,64.7 km2,"5,735/sq mi","2,214/km2"
+185,McAllen, Texas,142696,129877,0.0987,58.4 sq mi,151.3 km2,"2,435/sq mi",940/km2
+186,Pasadena, California,142647,137122,0.0403,23.0 sq mi,59.6 km2,"6,176/sq mi","2,385/km2"
+187,Orange, California,140560,136416,0.0304,25.4 sq mi,65.8 km2,"5,532/sq mi","2,136/km2"
+188,Fullerton, California,140392,135161,0.0387,22.4 sq mi,58.0 km2,"6,282/sq mi","2,425/km2"
+189,Dayton, Ohio,140371,141527,?0.82%,55.7 sq mi,144.3 km2,"2,522/sq mi",974/km2
+190,Miramar, Florida,140328,122041,0.1498,29.4 sq mi,76.1 km2,"4,709/sq mi","1,818/km2"
+191,Olathe, Kansas,137472,125872,0.0922,60.9 sq mi,157.7 km2,"2,225/sq mi",859/km2
+192,Thornton, Colorado,136978,118772,0.1533,35.7 sq mi,92.5 km2,"3,829/sq mi","1,478/km2"
+193,Waco, Texas,136436,124805,0.0932,89.0 sq mi,230.5 km2,"1,510/sq mi",580/km2
+194,Murfreesboro, Tennessee,136372,108755,0.2539,55.9 sq mi,144.8 km2,"2,360/sq mi",910/km2
+195,Denton, Texas,136268,113383,0.2018,93.4 sq mi,241.9 km2,"1,433/sq mi",553/km2
+196,West Valley City, Utah,136170,129480,0.0517,35.5 sq mi,91.9 km2,"3,847/sq mi","1,485/km2"
+197,Midland, Texas,136089,111147,0.2244,74.4 sq mi,192.7 km2,"1,809/sq mi",698/km2
+198,Carrollton, Texas,135710,119097,0.1395,36.3 sq mi,94.0 km2,"3,674/sq mi","1,419/km2"
+199,Roseville, California,135329,118788,0.1392,43.0 sq mi,111.4 km2,"3,085/sq mi","1,191/km2"
+200,Warren, Michigan,135022,134056,0.0072,34.4 sq mi,89.1 km2,"3,928/sq mi","1,517/km2"
+201,Charleston, South Carolina,134875,120083,0.1232,109.0 sq mi,282.3 km2,"1,233/sq mi",476/km2
+202,Hampton, Virginia,134669,137436,?2.01%,51.5 sq mi,133.4 km2,"2,629/sq mi","1,015/km2"
+203,Surprise, Arizona,134085,117517,0.141,107.9 sq mi,279.5 km2,"1,230/sq mi",470/km2
+204,Columbia, South Carolina,133114,129272,0.0297,133.5 sq mi,345.8 km2,"1,006/sq mi",388/km2
+205,Coral Springs, Florida,133037,121096,0.0986,23.8 sq mi,61.6 km2,"5,465/sq mi","2,110/km2"
+206,Visalia, California,133010,124442,0.0689,37.5 sq mi,97.1 km2,"3,495/sq mi","1,349/km2"
+207,Sterling Heights, Michigan,132631,129699,0.0226,36.5 sq mi,94.5 km2,"3,628/sq mi","1,401/km2"
+208,Gainesville, Florida,132249,124354,0.0635,62.3 sq mi,161.4 km2,"2,112/sq mi",815/km2
+209,Cedar Rapids, Iowa,132228,126326,0.0467,70.8 sq mi,183.4 km2,"1,852/sq mi",715/km2
+210,New Haven, Connecticut,131014,129779,0.0095,18.7 sq mi,48.4 km2,"6,948/sq mi","2,683/km2"
+211,Stamford, Connecticut,130824,122643,0.0667,37.6 sq mi,97.4 km2,"3,434/sq mi","1,326/km2"
+212,Elizabeth, New Jersey,130215,124969,0.042,12.3 sq mi,31.9 km2,"10,459/sq mi","4,038/km2"
+213,Concord, California,129783,122067,0.0632,30.5 sq mi,79.0 km2,"4,221/sq mi","1,630/km2"
+214,Thousand Oaks, California,128995,126683,0.0183,55.2 sq mi,143.0 km2,"2,335/sq mi",902/km2
+215,Kent, Washington,128458,92411,0.3901,33.7 sq mi,87.3 km2,"3,784/sq mi","1,461/km2"
+216,Santa Clara, California,127134,116468,0.0916,18.4 sq mi,47.7 km2,"6,845/sq mi","2,643/km2"
+217,Simi Valley, California,126878,124237,0.0213,41.5 sq mi,107.5 km2,"3,044/sq mi","1,175/km2"
+218,Lafayette, Louisiana,126848,120623,0.0516,53.8 sq mi,139.3 km2,"2,372/sq mi",916/km2
+219,Topeka, Kansas,126587,127473,?0.70%,61.5 sq mi,159.3 km2,"2,062/sq mi",796/km2
+220,Athens, Georgia,125691,115452,0.0887,116.4 sq mi,301.5 km2,"1,060/sq mi",410/km2
+221,Round Rock, Texas,123678,99887,0.2382,35.6 sq mi,92.2 km2,"3,396/sq mi","1,311/km2"
+222,Hartford, Connecticut,123400,124775,?1.10%,17.4 sq mi,45.1 km2,"7,083/sq mi","2,735/km2"
+223,Norman, Oklahoma,122843,110925,0.1074,178.8 sq mi,463.1 km2,683/sq mi,264/km2
+224,Victorville, California,122441,115903,0.0564,73.3 sq mi,189.8 km2,"1,668/sq mi",644/km2
+225,Fargo,  North Dakota,122359,105549,0.1593,49.3 sq mi,127.7 km2,"2,450/sq mi",950/km2
+226,Berkeley, California,122324,112580,0.0866,10.5 sq mi,27.2 km2,"11,547/sq mi","4,458/km2"
+227,Vallejo, California,122105,115942,0.0532,30.7 sq mi,79.5 km2,"3,951/sq mi","1,525/km2"
+228,Abilene, Texas,121885,117063,0.0412,106.7 sq mi,276.4 km2,"1,146/sq mi",442/km2
+229,Columbia, Missouri,121717,108500,0.1218,65.0 sq mi,168.3 km2,"1,856/sq mi",717/km2
+230,Ann Arbor, Michigan,121477,113934,0.0662,28.1 sq mi,72.8 km2,"4,298/sq mi","1,659/km2"
+231,Allentown, Pennsylvania,121283,118032,0.0275,17.5 sq mi,45.3 km2,"6,882/sq mi","2,657/km2"
+232,Pearland, Texas,119940,91252,0.3144,46.3 sq mi,119.9 km2,"2,453/sq mi",947/km2
+233,Beaumont, Texas,119114,118296,0.0069,82.1 sq mi,212.6 km2,"1,441/sq mi",556/km2
+234,Wilmington, North Carolina,119045,106476,0.118,51.6 sq mi,133.6 km2,"2,278/sq mi",880/km2
+235,Evansville, Indiana,118930,117429,0.0128,47.3 sq mi,122.5 km2,"2,526/sq mi",975/km2
+236,Arvada, Colorado,118807,106433,0.1163,38.6 sq mi,100.0 km2,"3,043/sq mi","1,175/km2"
+237,Provo, Utah,117335,112488,0.0431,41.7 sq mi,108.0 km2,"2,803/sq mi","1,082/km2"
+238,Independence, Missouri,117306,116830,0.0041,77.8 sq mi,201.5 km2,"1,504/sq mi",581/km2
+239,Lansing, Michigan,116986,114297,0.0235,39.1 sq mi,101.3 km2,"2,967/sq mi","1,146/km2"
+240,Odessa, Texas,116861,99940,0.1693,45.2 sq mi,117.1 km2,"2,608/sq mi","1,007/km2"
+241,Richardson, Texas,116783,99223,0.177,28.6 sq mi,74.1 km2,"3,963/sq mi","1,530/km2"
+242,Fairfield, California,116266,105321,0.1039,40.9 sq mi,105.9 km2,"2,806/sq mi","1,083/km2"
+243,El Monte, California,116109,113475,0.0232,9.6 sq mi,24.9 km2,"12,063/sq mi","4,658/km2"
+244,Rochester, Minnesota,115733,106769,0.084,54.6 sq mi,141.4 km2,"2,088/sq mi",806/km2
+245,Clearwater, Florida,115513,107685,0.0727,25.9 sq mi,67.1 km2,"4,415/sq mi","1,705/km2"
+246,Carlsbad, California,115330,105328,0.095,37.7 sq mi,97.6 km2,"3,023/sq mi","1,167/km2"
+247,Springfield, Illinois,114868,116250,?1.19%,60.1 sq mi,155.7 km2,"1,925/sq mi",743/km2
+248,Temecula, California,114327,100097,0.1422,37.3 sq mi,96.6 km2,"3,031/sq mi","1,170/km2"
+249,West Jordan, Utah,113905,103712,0.0983,32.3 sq mi,83.7 km2,"3,520/sq mi","1,360/km2"
+250,Costa Mesa, California,113825,109960,0.0351,15.7 sq mi,40.7 km2,"7,186/sq mi","2,775/km2"
+251,Miami Gardens, Florida,113750,107167,0.0614,18.2 sq mi,47.1 km2,"6,212/sq mi","2,398/km2"
+252,Cambridge, Massachusetts,113630,105162,0.0805,6.4 sq mi,16.6 km2,"17,289/sq mi","6,675/km2"
+253,College Station, Texas,113564,93857,0.21,51.0 sq mi,132.1 km2,"2,199/sq mi",849/km2
+254,Murrieta, California,113326,103466,0.0953,33.6 sq mi,87.0 km2,"3,324/sq mi","1,283/km2"
+255,Downey, California,113092,111772,0.0118,12.4 sq mi,32.1 km2,"9,134/sq mi","3,527/km2"
+256,Peoria, Illinois,112883,115007,?1.85%,48.2 sq mi,124.8 km2,"2,371/sq mi",915/km2
+257,Westminster, Colorado,112812,106114,0.0631,31.7 sq mi,82.1 km2,"3,592/sq mi","1,387/km2"
+258,Elgin, Illinois,112456,108188,0.0394,37.4 sq mi,96.9 km2,"2,998/sq mi","1,158/km2"
+259,Antioch, California,111674,102372,0.0909,29.4 sq mi,76.1 km2,"3,772/sq mi","1,456/km2"
+260,Palm Bay, Florida,111657,103190,0.0821,65.7 sq mi,170.2 km2,"1,676/sq mi",647/km2
+261,High Point, North Carolina,111513,104371,0.0684,55.2 sq mi,143.0 km2,"2,015/sq mi",778/km2
+262,Lowell, Massachusetts,111346,106519,0.0453,13.6 sq mi,35.2 km2,"8,129/sq mi","3,139/km2"
+263,Manchester, New Hampshire,111196,109565,0.0149,33.1 sq mi,85.7 km2,"3,339/sq mi","1,289/km2"
+264,Pueblo, Colorado,111127,106595,0.0425,53.6 sq mi,138.8 km2,"2,058/sq mi",795/km2
+265,Gresham, Oregon,111053,105594,0.0517,23.3 sq mi,60.3 km2,"4,786/sq mi","1,848/km2"
+266,North Charleston, South Carolina,110861,97471,0.1374,73.7 sq mi,190.9 km2,"1,483/sq mi",573/km2
+267,Ventura, California,110790,106433,0.0409,21.8 sq mi,56.5 km2,"5,027/sq mi","1,941/km2"
+268,Inglewood, California,110598,109673,0.0084,9.1 sq mi,23.6 km2,"12,160/sq mi","4,700/km2"
+269,Pompano Beach, Florida,110473,99845,0.1064,24.0 sq mi,62.2 km2,"4,558/sq mi","1,760/km2"
+270,Centennial, Colorado,110250,100377,0.0984,29.5 sq mi,76.4 km2,"3,727/sq mi","1,439/km2"
+271,West Palm Beach, Florida,110222,99919,0.1031,55.1 sq mi,142.7 km2,"1,963/sq mi",758/km2
+272,Everett, Washington,110079,103019,0.0685,33.3 sq mi,86.2 km2,"3,275/sq mi","1,264/km2"
+273,Richmond, California,110040,103701,0.0611,30.1 sq mi,78.0 km2,"3,648/sq mi","1,409/km2"
+274,Clovis, California,109691,95631,0.147,24.2 sq mi,62.7 km2,"4,404/sq mi","1,700/km2"
+275,Billings, Montana,109642,104170,0.0525,43.7 sq mi,113.2 km2,"2,525/sq mi",975/km2
+276,Waterbury, Connecticut,108629,110366,?1.57%,28.5 sq mi,73.8 km2,"3,799/sq mi","1,467/km2"
+277,Broken Arrow, Oklahoma,108303,98850,0.0956,61.7 sq mi,159.8 km2,"1,741/sq mi",672/km2
+278,Lakeland, Florida,108054,97422,0.1091,65.9 sq mi,170.7 km2,"1,615/sq mi",624/km2
+279,West Covina, California,107598,106098,0.0141,16.0 sq mi,41.4 km2,"6,740/sq mi","2,600/km2"
+280,Boulder, Colorado,107125,97385,0.1,24.8 sq mi,64.2 km2,"4,358/sq mi","1,683/km2"
+281,Daly City, California,107074,101123,0.0588,7.6 sq mi,19.7 km2,"14,009/sq mi","5,409/km2"
+282,Santa Maria, California,107014,99553,0.0749,22.8 sq mi,59.1 km2,"4,662/sq mi","1,800/km2"
+283,Hillsboro, Oregon,106894,91611,0.1668,25.0 sq mi,64.7 km2,"4,207/sq mi","1,624/km2"
+284,Sandy Springs, Georgia,106739,93853,0.1373,37.7 sq mi,97.6 km2,"2,804/sq mi","1,083/km2"
+285,Norwalk, California,106084,105549,0.0051,9.7 sq mi,25.1 km2,"10,946/sq mi","4,226/km2"
+286,Jurupa Valley, California,106028,0,NA[31],42.9 sq mi,111.1 km2,"2,414/sq mi",932/km2
+287,Lewisville, Texas,106021,95290,0.1126,36.7 sq mi,95.1 km2,"2,852/sq mi","1,101/km2"
+288,Greeley, Colorado,105448,92889,0.1352,47.8 sq mi,123.8 km2,"2,176/sq mi",840/km2
+289,Davie, Florida,105149,91992,0.143,34.9 sq mi,90.4 km2,"2,919/sq mi","1,127/km2"
+290,Green Bay, Wisconsin,105116,104057,0.0102,45.4 sq mi,117.6 km2,"2,316/sq mi",894/km2
+291,Tyler, Texas,104991,96900,0.0835,56.6 sq mi,146.6 km2,"1,852/sq mi",715/km2
+292,League City, Texas,104903,83560,0.2554,51.2 sq mi,132.6 km2,"1,992/sq mi",769/km2
+293,Burbank, California,104834,103340,0.0145,17.4 sq mi,45.1 km2,"6,003/sq mi","2,318/km2"
+294,San Mateo, California,104748,97207,0.0776,12.1 sq mi,31.3 km2,"8,592/sq mi","3,317/km2"
+295,Wichita Falls, Texas,104747,104553,0.0019,72.2 sq mi,187.0 km2,"1,450/sq mi",560/km2
+296,El Cajon, California,103894,99478,0.0444,14.5 sq mi,37.6 km2,"7,156/sq mi","2,763/km2"
+297,Rialto, California,103562,99171,0.0443,22.3 sq mi,57.8 km2,"4,633/sq mi","1,789/km2"
+298,Lakewood , New Jersey,102682,92843,0.106,24.7 sq mi,64.0 km2,"4,079/sq mi","1,575/km2"
+299,Edison , New Jersey,102450,99967,0.0248,30.1 sq mi,78.0 km2,"3,389/sq mi","1,309/km2"
+300,Davenport, Iowa,102320,99685,0.0264,62.9 sq mi,162.9 km2,"1,631/sq mi",630/km2
+301,South Bend, Indiana,102245,101168,0.0106,41.4 sq mi,107.2 km2,"2,457/sq mi",949/km2
+302,Woodbridge, New Jersey,101965,99585,0.0239,23.3 sq mi,60.3 km2,"4,351/sq mi","1,680/km2"
+303,Las Cruces, New Mexico,101712,97618,0.0419,76.9 sq mi,199.2 km2,"1,323/sq mi",511/km2
+304,Vista, California,101568,93834,0.0824,18.7 sq mi,48.4 km2,"5,436/sq mi","2,099/km2"
+305,Renton, Washington,101379,90927,0.1149,23.4 sq mi,60.6 km2,"4,314/sq mi","1,666/km2"
+306,Sparks, Nevada,100888,90264,0.1177,35.9 sq mi,93.0 km2,"2,810/sq mi","1,080/km2"
+307,Clinton, Michigan,100712,96796,0.0405,28.1 sq mi,72.8 km2,"3,573/sq mi","1,380/km2"
+308,Allen, Texas,100685,84246,0.1951,27.1 sq mi,70.2 km2,"3,715/sq mi","1,434/km2"
+309,Tuscaloosa, Alabama,100287,90468,0.1085,71.7 sq mi,185.7 km2,"1,399/sq mi",540/km2
+310,San Angelo, Texas,100119,93200,0.0742,59.9 sq mi,155.1 km2,"1,681/sq mi",649/km2
+311,Vacaville, California,100032,92428,0.0823,29.0 sq mi,75.1 km2,"3,449/sq mi","1,332/km2"
