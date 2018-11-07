@@ -3588,6 +3588,279 @@
 
 		}
 
+		#banner_lessees {
+			padding: 8em 0 10em 0;
+			background-image: url(../../images/dock_short.jpeg);
+			filter: saturate(80%); 
+			/* Can't figure out how to filter just image without applying it to text */
+			/* filter: grayscale(70%); */
+			filter: brightness(70%);
+			/* opacity: 0.9; */
+			background-size: cover;
+			background-position: bottom;
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+			text-align: center;
+			position: relative;
+		}
+
+			#banner_lessees input, #banner_lessees select, #banner_lessees textarea {
+				color: #fff;
+			}
+
+			#banner_lessees a {
+				color: #fff;
+			}
+
+			#banner_lessees strong, #banner_lessees b {
+				color: #fff;
+			}
+
+			#banner_lessees h1, #banner_lessees h2, #banner_lessees h3, #banner_lessees h4, #banner_lessees h5, #banner_lessees h6 {
+				color: #fff;
+			}
+
+			#banner_lessees blockquote {
+				border-left-color: rgba(255, 255, 255, 0.25);
+			}
+
+			#banner_lessees code {
+				background: rgba(255, 255, 255, 0.75);
+				border-color: rgba(255, 255, 255, 0.25);
+			}
+
+			#banner_lessees hr {
+				border-bottom-color: rgba(255, 255, 255, 0.25);
+			}
+
+			#banner_lessees .box {
+				border-color: rgba(255, 255, 255, 0.25);
+			}
+
+			#banner_lessees input[type="submit"],
+			#banner_lessees input[type="reset"],
+			#banner_lessees input[type="button"],
+			#banner_lessees button,
+			#banner_lessees .button {
+				background-color: #1abc9c;
+				color: #fff !important;
+			}
+
+				#banner_lessees input[type="submit"]:hover,
+				#banner_lessees input[type="reset"]:hover,
+				#banner_lessees input[type="button"]:hover,
+				#banner_lessees button:hover,
+				#banner_lessees .button:hover {
+					background-color: #1dd2af;
+				}
+
+				#banner_lessees input[type="submit"]:active,
+				#banner_lessees input[type="reset"]:active,
+				#banner_lessees input[type="button"]:active,
+				#banner_lessees button:active,
+				#banner_lessees .button:active {
+					background-color: #17a689;
+				}
+
+				#banner_lessees input[type="submit"].alt,
+				#banner_lessees input[type="reset"].alt,
+				#banner_lessees input[type="button"].alt,
+				#banner_lessees button.alt,
+				#banner_lessees .button.alt {
+					background-color: transparent;
+					box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25);
+					color: #fff !important;
+				}
+
+					#banner_lessees input[type="submit"].alt:hover,
+					#banner_lessees input[type="reset"].alt:hover,
+					#banner_lessees input[type="button"].alt:hover,
+					#banner_lessees button.alt:hover,
+					#banner_lessees .button.alt:hover {
+						background-color: rgba(255, 255, 255, 0.075);
+					}
+
+					#banner_lessees input[type="submit"].alt:active,
+					#banner_lessees input[type="reset"].alt:active,
+					#banner_lessees input[type="button"].alt:active,
+					#banner_lessees button.alt:active,
+					#banner_lessees .button.alt:active {
+						background-color: rgba(255, 255, 255, 0.2);
+					}
+
+					#banner_lessees input[type="submit"].alt.icon:before,
+					#banner_lessees input[type="reset"].alt.icon:before,
+					#banner_lessees input[type="button"].alt.icon:before,
+					#banner_lessees button.alt.icon:before,
+					#banner_lessees .button.alt.icon:before {
+						color: rgba(255, 255, 255, 0.5);
+					}
+
+				#banner_lessees input[type="submit"].special,
+				#banner_lessees input[type="reset"].special,
+				#banner_lessees input[type="button"].special,
+				#banner_lessees button.special,
+				#banner_lessees .button.special {
+					background-color: #fff;
+					color: #3498db !important;
+				}
+
+			#banner_lessees label {
+				color: #fff;
+			}
+
+			#banner_lessees input[type="text"],
+			#banner_lessees input[type="password"],
+			#banner_lessees input[type="email"],
+			#banner_lessees select,
+			#banner_lessees textarea {
+				background: rgba(255, 255, 255, 0.075);
+				border-color: rgba(255, 255, 255, 0.25);
+			}
+
+				#banner_lessees input[type="text"]:focus,
+				#banner_lessees input[type="password"]:focus,
+				#banner_lessees input[type="email"]:focus,
+				#banner_lessees select:focus,
+				#banner_lessees textarea:focus {
+					border-color: #fff;
+					box-shadow: 0 0 0 1px #fff;
+				}
+
+			#banner_lessees .select-wrapper:before {
+				color: rgba(255, 255, 255, 0.25);
+			}
+
+			#banner_lessees input[type="checkbox"] + label,
+			#banner_lessees input[type="radio"] + label {
+				color: rgba(255, 255, 255, 0.75);
+			}
+
+				#banner_lessees input[type="checkbox"] + label:before,
+				#banner_lessees input[type="radio"] + label:before {
+					background: rgba(255, 255, 255, 0.075);
+					border-color: rgba(255, 255, 255, 0.25);
+				}
+
+			#banner_lessees input[type="checkbox"]:checked + label:before,
+			#banner_lessees input[type="radio"]:checked + label:before {
+				background-color: #fff;
+				border-color: #fff;
+				color: #3498db;
+			}
+
+			#banner_lessees input[type="checkbox"]:focus + label:before,
+			#banner_lessees input[type="radio"]:focus + label:before {
+				border-color: #fff;
+				box-shadow: 0 0 0 1px #fff;
+			}
+
+			#banner_lessees ::-webkit-input-placeholder {
+				color: rgba(255, 255, 255, 0.5) !important;
+			}
+
+			#banner_lessees :-moz-placeholder {
+				color: rgba(255, 255, 255, 0.5) !important;
+			}
+
+			#banner_lessees ::-moz-placeholder {
+				color: rgba(255, 255, 255, 0.5) !important;
+			}
+
+			#banner_lessees :-ms-input-placeholder {
+				color: rgba(255, 255, 255, 0.5) !important;
+			}
+
+			#banner_lessees .formerize-placeholder {
+				color: rgba(255, 255, 255, 0.5) !important;
+			}
+
+			#banner_lessees ul.alt li {
+				border-top-color: rgba(255, 255, 255, 0.25);
+			}
+
+			#banner_lessees header p {
+				color: rgba(255, 255, 255, 0.5);
+			}
+
+			#banner_lessees table tbody tr {
+				border-color: rgba(255, 255, 255, 0.25);
+			}
+
+				#banner_lessees table tbody tr:nth-child(2n + 1) {
+					background-color: rgba(255, 255, 255, 0.075);
+				}
+
+			#banner_lessees table th {
+				color: #fff;
+			}
+
+			#banner_lessees table thead {
+				border-bottom-color: rgba(255, 255, 255, 0.25);
+			}
+
+			#banner_lessees table tfoot {
+				border-top-color: rgba(255, 255, 255, 0.25);
+			}
+
+			#banner_lessees table.alt tbody tr td {
+				border-color: rgba(255, 255, 255, 0.25);
+			}
+
+			#banner_lessees h1 {
+				font-size: 3em;
+				line-height: 1.45;
+				margin: 0 0 0.75em 0;
+			}
+
+			#banner_lessees > .inner {
+				opacity: 1;
+				-moz-transform: none;
+				-webkit-transform: none;
+				-ms-transform: none;
+				transform: none;
+				-moz-transition: opacity 1s ease, -moz-transform 1s ease;
+				-webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+				-ms-transition: opacity 1s ease, -ms-transform 1s ease;
+				transition: opacity 1s ease, transform 1s ease;
+			}
+
+				#banner_lessees > .inner > :last-child {
+					margin-bottom: 0;
+				}
+
+			body.is-loading #banner_lessees > .inner {
+				opacity: 0;
+				-moz-transform: translateY(1em);
+				-webkit-transform: translateY(1em);
+				-ms-transform: translateY(1em);
+				transform: translateY(1em);
+			}
+
+			@media screen and (max-width: 1280px) {
+
+				#banner_lessees h1 {
+					font-size: 2.75em;
+				}
+
+					#banner_lessees h1 br {
+						display: none;
+					}
+
+			}
+
+			@media screen and (max-width: 736px) {
+
+				#banner_lessees {
+					padding: 5em 1.5em 4em 1.5em;
+				}
+
+					#banner_lessees h1 {
+						font-size: 2em;
+					}
+
+			}
+
 /* Main */
 
 	#main {
