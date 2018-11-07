@@ -3589,12 +3589,12 @@
 		}
 
 		#banner_lessees {
-			padding: 8em 0 10em 0;
+			padding: 8em 0 5em 0;
 			background-image: url(../../images/dock_short.jpeg);
-			filter: saturate(70%);
+			/* filter: saturate(70%); */
 			/* Can't figure out how to filter just image without applying it to text */
 			/* filter: grayscale(70%); */
-			filter: brightness(40%);
+			/* filter: brightness(40%); */
 			/* opacity: 0.9; */
 			background-size: cover;
 			background-position: bottom;
@@ -3860,6 +3860,280 @@
 					}
 
 			}
+
+		#banner_login {
+		  padding: 8em 0 5em 0;
+		  background-image: url(../../images/silver_warehouse.jpg);
+		  /* filter: saturate(70%); */
+		  /* Can't figure out how to filter just image without applying it to text */
+		  /* filter: grayscale(70%); */
+		  /* filter: brightness(40%); */
+		  /* opacity: 0.9; */
+		  background-size: cover;
+		  background-position: bottom;
+		  background-attachment: fixed;
+		  background-repeat: no-repeat;
+		  text-align: center;
+		  position: relative;
+		}
+
+		  #banner_login input, #banner_login select, #banner_login textarea {
+		    color: #fff;
+		  }
+
+		  #banner_login a {
+		    color: #fff;
+		  }
+
+		  #banner_login strong, #banner_login b {
+		    color: #fff;
+		  }
+
+		  #banner_login h1, #banner_login h2, #banner_login h3, #banner_login h4, #banner_login h5, #banner_login h6 {
+		    color: #fff;
+		  }
+
+		  #banner_login blockquote {
+		    border-left-color: rgba(255, 255, 255, 0.25);
+		  }
+
+		  #banner_login code {
+		    background: rgba(255, 255, 255, 0.75);
+		    border-color: rgba(255, 255, 255, 0.25);
+		  }
+
+		  #banner_login hr {
+		    border-bottom-color: rgba(255, 255, 255, 0.25);
+		  }
+
+		  #banner_login .box {
+		    border-color: rgba(255, 255, 255, 0.25);
+		  }
+
+		  #banner_login input[type="submit"],
+		  #banner_login input[type="reset"],
+		  #banner_login input[type="button"],
+		  #banner_login button,
+		  #banner_login .button {
+		    background-color: #1abc9c;
+		    color: #fff !important;
+		  }
+
+		    #banner_login input[type="submit"]:hover,
+		    #banner_login input[type="reset"]:hover,
+		    #banner_login input[type="button"]:hover,
+		    #banner_login button:hover,
+		    #banner_login .button:hover {
+		      background-color: #1dd2af;
+		    }
+
+		    #banner_login input[type="submit"]:active,
+		    #banner_login input[type="reset"]:active,
+		    #banner_login input[type="button"]:active,
+		    #banner_login button:active,
+		    #banner_login .button:active {
+		      background-color: #17a689;
+		    }
+
+		    #banner_login input[type="submit"].alt,
+		    #banner_login input[type="reset"].alt,
+		    #banner_login input[type="button"].alt,
+		    #banner_login button.alt,
+		    #banner_login .button.alt {
+		      background-color: transparent;
+		      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25);
+		      color: #fff !important;
+		    }
+
+		      #banner_login input[type="submit"].alt:hover,
+		      #banner_login input[type="reset"].alt:hover,
+		      #banner_login input[type="button"].alt:hover,
+		      #banner_login button.alt:hover,
+		      #banner_login .button.alt:hover {
+		        background-color: rgba(255, 255, 255, 0.075);
+		      }
+
+		      #banner_login input[type="submit"].alt:active,
+		      #banner_login input[type="reset"].alt:active,
+		      #banner_login input[type="button"].alt:active,
+		      #banner_login button.alt:active,
+		      #banner_login .button.alt:active {
+		        background-color: rgba(255, 255, 255, 0.2);
+		      }
+
+		      #banner_login input[type="submit"].alt.icon:before,
+		      #banner_login input[type="reset"].alt.icon:before,
+		      #banner_login input[type="button"].alt.icon:before,
+		      #banner_login button.alt.icon:before,
+		      #banner_login .button.alt.icon:before {
+		        color: rgba(255, 255, 255, 0.5);
+		      }
+
+		    #banner_login input[type="submit"].special,
+		    #banner_login input[type="reset"].special,
+		    #banner_login input[type="button"].special,
+		    #banner_login button.special,
+		    #banner_login .button.special {
+		      background-color: #fff;
+		      color: #3498db !important;
+		    }
+
+		  #banner_login label {
+		    color: #fff;
+		  }
+
+		  #banner_login input[type="text"],
+		  #banner_login input[type="password"],
+		  #banner_login input[type="email"],
+		  #banner_login select,
+		  #banner_login textarea {
+		    background: rgba(255, 255, 255, 0.075);
+		    border-color: rgba(255, 255, 255, 0.25);
+		  }
+
+		    #banner_login input[type="text"]:focus,
+		    #banner_login input[type="password"]:focus,
+		    #banner_login input[type="email"]:focus,
+		    #banner_login select:focus,
+		    #banner_login textarea:focus {
+		      border-color: #fff;
+		      box-shadow: 0 0 0 1px #fff;
+		    }
+
+		  #banner_login .select-wrapper:before {
+		    color: rgba(255, 255, 255, 0.25);
+		  }
+
+		  #banner_login input[type="checkbox"] + label,
+		  #banner_login input[type="radio"] + label {
+		    color: rgba(255, 255, 255, 0.75);
+		  }
+
+		    #banner_login input[type="checkbox"] + label:before,
+		    #banner_login input[type="radio"] + label:before {
+		      background: rgba(255, 255, 255, 0.075);
+		      border-color: rgba(255, 255, 255, 0.25);
+		    }
+
+		  #banner_login input[type="checkbox"]:checked + label:before,
+		  #banner_login input[type="radio"]:checked + label:before {
+		    background-color: #fff;
+		    border-color: #fff;
+		    color: #3498db;
+		  }
+
+		  #banner_login input[type="checkbox"]:focus + label:before,
+		  #banner_login input[type="radio"]:focus + label:before {
+		    border-color: #fff;
+		    box-shadow: 0 0 0 1px #fff;
+		  }
+
+		  #banner_login ::-webkit-input-placeholder {
+		    color: rgba(255, 255, 255, 0.5) !important;
+		  }
+
+		  #banner_login :-moz-placeholder {
+		    color: rgba(255, 255, 255, 0.5) !important;
+		  }
+
+		  #banner_login ::-moz-placeholder {
+		    color: rgba(255, 255, 255, 0.5) !important;
+		  }
+
+		  #banner_login :-ms-input-placeholder {
+		    color: rgba(255, 255, 255, 0.5) !important;
+		  }
+
+		  #banner_login .formerize-placeholder {
+		    color: rgba(255, 255, 255, 0.5) !important;
+		  }
+
+		  #banner_login ul.alt li {
+		    border-top-color: rgba(255, 255, 255, 0.25);
+		  }
+
+		  #banner_login header p {
+		    color: rgba(255, 255, 255, 0.5);
+		  }
+
+		  #banner_login table tbody tr {
+		    border-color: rgba(255, 255, 255, 0.25);
+		  }
+
+		    #banner_login table tbody tr:nth-child(2n + 1) {
+		      background-color: rgba(255, 255, 255, 0.075);
+		    }
+
+		  #banner_login table th {
+		    color: #fff;
+		  }
+
+		  #banner_login table thead {
+		    border-bottom-color: rgba(255, 255, 255, 0.25);
+		  }
+
+		  #banner_login table tfoot {
+		    border-top-color: rgba(255, 255, 255, 0.25);
+		  }
+
+		  #banner_login table.alt tbody tr td {
+		    border-color: rgba(255, 255, 255, 0.25);
+		  }
+
+		  #banner_login h1 {
+		    font-size: 3em;
+		    line-height: 1.45;
+		    margin: 0 0 0.75em 0;
+		  }
+
+		  #banner_login > .inner {
+		    opacity: 1;
+		    -moz-transform: none;
+		    -webkit-transform: none;
+		    -ms-transform: none;
+		    transform: none;
+		    -moz-transition: opacity 1s ease, -moz-transform 1s ease;
+		    -webkit-transition: opacity 1s ease, -webkit-transform 1s ease;
+		    -ms-transition: opacity 1s ease, -ms-transform 1s ease;
+		    transition: opacity 1s ease, transform 1s ease;
+		  }
+
+		    #banner_login > .inner > :last-child {
+		      margin-bottom: 0;
+		    }
+
+		  body.is-loading #banner_login > .inner {
+		    opacity: 0;
+		    -moz-transform: translateY(1em);
+		    -webkit-transform: translateY(1em);
+		    -ms-transform: translateY(1em);
+		    transform: translateY(1em);
+		  }
+
+		  @media screen and (max-width: 1280px) {
+
+		    #banner_login h1 {
+		      font-size: 2.75em;
+		    }
+
+		      #banner_login h1 br {
+		        display: none;
+		      }
+
+		  }
+
+		  @media screen and (max-width: 736px) {
+
+		    #banner_login {
+		      padding: 5em 1.5em 4em 1.5em;
+		    }
+
+		      #banner_login h1 {
+		        font-size: 2em;
+		      }
+
+		  }
+
 
 /* Main */
 
