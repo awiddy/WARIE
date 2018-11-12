@@ -9,6 +9,8 @@
 # install.packages("stringr")
 # install.packages("password")
 # install.packages("openintro")  #for function state2abbr
+install.packages("RMySQL")
+require(RMySQL)
 require(openintro)
 require(zipcode)
 #library(random)
@@ -51,7 +53,7 @@ owner_email_end <- sample(c("@gmail.com","@yahoo.com", "@hotmail.com", "@aol.com
 owner_email <- paste(owner_username,owner_email_end,sep="")
 
 ownerDF = data.frame(ID = owner_id, firstName = owner_first, lastName = owner_last, Email = owner_email, Password = owner_pw)
-colnames(ownerDF) <- c("ID","FirstName", "LastName","Email","Password")  ##May need to add average rating
+colnames(ownerDF) <- c("OwnerID","FirstName", "LastName","Email","Password")  ##May need to add average rating
 
 ##Warehouse Sim
 n_Cities_sample <- 15 #The top 'n' cities population wise (up to 311)
@@ -78,9 +80,10 @@ for (i in 1:nrow(warehouse_loc)){
   whPrices <- c(whPrices,big_cities[which(warehouse_loc[i,'city'] == big_cities$City),'Base Price'])
 }
 
-
-warehouseDF = data.frame(warehouse_id, storage_capactity, storage_type,whPrices, warehouse_loc) #combines warehouse information into a dataframe
-colnames(warehouseDF) <- c("ID","Storage Capacity", "Storage Type", "Prices", "Zipcode", "City", "State", "Latitude", "Longitude")
+warehouse_owner <- c(sample(owner_id,size = num_owners, replace= F)) #randomly assigns one warehouse to every owner
+warehouse_owner <- c(warehouse_owner, sample(owner_id, size = num_warehouses-num_owners, replace= T)) #randomly assigns *with replacement* owners to the remaining warehouses
+warehouseDF = data.frame(warehouse_id, storage_capactity, storage_type,whPrices, warehouse_loc, warehouse_owner) #combines warehouse information into a dataframe
+colnames(warehouseDF) <- c("ID","StorageCapacity", "StorageType", "BasePrice", "Zipcode", "City", "State", "Latitude", "Longitude", "Owner_ID")
 
 
 #Contract Generate 
@@ -89,10 +92,17 @@ owner_rating <- sample(c(1:5),size = num_owners, replace = T, prob = c(0.1,0.2,0
 
 
 ##########################################################################################################
+##Add Generated Data to Database## ##Comment out when not running on a ITap Machine
+#mydb = dbConnect(MySQL(), user='g1090423', password='marioboys', dbname='g1090423', host='mydb.ics.purdue.edu')
+#dbListTables(mydb)
 
+#dbWriteTable(mydb, "Lessee", lesseeDF, append = TRUE, row.names=FALSE)
+#dbWriteTable(mydb, "Owner", ownerDF, append = TRUE, row.names=FALSE)
+#dbWriteTable(mydb, "Warehouse", warehouseDF, append = TRUE, row.names=FALSE)
 
-
-
+# all_cons <- dbListConnections(MySQL())
+# for (con in all_cons)
+#   dbDisconnect(con)
 
 
 
