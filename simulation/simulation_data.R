@@ -4,12 +4,12 @@
 #Packages to be installed: "random", "randomNames", "zipcodes"
 
 #Library Statements  ## Change to require
-# install.packages("zipcode")
-# install.packages("randomNames")
-# install.packages("stringr")
-# install.packages("password")
-# install.packages("openintro")  #for function state2abbr
-install.packages("RMySQL")
+ #install.packages("zipcode")
+ #install.packages("randomNames")
+ #install.packages("stringr")
+ #install.packages("password")
+ #install.packages("openintro")  #for function state2abbr
+#install.packages("RMySQL")
 require(RMySQL)
 require(openintro)
 require(zipcode)
@@ -19,6 +19,11 @@ require(stringr)
 require(password)
 
 
+##If you are creating new Data to work with, the old data in MySQL should be updated
+mydb<-dbConnect(MySQL(),user='g1090423',password='marioboys',dbname='g1090423',host='mydb.ics.purdue.edu')
+dbSendQuery(mydb,'DELETE FROM Warehouse')
+dbSendQuery(mydb,'DELETE FROM Owner')
+dbSendQuery(mydb,'DELETE FROM Lessee')
 #########################################################################################################
 
 ##Number of users## Only change the number of lessees
@@ -96,13 +101,14 @@ owner_rating <- sample(c(1:5),size = num_owners, replace = T, prob = c(0.1,0.2,0
 #mydb = dbConnect(MySQL(), user='g1090423', password='marioboys', dbname='g1090423', host='mydb.ics.purdue.edu')
 #dbListTables(mydb)
 
-#dbWriteTable(mydb, "Lessee", lesseeDF, append = TRUE, row.names=FALSE)
-#dbWriteTable(mydb, "Owner", ownerDF, append = TRUE, row.names=FALSE)
-#dbWriteTable(mydb, "Warehouse", warehouseDF, append = TRUE, row.names=FALSE)
+dbWriteTable(mydb, "Lessee", lesseeDF, append = TRUE, row.names=FALSE)
+colnames(ownerDF) <- c("ID","FirstName", "LastName","Email","Password")
+dbWriteTable(mydb, "Owner", ownerDF, append = TRUE, row.names=FALSE)
+dbWriteTable(mydb, "Warehouse", warehouseDF, append = TRUE, row.names=FALSE)
 
-# all_cons <- dbListConnections(MySQL())
-# for (con in all_cons)
-#   dbDisconnect(con)
+ all_cons <- dbListConnections(MySQL())
+ for (con in all_cons)
+   dbDisconnect(con)
 
 
 
