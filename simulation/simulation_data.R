@@ -19,11 +19,11 @@ require(stringr)
 require(password)
 
 
-##If you are creating new Data to work with, the old data in MySQL should be updated
-mydb<-dbConnect(MySQL(),user='g1090423',password='marioboys',dbname='g1090423',host='mydb.ics.purdue.edu')
-dbSendQuery(mydb,'DELETE FROM Warehouse')
-dbSendQuery(mydb,'DELETE FROM Owner')
-dbSendQuery(mydb,'DELETE FROM Lessee')
+# ##If you are creating new Data to work with, the old data in MySQL should be updated
+# mydb<-dbConnect(MySQL(),user='g1090423',password='marioboys',dbname='g1090423',host='mydb.ics.purdue.edu')
+# dbSendQuery(mydb,'DELETE FROM Warehouse')
+# dbSendQuery(mydb,'DELETE FROM Owner')
+# dbSendQuery(mydb,'DELETE FROM Lessee')
 #########################################################################################################
 
 ##Number of users## Only change the number of lessees
@@ -42,8 +42,9 @@ lessee_username <- lessee_username <- paste(lessee_f_init,lessee_last, sep="")
 lessee_username <- str_to_lower(lessee_username)
 lessee_email_end <- sample(c("@gmail.com","@yahoo.com", "@hotmail.com", "@aol.com", "@msn.com"), size = num_lessees, replace = T, prob = c(0.3,0.3, 0.25, 0.1, 0.05))
 lessee_email <- paste(lessee_username,lessee_email_end,sep="")
-lesseeDF = data.frame(ID = lessee_id, firstName = lessee_first, lastName = lessee_last, Email = lessee_email, Password = lessee_pw)
-colnames(lesseeDF) <- c("ID","FirstName","LastName","Email", "Password") ##May need to add average rating
+lessee_rating <- sample(c(1:5), size = num_lessees, replace = T, prob = c(0.1,0.2,0.3,0.3,0.1)) 
+lesseeDF = data.frame(ID = lessee_id, firstName = lessee_first, lastName = lessee_last, Email = lessee_email, Password = lessee_pw, Rating = lessee_rating)
+colnames(lesseeDF) <- c("ID","FirstName","LastName","Email", "Password", "Rating") ##May need to add average rating
 
 
 #Owner Siml
@@ -56,9 +57,9 @@ owner_username <- paste(owner_f_init,owner_last, sep="")
 owner_username <- str_to_lower(owner_username)
 owner_email_end <- sample(c("@gmail.com","@yahoo.com", "@hotmail.com", "@aol.com", "@msn.com"), size = num_owners, replace = T, prob = c(0.3,0.3, 0.25, 0.1, 0.05))
 owner_email <- paste(owner_username,owner_email_end,sep="")
-
-ownerDF = data.frame(ID = owner_id, firstName = owner_first, lastName = owner_last, Email = owner_email, Password = owner_pw)
-colnames(ownerDF) <- c("OwnerID","FirstName", "LastName","Email","Password")  ##May need to add average rating
+owner_rating <- sample(c(1:5),size = num_owners, replace = T, prob = c(0.1,0.2,0.3,0.3,0.1))
+ownerDF = data.frame(ID = owner_id, firstName = owner_first, lastName = owner_last, Email = owner_email, Password = owner_pw, Rating = owner_rating)
+colnames(ownerDF) <- c("ID","FirstName", "LastName","Email","Password", "Rating")  ##May need to add average rating
 
 ##Warehouse Sim
 n_Cities_sample <- 15 #The top 'n' cities population wise (up to 311)
@@ -91,27 +92,18 @@ warehouseDF = data.frame(warehouse_id, storage_capactity, storage_type,whPrices,
 colnames(warehouseDF) <- c("ID","StorageCapacity", "StorageType", "BasePrice", "Zipcode", "City", "State", "Latitude", "Longitude", "Owner_ID")
 
 
-#Contract Generate 
-lessee_rating <- sample(c(1:5), size = num_lessees, replace = T, prob = c(0.1,0.2,0.3,0.3,0.1)) 
-owner_rating <- sample(c(1:5),size = num_owners, replace = T, prob = c(0.1,0.2,0.3,0.3,0.1))
-
-
 ##########################################################################################################
 ##Add Generated Data to Database## ##Comment out when not running on a ITap Machine
 #mydb = dbConnect(MySQL(), user='g1090423', password='marioboys', dbname='g1090423', host='mydb.ics.purdue.edu')
 #dbListTables(mydb)
 
-dbWriteTable(mydb, "Lessee", lesseeDF, append = TRUE, row.names=FALSE)
-colnames(ownerDF) <- c("ID","FirstName", "LastName","Email","Password")
-dbWriteTable(mydb, "Owner", ownerDF, append = TRUE, row.names=FALSE)
-dbWriteTable(mydb, "Warehouse", warehouseDF, append = TRUE, row.names=FALSE)
-
- all_cons <- dbListConnections(MySQL())
- for (con in all_cons)
-   dbDisconnect(con)
-
-
-
+# dbWriteTable(mydb, "Lessee", lesseeDF, append = TRUE, row.names=FALSE)
+# dbWriteTable(mydb, "Owner", ownerDF, append = TRUE, row.names=FALSE)
+# dbWriteTable(mydb, "Warehouse", warehouseDF, append = TRUE, row.names=FALSE)
+# 
+#  all_cons <- dbListConnections(MySQL())
+#  for (con in all_cons)
+#    dbDisconnect(con)
 
 ##########################################################################################################
 
