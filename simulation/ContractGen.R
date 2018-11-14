@@ -14,6 +14,8 @@ contracts[,'Approval'] = 0
 
 mydb<-dbConnect(MySQL(),user="g1090423",password="marioboys",dbname="g1090423",host = "mydb.ics.purdue.edu")
 warehouseDF<- fetch(dbSendQuery(mydb,'SELECT StorageCapacity AS StorageCapacity FROM Warehouse'),n=-1)
+num_lessees <- as.numeric(fetch(dbSendQuery(mydb,'SELECT Count(*) FROM Lessee'),n=-1))
+num_owners <- as.numeric(fetch(dbSendQuery(mydb,'SELECT Count(*) FROM Owner'),n=-1))                
 
 for (i in 1:nrow(warehouseDF)){
   
