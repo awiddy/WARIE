@@ -1,3 +1,4 @@
+WLOGen <- function(){
 #########################################################################################################
 ###    Data Simulation  ###
 
@@ -10,6 +11,7 @@
  #install.packages("password")
  #install.packages("openintro")  #for function state2abbr
 #install.packages("RMySQL")
+  
 require(RMySQL)
 require(openintro)
 require(zipcode)
@@ -27,7 +29,7 @@ dbSendQuery(mydb,'DELETE FROM Lessee')
 #########################################################################################################
 
 ##Number of users## Only change the number of lessees
-num_lessees = 5000 #total number of lessees generated
+num_lessees = 2000 #total number of lessees generated
 num_warehouses = num_lessees *0.5 #total number of warehouses generated
 num_owners = num_warehouses*0.75 #total number of owners generated
 
@@ -108,12 +110,10 @@ dbWriteTable(mydb, "Warehouse", warehouseDF, append = TRUE, row.names=FALSE)
 
  all_cons <- dbListConnections(MySQL())
  for (con in all_cons)
+ {
    dbDisconnect(con)
-
-
-
-
+ }
 ##########################################################################################################
-
+}
 
 
