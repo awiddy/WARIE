@@ -4,6 +4,7 @@ FirstName varchar(50) NOT NULL,
 LastName varchar(50) NOT NULL,
 Email varchar(50) NOT NULL,
 Password varchar(20) NOT NULL,
+Rating INT(2),
 PRIMARY KEY(ID));
 
 CREATE TABLE Owner(
@@ -12,6 +13,7 @@ FirstName varchar(50) NOT NULL,
 LastName varchar(50) NOT NULL,
 Email varchar(50) NOT NULL,
 Password varchar(20) NOT NULL,
+Rating INT(2),
 PRIMARY KEY(ID));
 
 
@@ -34,8 +36,6 @@ CREATE TABLE Contract(
 Start_date date,
 End_date date,
 ID INT(10) NOT NULL AUTO_INCREMENT,
-Lessee_Rating int(1),
-Owner_Rating int(1),
 Lessee_ID int(10),
 Owner_ID int(10),
 Rented_Space int(10),
