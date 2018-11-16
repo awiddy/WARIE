@@ -27,7 +27,7 @@ ranking<-function(filtered_warehouses, sort_user_rating, sort_price){
   }
 
   }
-  #final_scores<-score_vec
+  #final_scores<-data.frame(wID, user_rating, price, score_vec)
   
   
 }
