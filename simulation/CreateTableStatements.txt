@@ -1,0 +1,56 @@
+CREATE TABLE Lessee(
+ID INT(10) NOT NULL AUTO_INCREMENT,
+FirstName varchar(50) NOT NULL,
+LastName varchar(50) NOT NULL,
+Email varchar(50) NOT NULL,
+Password varchar(20) NOT NULL,
+Rating INT(2),
+PRIMARY KEY(ID));
+
+CREATE TABLE Owner(
+ID INT(10) NOT NULL AUTO_INCREMENT,
+FirstName varchar(50) NOT NULL,
+LastName varchar(50) NOT NULL,
+Email varchar(50) NOT NULL,
+Password varchar(20) NOT NULL,
+Rating INT(2),
+PRIMARY KEY(ID));
+
+
+CREATE TABLE Warehouse(
+ID INT(10) NOT NULL AUTO_INCREMENT,
+StorageCapacity INT(10) NOT NULL,
+StorageType VARCHAR(10) NOT NULL,
+BasePrice VARCHAR(10) NOT NULL,
+Zipcode VARCHAR(10) NOT NULL,
+City VARCHAR(50) NOT NULL,
+State VARCHAR(15) NOT NULL,
+Latitude DECIMAL NOT NULL,
+Longitude DECIMAL NOT NULL,
+Owner_ID INT(10) NOT NULL,
+PRIMARY KEY(ID),
+FOREIGN KEY(Owner_ID) REFERENCES Owner(ID) 
+ON DELETE CASCADE);
+
+CREATE TABLE Contract(
+Start_date date,
+End_date date,
+ID INT(10) NOT NULL AUTO_INCREMENT,
+Lessee_ID int(10),
+Owner_ID int(10),
+Rented_Space int(10),
+Signing_date date,
+Warehouse_ID int(10),
+Approval int(2),
+FOREIGN KEY(Warehouse_ID) REFERENCES Warehouse(ID) ON DELETE CASCADE,
+FOREIGN KEY(Lessee_ID) REFERENCES Lessee(ID) ON DELETE CASCADE,
+FOREIGN KEY(Owner_ID) REFERENCES Owner(ID) ON DELETE CASCADE,
+PRIMARY KEY(ID));
+
+CREATE TABLE Availability(
+WarehouseID int(10) NOT NULL,
+WeekFromDate int(2) NOT NULL,
+Open_Space int(6) NOT NULL,
+Primary Key(WarehouseID,WeekFromDate),
+Foreign Key(WarehouseID) References Warehouse(ID) ON DELETE CASCADE);
+

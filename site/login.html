@@ -11,7 +11,54 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
-	<body>
+<body>
+<?php
+   define('DB_SERVER', 'mydb.ics.purdue.edu');
+   define('DB_USERNAME', 'g1090423');
+   define('DB_PASSWORD', 'marioboys');
+   define('DB_DATABASE', 'g1090423');
+   $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+?>
+
+<?php
+session_start();  
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+	  // username and password sent from form 
+		  $sub = $_POST["submit"];
+		  
+	  $myemail = mysqli_real_escape_string($db,$_POST['email']);
+	  $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+	  
+	  if (isset($sub["OwnerLogin"])) {
+	  $sql = "SELECT ID FROM Owner O WHERE O.Email = '$myemail' and O.Password = '$mypassword'";
+	  $result = mysqli_query($db,$sql);
+	  $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+	  $active = $row['active'];
+	  $count = mysqli_num_rows($result);
+	  
+	  // If result matched $myusername and $mypassword, table row must be 1 row
+		}elseif (isset($sub["LesseeLogin"])){
+		$sql = "SELECT ID FROM Lessee L WHERE L.Email = '$myemail' and L.Password = '$mypassword'";
+		$result = mysqli_query($db,$sql);
+		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+		$active = $row['active'];
+		$count = mysqli_num_rows($result);
+		}
+	
+	if($count == 1) {
+		session_register("myemail");
+		$_SESSION['email'] = $myemail;
+		if(isset($sub["OwnerLogin"])){
+			header("Location:  C:\Users\mkell\OneDrive\Documents\GitHub\WARIE\site\Owners.html"); die();
+		}
+		else {
+			header("Location:  C:\Users\mkell\OneDrive\Documents\GitHub\WARIE\site\Lessee.html"); die();
+		}
+	} else{	
+		 $error = "Your Email or Password is invalid";
+	  }
+	}
+?>
 
 		<!-- Header -->
 			<header id="header">
@@ -38,13 +85,13 @@
 				</br></br></br>
 					<h1><font color="white">Login with WARIE</font></h1></br>
 				</div>
-			</section>
+		</section>
 
-		<!-- Main -->
+		<!-- Main 
 			<section id="main">
 				<div class="slimmer">
 					<h3>View or update account information, listings, or contracts</h3>
-					<form method="post" action="#">
+					<!----<form method="post" action="#">
 						<div class="row uniform 50%">
 							<div class="12u$"><!--
 								<div class="select-wrapper">
@@ -55,9 +102,9 @@
 										<option value="2">New Owner</option>
 										<option value="3">Lesee Login</option>
 										<option value="3">Owner Login</option>
-									</select>
+									</select> 
 								</div>
-								-->
+								
 								</br>
 								<h4>Credentials</h4>
 								<div class="6u$ 12u$(small)">
@@ -69,14 +116,29 @@
 								</div>
 							</div>
 						</div>
-					</form>
+					</form> 
 					<a href="login.html" class="button special">Lessee Login</a>
 					&emsp;&emsp;
 					<a href="login.html" class="button special">Owner Login</a>
 				</div>
 			</br></br></br>
-			</section>
-
+			</section>-->
+		<section id="main">
+			<div class="slimmer">
+			<h3>View or update account information, listings, or contracts</h3>
+			<br/><br/>
+				<h4>Credentials</h4>
+			   <form action = "" method = "post">
+				<div class="6u$ 12u$(small)">
+				  <label>Email  :</label><input type = "email" name = "email" class = "box" placeholder="Email"/><br />
+				  <label>Password  :</label><input type = "password" name = "password" class = "box" placeholder="Password"/><br/>
+				</div>
+				  <input type = "submit" name = " Submit " value ="LesseeLogin" class="button special"/>Lessee Login &emsp;&emsp;<br />
+				  <input type = "submit" name = " Submit " value = "OwnerLogin" class="button special"/>Owner Login &emsp;&emsp;<br />
+			</div>	  
+			   </form>
+		</section>	
+			
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="copyright">
