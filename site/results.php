@@ -97,7 +97,7 @@
 					// output data of each row
 					while($row = $result->fetch_assoc()) {
 					
-					echo"<tr><td>".$row['ID']. "</td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>".$row["Owner_ID"]."</td><td>".$row["Owner_Rating"]."</td></tr>";
+					echo"<tr><td><a href='request.php'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>".$row["Owner_ID"]."</td><td>".$row["Owner_Rating"]."</td></tr>";
 					//echo "ID: " . $row["ID"]. "Capacity: ".$row["Capacity"]. "Price: ".$row["Price"]. "Zipcode: ".$row["Zipcode"] ."City: ".$row["City"]. "State: ".$row["State"]. "Owner ID: ".$row["Owner_ID"]. "Owner Rating: ".$row["Owner_Rating"];
 					
 					echo"</td>";
