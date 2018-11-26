@@ -1,18 +1,19 @@
+neural<-function()
 #This script, so far, only uses synthesized data to train the neural network. The goal is to use this function to create a neural network that will then be used to 
 #create our prices for our warehouses.
 #This script works, but we need to find a way to create better training data
   
 #Train neural network to price based on fake data
 #https://www.youtube.com/watch?v=LTg-qP9iGFY
-require(neuralnet)
+require("neuralnet")
 library(neuralnet)
 n<-100#number of samples we want to use to train the neural network
 
 #THIS METHOD OF CREATING TRAINING/TESTING DATA ISN'T GOOD, NEED TO FIND A NEW WAY TO CREATE BETTER TRAINING/TESTING DATA
-populations<-sample(.5:9,n,replace=TRUE)
-prices<-sample(5.00:13.00,n,replace=TRUE) #could be inputted using regression
-rating<- sample(1:5,n,replace=TRUE)
-storagetype<-sample(1:4,n,replace=TRUE)
+#populations<-sample(.5:9,n,replace=TRUE)
+#prices<-sample(5.00:13.00,n,replace=TRUE) #could be inputted using regression
+#rating<- sample(1:5,n,replace=TRUE)
+#storagetype<-sample(1:4,n,replace=TRUE)
 populations<-sort(populations,decreasing=TRUE)
 prices<-sort(prices,decreasing=TRUE)
 rating<-sort(rating,decreasing=TRUE)

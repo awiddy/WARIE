@@ -44,8 +44,20 @@ lessee_username <- lessee_username <- paste(lessee_f_init,lessee_last, sep="")
 lessee_username <- str_to_lower(lessee_username)
 lessee_email_end <- sample(c("@gmail.com","@yahoo.com", "@hotmail.com", "@aol.com", "@msn.com"), size = num_lessees, replace = T, prob = c(0.3,0.3, 0.25, 0.1, 0.05))
 lessee_email <- paste(lessee_username,lessee_email_end,sep="")
-lesseeDF = data.frame(ID = lessee_id, firstName = lessee_first, lastName = lessee_last, Email = lessee_email, Password = lessee_pw)
-colnames(lesseeDF) <- c("ID","FirstName","LastName","Email", "Password") ##May need to add average rating
+#lesseeDF = data.frame(ID = lessee_id, firstName = lessee_first, lastName = lessee_last, Email = lessee_email, Password = lessee_pw)
+#colnames(lesseeDF) <- c("ID","FirstName","LastName","Email", "Password") ##May need to add average rating
+
+
+
+#Doesn't work
+lessee_rating <- sample(c(1:5), size = num_lessees, replace = T, prob = c(0.1,0.2,0.3,0.3,0.1))  
+lesseeDF = data.frame(ID = lessee_id, firstName = lessee_first, lastName = lessee_last, Email = lessee_email, Password = lessee_pw, Rating = lessee_rating) 
+colnames(lesseeDF) <- c("ID","FirstName","LastName","Email", "Password", "Rating") ##May need to add average rating 
+
+
+
+
+
 
 
 #Owner Siml
@@ -59,8 +71,15 @@ owner_username <- str_to_lower(owner_username)
 owner_email_end <- sample(c("@gmail.com","@yahoo.com", "@hotmail.com", "@aol.com", "@msn.com"), size = num_owners, replace = T, prob = c(0.3,0.3, 0.25, 0.1, 0.05))
 owner_email <- paste(owner_username,owner_email_end,sep="")
 
-ownerDF = data.frame(ID = owner_id, firstName = owner_first, lastName = owner_last, Email = owner_email, Password = owner_pw)
-colnames(ownerDF) <- c("OwnerID","FirstName", "LastName","Email","Password")  ##May need to add average rating
+#Works
+#ownerDF = data.frame(ID = owner_id, firstName = owner_first, lastName = owner_last, Email = owner_email, Password = owner_pw) 
+#colnames(ownerDF) <- c("OwnerID","FirstName", "LastName","Email","Password")  ##May need to add average rating 
+
+#Doesn't
+owner_rating <- sample(c(1:5),size = num_owners, replace = T, prob = c(0.1,0.2,0.3,0.3,0.1)) 
+ownerDF = data.frame(ID = owner_id, firstName = owner_first, lastName = owner_last, Email = owner_email, Password = owner_pw, Rating = owner_rating) 
+colnames(ownerDF) <- c("ID","FirstName", "LastName","Email","Password", "Rating")  ##May need to add average rating 
+
 
 ##Warehouse Sim
 n_Cities_sample <- 15 #The top 'n' cities population wise (up to 311)
@@ -87,15 +106,18 @@ for (i in 1:nrow(warehouse_loc)){
   whPrices <- c(whPrices,big_cities[which(warehouse_loc[i,'city'] == big_cities$City),'Base Price'])
 }
 
+dev_percent<-0.15
+for (i in 1:length(whPrices)){
+  whPrices[i]<-whPrices[i]*(runif(1,min=(1-dev_percent),max=(1+dev_percent)))
+}
+
 warehouse_owner <- c(sample(owner_id,size = num_owners, replace= F)) #randomly assigns one warehouse to every owner
 warehouse_owner <- c(warehouse_owner, sample(owner_id, size = num_warehouses-num_owners, replace= T)) #randomly assigns *with replacement* owners to the remaining warehouses
 warehouseDF = data.frame(warehouse_id, storage_capactity, storage_type,whPrices, warehouse_loc, warehouse_owner) #combines warehouse information into a dataframe
 colnames(warehouseDF) <- c("ID","StorageCapacity", "StorageType", "BasePrice", "Zipcode", "City", "State", "Latitude", "Longitude", "Owner_ID")
 
 
-#Contract Generate 
-lessee_rating <- sample(c(1:5), size = num_lessees, replace = T, prob = c(0.1,0.2,0.3,0.3,0.1)) 
-owner_rating <- sample(c(1:5),size = num_owners, replace = T, prob = c(0.1,0.2,0.3,0.3,0.1))
+
 
 
 ##########################################################################################################
@@ -104,7 +126,7 @@ owner_rating <- sample(c(1:5),size = num_owners, replace = T, prob = c(0.1,0.2,0
 #dbListTables(mydb)
 
 dbWriteTable(mydb, "Lessee", lesseeDF, append = TRUE, row.names=FALSE)
-colnames(ownerDF) <- c("ID","FirstName", "LastName","Email","Password")
+#colnames(ownerDF) <- c("ID","FirstName", "LastName","Email","Password")
 dbWriteTable(mydb, "Owner", ownerDF, append = TRUE, row.names=FALSE)
 dbWriteTable(mydb, "Warehouse", warehouseDF, append = TRUE, row.names=FALSE)
 

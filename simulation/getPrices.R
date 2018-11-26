@@ -39,9 +39,10 @@ intercept<-regression[2]
 
 #For loop calculates a price based on the population given then deviates it by a given deviation percent
 for (i in c(1:n)){
+  set.seed(123+i)
   deviation<-runif(1,min=(1-dev_percent),max=(1+dev_percent)) #deviates the prices either way. Ranges between a 13% decrease or a 13% increase
-  #slope<-slope*deviation
-  #intercept<-intercept*deviation
+  slope<-slope*deviation
+  intercept<-intercept*deviation
   base_price<- (slope*city_populations[i]) + intercept
   price<-deviation*base_price #this price deviation is so that warehouses in the same city will not always have the same price per sq ft
   prices_vec[i]<-price

@@ -10,6 +10,25 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		
+		<script>
+		//validate isn't working for some reason
+		function validate(){
+		
+		var start_date = new Date(document.forms["allInputs"]["start_date"].value);
+		var end_date = new Date(document.forms["allInputs"]["end_date"].value);
+		var err1 = start_date.getTime() > end_date.getTime();
+		var err2 = start_date.getTime() == end_date.getTime();
+		
+		if(err1){
+			alert("Start date cannot be after end date");
+			return false;
+		else if (err2){
+			alert("Start date and end date must be at least one day apart");
+			return false;
+		}
+		}
+		</script>
 	</head>
 	<body>
 
@@ -44,56 +63,74 @@
 			<section id="main">
 				<div class="slimmer">
 					<h3>Select your criteria to narrow the results</h3>
-					<form method="post" action="#">
+					<form name="allInputs" method="post" action="http://web.ics.purdue.edu/~g1090423/results.php" onsubmit="return validate()">
 						<div class="row uniform 50%">
 							<div class="12u$">
 								<div class="select-wrapper">
 									<h4>Warehouse Location:</h4>
-									<select name="category" id="category">
+									<select name="city" required>
 										<option value="">- Location -</option>
-										<option value="1">Indianapolis, IN</option>
-										<option value="2">Chicago, IL</option>
-										<option value="3">Cincinnati, OH</option>
-										<option value="3">Louisville, KY</option>
-										<option value="3">Fort Wayne, IN</option>
-										<option value="3">Columbus, OH</option>
+										<option value="San Diego">San Diego, CA</option>
+										<option value="Los Angeles">Los Angeles, CA</option>
+										<option value="San Francisco">San Francisco, CA</option>
+										<option value="San Jose">San Jose, CA</option>
+										<option value="Austin">Austin, TX</option>
+										<option value="Dallas">Dallas, TX</option>
+										<option value="Houston">Houston, TX</option>
+										<option value="Fort Worth">Fort Worth, TX</option>
+										<option value="San Antonio">San Antonio, TX</option>
+										<option value="Jacksonville">Jacksonville, TX</option>
+										<option value="Chicago">Chicago, IL</option>
+										<option value="New York">New York, NY</option>
+										<option value="Philadelphia">Philadelphia, PA</option>
+										<option value="Phoenix">Phoenix, AZ</option>
+										<option value="Columbus">Columbus, OH</option>
 									</select>
 								</div>
 							</div>
 							</br></br>
+						<div class="12u$">
+							<div class="select-wrapper">
+								<h4>Storage Environment:</h4>
+								<select name="storagetype" required>
+										<option value="">- Location -</option>
+										<option value="1">General</option>
+										<option value="2">Dry</option>
+										<option value="3">Cold</option>
+										<option value="4">Frozen</option>
+										</select>
+										</div>
+										</div>
+									<br><br><h4>How much space will you  be needing?</h4></br></br>
+									<div class="6u 12u$(xsmall)">
+										<input type="text" name="storage_needed" id="storage_needed" value="" placeholder="Space Needed" required />
+									</div>
+									<br><br><h4>When do you need your contract to start?</h4><small>Please enter in the form "yyyy-mm-dd"</small></br></br>
+									<div class="6u 12u$(xsmall)">
+										<input type="text" name="start_date" id="start_date" value="" placeholder="Start Date" required />
+									</div>
+									<br><br><h4>When will your contract be ending?</h4><small>Please enter in the form "yyyy-mm-dd"</small></br></br>
+									<div class="6u 12u$(xsmall)">
+										<input type="text" name="end_date" id="end_date" value="" placeholder="End Date" required />
+									</div>
 
-								<h4>Storage Environment:</h4></br></br>
-								<div class="4u 12u$(xsmall)">
-									<input type="radio" id="priority-low" name="priority" checked>
-									<label for="priority-low">General Storage</label>
-								</div>
-								<div class="4u 12u$(xsmall)">
-									<input type="radio" id="priority-normal" name="priority">
-									<label for="priority-normal">Cold</label>
-								<div class="4u$ 12u$(xsmall)">
-									<input type="radio" id="priority-high" name="priority">
-									<label for="priority-high">Frozen</label>
-								</div>
-								<div class="4u$ 12u$(xsmall)">
-									<input type="radio" id="priority-high" name="priority">
-									<label for="priority-high">Dry</label>
-								</div>
 								</br></br>
-
-								<div class="12u$">
+									<div class="12u$">
 									<div class="select-wrapper">
-										<h4>Sort by:</h4>
-										<select name="category" id="category">
+										<h4>Sort results by:</h4>
+										<select name="sort_val" id="sort_val" required>
 											<option value="">- Sort -</option>
 											<option value="1">Price</option>
 											<option value="2">Rating</option>
+											
 										</select>
 									</div>
 								</div>
+							
 								</br></br>
 
 								<ul class="actions">
-									<li><input type="reset" value="Search" /></li>
+									<li><input type="submit" value="Search" /></li>
 								</ul>
 
 
