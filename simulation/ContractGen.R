@@ -13,7 +13,7 @@ contracts[,'Signing Date'] <- Sys.Date()
 contracts[,'Approval'] = 0
 
 mydb<-dbConnect(MySQL(),user="g1090423",password="marioboys",dbname="g1090423",host = "mydb.ics.purdue.edu")
-warehouseDF<- fetch(dbSendQuery(mydb,'SELECT StorageCapacity AS StorageCapacity FROM Warehouse'),n=-1)
+warehouseDF<- fetch(dbSendQuery(mydb,'SELECT * FROM Warehouse'),n=-1)
 num_lessees <- as.numeric(fetch(dbSendQuery(mydb,'SELECT Count(*) FROM Lessee'),n=-1))
 num_owners <- as.numeric(fetch(dbSendQuery(mydb,'SELECT Count(*) FROM Owner'),n=-1))                
 
@@ -32,7 +32,7 @@ for (i in 1:nrow(warehouseDF)){
   LID = sample(c(1:num_lessees), size = nc) #Randomly picks a lessee
   whContracts[,'LID'] = LID
   
-  OID = sample(c(1:num_owners),1) #Picks just one Owner per warehouse
+  OID = warehouseDF[i,'Owner_ID'] #Picks just one Owner per warehouse
   whContracts[,'OID'] = OID
   
   WID = rep(i,nc)
