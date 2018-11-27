@@ -88,16 +88,10 @@
 					$signing_date = $signing_date1->format('Y-m-d');
 					$start_date=$start_date1->format('Y-m-d');
 					$end_date=$end_date1->format('Y-m-d');
-					echo($signing_date);
-					echo($start_date);
-					echo($end_date);
-					echo("<br>".$o_id_qry."<br>".$l_id_qry."<br>");
 
 					
-					$sql = "INSERT INTO Contract ('Start Date','End Date',Lessee_ID,Owner_ID,Rented_Space, Signing_Date,WarehouseID,Approval) VALUES (".$start_date.",".$end_date.",".$l_id.",".$o_id.",".$storage_amt.",".$signing_date.",".$w_id.",".$approval.")";
-					$result = $conn->query($sql);
-					echo($sql);
-					echo ($result);
+					$sql = "INSERT INTO Contract (`Start Date`,`End Date`,Lessee_ID,Owner_ID,Rented_Space, Signing_date,Warehouse_ID,Approval) VALUES ('".$start_date."','".$end_date."',".$l_id.",".$o_id.",".$storage_amt.",'".$signing_date."',".$w_id.",".$approval.")";
+					mysqli_query($conn,$sql);
 					?>
 
 					</div>
