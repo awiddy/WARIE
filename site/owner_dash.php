@@ -48,130 +48,185 @@
                     <div class="row">
                         <!-- begin row-->
                         <div class="3u 12u$(xsmall)">
-
-                            <ul class="actions">
-                                <li><a href="#" class="button special">Prospective Contracts</a></li>
-                                <br>
-                                <br>
-                                <li><a href="#" class="button special">Existing Contracts &emsp;&ensp; </a></li>
-                                <br>
-                                <br>
-                                <li><a href="#" class="button special">Warehouse Activity&ensp;&ensp;</a></li>
-                                <br>
-                                <br>
-                                <li><a href="#" class="button special">Account &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a></li>
-                                <br>
-                                <br>
-                                <li><a href="#" class="button special">Contracts &emsp;&emsp;&emsp; &emsp; &emsp;</a></li>
-                                <br>
-                                <br>
-                            </ul>
-
+							<ul class="actions">
+								<li><a href="?name=prospective_contracts" class="button special">Prospective Contracts</a></li><br><br>
+								<li><a href="?name=existing_contracts" class="button special">Existing Contracts &emsp;&ensp; </a></li><br><br>
+								<li><a href="?name=warehouse_activity" class="button special">Warehouse Activity&ensp;&ensp;</a></li><br><br>
+								<li><a href="?name=account" class="button special">Account &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a></li><br><br>
+								<li><a href="?name=contracts" class="button special">Contracts &emsp;&emsp;&emsp; &emsp; &emsp;</a></li>
+							</ul>
                         </div>
 
                         <div class="9u$ 12u$(xsmall)">
                             <!-- new column-->
                             <div class="slimmer">
-                                <h4>Prospective contracts</h4>
-                                <ol>
-                                    <li>
-                                        Dolor pulvinar etiam magna etiam.
-                                        Etiam vel felis at lorem sed viverra.
-                                        Felis enim feugiat dolore viverra.
-                                        Dolor pulvinar etiam magna etiam.
-                                    </li>
-                                    <li>Etiam vel felis at lorem sed viverra.</li>
-                                    <li>Felis enim feugiat dolore viverra.</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div> <!-- end of row-->
+								<?php
+                                if( $_GET["name"]=="existing_contracts"){
+									echo"<h3>Existing Contracts</h3>";
+									}
+								if( $_GET["name"]=="prospective_contracts"){
+									echo"<h3>Prospective Contracts</h3>";
+									}
+
+								?>
+							</div>
+						</div>
+					</div>
 
                     <hr /> <!-- separating line-->
-                    <h2>Accept or decline contracts</h2>
-                    <p>
-                        Use php/js to create a list of links or buttons by iterating through the exhasutive list
-                        of prospective contracts for the owner to approve
-                    </p>
-                    <!-- table -->
-                <?php
-                function prospective_conts(){
-                    /*$Owner_ID= $_POST["Owner_ID"];*/
-                    $Owner_ID="201"; //hardcoded ID
-                    $servername = "mydb.ics.purdue.edu";
-                    $username = "g1090423";
-                    $password = "marioboys";
-                    $dbname = "g1090423";
+           
+			<!-- table -->
+                <?php	
+					if( $_GET["name"]=="existing_contracts"){
+							existing_conts();
+						}
+					if( $_GET["name"]=="prospective_contracts"){
+							prospective_conts();
+						}
 
-                    // Create connection
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-                    // Check connection
-                    if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                    }
+					function prospective_conts(){
+						echo"<h2>Accept or decline contracts</h2>";
+						/*$Owner_ID= $_POST["Owner_ID"];*/
+						$Owner_ID="201"; //hardcoded ID
+						$servername = "mydb.ics.purdue.edu";
+						$username = "g1090423";
+						$password = "marioboys";
+						$dbname = "g1090423";
 
-                    /*$sql_1 = "SELECT *";
-                    $sql_2 = "FROM Warehouse WHERE Owner_ID=$Owner_ID";*/
-                    $sql_1 = "SELECT *";
-                    $sql_2 = "FROM Contract WHERE Owner_ID=$Owner_ID AND Approval=0";
-                    $sql = $sql_1.$sql_2;
+						// Create connection
+						$conn = new mysqli($servername, $username, $password, $dbname);
+						// Check connection
+						if ($conn->connect_error) {
+						die("Connection failed: " . $conn->connect_error);
+						}
 
-                    /*$sql_1 = "SELECT W.ID, StorageCapacity,BasePrice,Zipcode,City,State,Owner_ID,R.Rating as Owner_Rating ";
-                    $sql_2 = "FROM (Warehouse W INNER JOIN(SELECT MIN(Open_Space),WarehouseID FROM Availability WHERE WeekFromDate BETWEEN ".$start_date_week." AND ".$end_date_week." GROUP BY WarehouseID) A ";
-                    $sql_3 = "ON W.ID = A.WarehouseID) INNER JOIN (SELECT Rating,Owner.ID FROM Owner) R ON W.Owner_ID=R.ID WHERE StorageType = ".$storage_type." AND City = '".$city."' ORDER BY ";
-                    $sql = $sql_1.$sql_2.$sql_3; */
+						/*$sql_1 = "SELECT *";
+						$sql_2 = "FROM Warehouse WHERE Owner_ID=$Owner_ID";*/
+						$sql_1 = "SELECT *";
+						$sql_2 = "FROM Contract WHERE Owner_ID=$Owner_ID AND Approval=0";
+						$sql = $sql_1.$sql_2;
 
-                    $result = $conn->query($sql);
-                    echo "
-                    <style>
-                        td, tr:hover {
-                            opacity: 0.6;
-                        }
+						/*$sql_1 = "SELECT W.ID, StorageCapacity,BasePrice,Zipcode,City,State,Owner_ID,R.Rating as Owner_Rating ";
+						$sql_2 = "FROM (Warehouse W INNER JOIN(SELECT MIN(Open_Space),WarehouseID FROM Availability WHERE WeekFromDate BETWEEN ".$start_date_week." AND ".$end_date_week." GROUP BY WarehouseID) A ";
+						$sql_3 = "ON W.ID = A.WarehouseID) INNER JOIN (SELECT Rating,Owner.ID FROM Owner) R ON W.Owner_ID=R.ID WHERE StorageType = ".$storage_type." AND City = '".$city."' ORDER BY ";
+						$sql = $sql_1.$sql_2.$sql_3; */
 
-                        th:hover {
-                            opacity: 1.0;
-                        }
-                    </style>";
-                    echo"<table width=950px>
-                        ";
-                        echo"
-                        <th>Warehouse ID</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Rented Space</th>
-                        <th>Lessee ID</th>
-                        <th>Signing Date</th>";
+						$result = $conn->query($sql);
+						echo "
+						<style>
+							td, tr:hover {
+								opacity: 0.6;
+							}
 
-                        if ($result->num_rows > 0) {
-                        // output data of each row
-                        while($row = $result->fetch_assoc()) {
+							th:hover {
+								opacity: 1.0;
+							}
+						</style>";
+						echo"<table width=950px>
+							";
+							echo"
+							<th>Warehouse ID</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+							<th>Rented Space</th>
+							<th>Lessee ID</th>
+							<th>Signing Date</th>";
+
+							if ($result->num_rows > 0) {
+							// output data of each row
+							while($row = $result->fetch_assoc()) {
                         
-                        echo"
-                        <tr><td><a href='request.php'>".$row['Warehouse_ID']. "</a></td><td>".$row["Start Date"]."</td><td>".round($row["End Date"],2)."</td><td>".$row["Rented_Space"]."</td><td>".$row["Lessee_ID"]."</td><td>".$row["Signing_date"]."</td><td>";
-                        /*echo"
-                        <tr><td><a href='request.php'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>";*/
-                        //echo "ID: " . $row["ID"]. "Capacity: ".$row["Capacity"]. "Price: ".$row["Price"]. "Zipcode: ".$row["Zipcode"] ."City: ".$row["City"]. "State: ".$row["State"]. "Owner ID: ".$row["Owner_ID"]. "Owner Rating: ".$row["Owner_Rating"];
+							echo"
+							<tr><td><a href='request.php'>".$row['Warehouse_ID']. "</a></td><td>".$row["Start Date"]."</td><td>".round($row["End Date"],2)."</td><td>".$row["Rented_Space"]."</td><td>".$row["Lessee_ID"]."</td><td>".$row["Signing_date"]."</td><td>";
+							/*echo"
+							<tr><td><a href='request.php'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>";*/
+							//echo "ID: " . $row["ID"]. "Capacity: ".$row["Capacity"]. "Price: ".$row["Price"]. "Zipcode: ".$row["Zipcode"] ."City: ".$row["City"]. "State: ".$row["State"]. "Owner ID: ".$row["Owner_ID"]. "Owner Rating: ".$row["Owner_Rating"];
 
-                        echo"</td>";
-                        }
-                        } else {
-                        echo "0 results";
-                        }
-                        $conn->close();
-                        echo"
-                    </table>";
-                    }
+							echo"</td>";
+							}
+							} else {
+							echo "0 results";
+							}
+							$conn->close();
+							echo"
+						</table>";
+						}
 
-                    function existing()
-                    {
-                        echo "I Exist!\n";
-                    }
-                    
-                    prospective_conts();
-                    existing();
+					function existing_conts(){
+						echo"<h2>Your existing contracts</h2>";
+						/*$Owner_ID= $_POST["Owner_ID"];*/
+						$Owner_ID="201"; //hardcoded ID
+						$servername = "mydb.ics.purdue.edu";
+						$username = "g1090423";
+						$password = "marioboys";
+						$dbname = "g1090423";
 
-                    ?>
-                    </font></p>
+						// Create connection
+						$conn = new mysqli($servername, $username, $password, $dbname);
+						// Check connection
+						if ($conn->connect_error) {
+						die("Connection failed: " . $conn->connect_error);
+						}
+
+						/*$sql_1 = "SELECT *";
+						$sql_2 = "FROM Warehouse WHERE Owner_ID=$Owner_ID";*/
+						$sql_1 = "SELECT *";
+						$sql_2 = "FROM Contract WHERE Owner_ID=$Owner_ID AND Approval=1";
+						$sql = $sql_1.$sql_2;
+
+						/*$sql_1 = "SELECT W.ID, StorageCapacity,BasePrice,Zipcode,City,State,Owner_ID,R.Rating as Owner_Rating ";
+						$sql_2 = "FROM (Warehouse W INNER JOIN(SELECT MIN(Open_Space),WarehouseID FROM Availability WHERE WeekFromDate BETWEEN ".$start_date_week." AND ".$end_date_week." GROUP BY WarehouseID) A ";
+						$sql_3 = "ON W.ID = A.WarehouseID) INNER JOIN (SELECT Rating,Owner.ID FROM Owner) R ON W.Owner_ID=R.ID WHERE StorageType = ".$storage_type." AND City = '".$city."' ORDER BY ";
+						$sql = $sql_1.$sql_2.$sql_3; */
+
+						$result = $conn->query($sql);
+						echo "
+						<style>
+							td, tr:hover {
+								opacity: 0.6;
+							}
+
+							th:hover {
+								opacity: 1.0;
+							}
+						</style>";
+						echo"<table width=950px>
+							";
+							echo"
+							<th>Warehouse ID</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+							<th>Rented Space</th>
+							<th>Lessee ID</th>
+							<th>Signing Date</th>";
+
+							if ($result->num_rows > 0) {
+							// output data of each row
+							while($row = $result->fetch_assoc()) {
+                        
+							echo"
+							<tr><td><a href='request.php'>".$row['Warehouse_ID']. "</a></td><td>".$row["Start Date"]."</td><td>".round($row["End Date"],2)."</td><td>".$row["Rented_Space"]."</td><td>".$row["Lessee_ID"]."</td><td>".$row["Signing_date"]."</td><td>";
+							/*echo"
+							<tr><td><a href='request.php'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>";*/
+							//echo "ID: " . $row["ID"]. "Capacity: ".$row["Capacity"]. "Price: ".$row["Price"]. "Zipcode: ".$row["Zipcode"] ."City: ".$row["City"]. "State: ".$row["State"]. "Owner ID: ".$row["Owner_ID"]. "Owner Rating: ".$row["Owner_Rating"];
+
+							echo"</td>";
+							}
+							} else {
+							echo "0 results";
+							}
+							$conn->close();
+							echo"
+						</table>";
+						}
+
+					function existing()
+					{
+						echo "I Exist!\n";
+					}
+
+                ?>
+                </font></p>
 
                 </section>
 			</div>
