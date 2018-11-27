@@ -44,8 +44,62 @@
 				<div class="slimmer">
 					<h3>Please wait until you hear back from the owner.</h3>
 					<a href="browse.html" class="button special" target="_blank">Search Again</a>
+					<?php 
+					$storage_amt = $_POST["storage_amt"];
+					$start_date_raw = $_POST["start_date"];
+					$end_date_raw = $_POST["end_date"];
+					$o_fname = $_POST["o_fname"];
+					$o_lname = $_POST["o_lname"];
+					$l_fname = $_POST["l_fname"];
+					$l_lname = $_POST["l_lname"];
+					$w_id = $_POST["w_id"];
+					$signing_date1=new DateTime(date("Y-m-d"));
+					$approval=0;
 					
+					$start_date1= date_create("$start_date_raw");
+					$end_date1=date_create("$end_date_raw");
+					$current_date = new DateTime(date("Y-m-d"));
+					$start_date_week = ceil((date_diff($start_date1, $current_date))/7);
+					$end_date_week = ceil((date_diff($end_date1, $current_date))/7);
 					
+					$servername = "mydb.ics.purdue.edu";
+					$username = "g1090423";
+					$password = "marioboys";
+					$dbname = "g1090423";
+
+					// Create connection
+					$conn = new mysqli($servername, $username, $password, $dbname);
+					// Check connection
+					if ($conn->connect_error) {
+					die("Connection failed: " . $conn->connect_error);
+					} 
+
+					
+					$o_id_qry="SELECT ID FROM Owner WHERE FirstName ='".$o_fname."' AND LastName='".$o_lname."'";
+					$o_id_sql=$conn->query($o_id_qry);
+					$row1 = $o_id_sql->fetch_assoc();
+					$o_id=$row1['ID'];
+					
+					$l_id_qry="SELECT ID FROM Lessee WHERE FirstName ='".$l_fname."' AND LastName='".$l_lname."'";
+					$l_id_sql=$conn->query($l_id_qry);
+					$row2 = $l_id_sql->fetch_assoc();
+					$l_id=$row2['ID'];
+					
+					$signing_date = $signing_date1->format('Y-m-d');
+					$start_date=$start_date1->format('Y-m-d');
+					$end_date=$end_date1->format('Y-m-d');
+					echo($signing_date);
+					echo($start_date);
+					echo($end_date);
+					echo("<br>".$o_id_qry."<br>".$l_id_qry."<br>");
+
+					
+					$sql = "INSERT INTO Contract ('Start Date','End Date',Lessee_ID,Owner_ID,Rented_Space, Signing_Date,WarehouseID,Approval) VALUES (".$start_date.",".$end_date.",".$l_id.",".$o_id.",".$storage_amt.",".$signing_date.",".$w_id.",".$approval.")";
+					$result = $conn->query($sql);
+					echo($sql);
+					echo ($result);
+					?>
+
 					</div>
 					</section>
 					
