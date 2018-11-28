@@ -47,7 +47,7 @@
 					<p>Below is our simple, 3 sectioned contract. Fill out your relevant information, and submit your request to the warehouse owner.</p>
 
 					<?php $signing_date=new DateTime(date("Y-m-d"));
-					echo "<ul><h3>Persons</h3><li>This contract for the rental of a warehouse is made this day, ".date('Y/m/d'). " by and between ";
+					echo "<ul><h3>Persons</h3><li>This contract for the rental of a warehouse is made this day, ".date('Y/m/d'). ", by and between ";
 					?>
 					
 					<form name="contractInputs" method="post" action="http://web.ics.purdue.edu/~g1090423/success.php" onsubmit="return validate()">
