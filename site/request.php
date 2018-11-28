@@ -47,7 +47,14 @@
 					<p>Below is our simple, 3 sectioned contract. Fill out your relevant information, and submit your request to the warehouse owner.</p>
 
 					<?php $signing_date=new DateTime(date("Y-m-d"));
-					echo "<ul><h3>Persons</h3><li>This contract for the rental of a warehouse is made this day, ".date('Y/m/d'). ", by and between ";
+					$o_id = $_GET['o'];
+					$w_id = $_GET['w'];
+					$price_raw = $_GET['pr'];
+					$price = round($price_raw,2);
+					$city = $_GET['c'];
+					$state = $_GET['st'];
+					$zip = $_GET['z'];
+					echo "<ul><h3>Persons</h3><li>This contract for the rental of a warehouse is made this day, <b>".date('Y/m/d'). "</b>, by and between ";
 					?>
 					
 					<form name="contractInputs" method="post" action="http://web.ics.purdue.edu/~g1090423/success.php" onsubmit="return validate()">
@@ -59,10 +66,7 @@
 					<div class="6u 12u$(xsmall)">
 					<input type="text" name="o_fname" id="o_fname" value="" placeholder="Owner First Name" required />
 					<input type="text" name="o_lname" id="o_lname" value="" placeholder="Owner Last Name" required />
-					</div> hereafter referred to as the Owner, at the location  of Warehouse ID
-					<div class="6u 12u$(xsmall)">
-					<input type="number" name="w_id" id="w_id" value="" placeholder="Warehouse ID" required />
-					</div>
+					</div> hereafter referred to as the Owner, at the location  of Warehouse ID <b>#<?php echo ($w_id)?></b> located in <b><?php echo "".$city.", ".$state.", ".$zip.","?></b>
 					owned and agreed upon by the Owner, hereafter referred to as the warehouse.</li>
 					<h3>Logistics</h3>
 					<li>This contract between the Lessee and Owner is for the storage amount of
@@ -71,7 +75,7 @@
 					</div> and the goods stored will be
 					<div class="6u 12u$(xsmall)">
 					<input type="text" name="goods" id="goods" value="" placeholder="Goods to be stored" required />
-					</div> hereafter referred to as Goods.</li>	
+					</div> hereafter referred to as Goods. The price of <b><?php echo($price) ?></b> set forward by the owner will be tendered to the Owner upon a monthly basis by the Lessee</li>	
 					<br><h3>Dates</h3>
 					<li>The Lessee shall have access to and use of the warehouse from 8:00 am on 
 					<div class="6u 12u$(xsmall)">
