@@ -134,6 +134,31 @@
 									<br><br><h4>When do you need your contract to start?</h4></br></br>
 									<div class="12u$">
 										<input type="date" name="start_date" id="start_date" value="" min = "0" placeholder="Start Date" required />
+									<script> 
+									/*
+									//get all new dates and set to today
+									var start_min = new Date().toISOString().split('T')[0];
+									var start_max = new Date().toISOString().split('T')[0];
+									var end_min = new Date().toISOString().split('T')[0];
+									var end_max = new Date().toISOString().split('T')[0];
+									//set actual min/max values of all dates based on today
+									start_min.setDate(start_min.getDate()+7); 
+									start_max.setDate(start_max.getDate()+103);
+									end_min.setDate(end_min.getDate()+14); 
+									end_max.setDate(end_max.getDate()+ 364)
+									document.getElementById("start_min").value=start_min;
+									document.getElementById("start_max").value=start_max;
+									document.getElementById("end_min").value=end_min;
+									document.getElementById("end_max").value=end_max;*/
+									
+									var today=new Date()toISOString().split('T')[0];
+									document.getElementsByName("start_date")[0].setAttribute('min',today+7);//min start date is 1 week out from today
+									document.getElementsByName("start_date")[0].setAttribute('max',today+103); //max start date is 24 weeks (96 days) out from 1 week (7 days) from today
+									document.getElementsByName("end_date")[0].setAttribute('min',today+14);//min contract length is 1 week (7 days) after the start date (7 days away)
+									document.getElementsByName("end_date")[0].setAttribute('max',today+364);//max end date is 52 weeks (364 days) from today
+
+
+									</script>
 									</div>
 									<br><br><h4>When will your contract be ending?</h4></br></br>
 									<div class="12u$">
