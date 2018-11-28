@@ -75,7 +75,7 @@
 					</div> and the goods stored will be
 					<div class="6u 12u$(xsmall)">
 					<input type="text" name="goods" id="goods" value="" placeholder="Goods to be stored" required />
-					</div> hereafter referred to as Goods. The price of <b>$<?php echo($price) ?></b> set forward by the owner will be tendered to the Owner upon a monthly basis by the Lessee</li>	
+					</div> hereafter referred to as Goods. The price of <b>$<?php echo($price) ?></b> $/sq ft/month set forward by the owner will be tendered to the Owner upon a monthly basis by the Lessee</li>	
 					<br><h3>Dates</h3>
 					<li>The Lessee shall have access to and use of the warehouse from 8:00 am on 
 					<div class="6u 12u$(xsmall)">
