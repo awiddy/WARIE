@@ -50,7 +50,7 @@
 					</header>
 					<p><font color="black">
 						</br>
-						Click on any results to learn more information about the warehouse, and who owns it.
+						Click on any Warehouse ID to draft up a contract for that location.
 					</font></p>
 					
 					
@@ -97,7 +97,7 @@
 					// output data of each row
 					while($row = $result->fetch_assoc()) {
 					
-					echo"<tr><td><a href='request.php?w_id=".$row['ID']."&o_id=".$row['Owner_ID']."&price=".$row['BasePrice']."' target='_blank>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>".$row["Owner_ID"]."</td><td>".$row["Owner_Rating"]."</td></tr>";
+					echo"<tr><td><a href='request.php?w=".$row['ID']."&o=".$row['Owner_ID']."&pr=".$row['BasePrice']."&c=".$row['City']."&st=".$row['State']."&z=".$row["Zipcode"]."' target='_blank'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>".$row["Owner_ID"]."</td><td>".$row["Owner_Rating"]."</td></tr>";
 					//echo "ID: " . $row["ID"]. "Capacity: ".$row["Capacity"]. "Price: ".$row["Price"]. "Zipcode: ".$row["Zipcode"] ."City: ".$row["City"]. "State: ".$row["State"]. "Owner ID: ".$row["Owner_ID"]. "Owner Rating: ".$row["Owner_Rating"];
 					
 					echo"</td>";
