@@ -4,11 +4,17 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-  header("location: welcome.php");
-  exit;
+  if($_SESSION["userType"]=="OwnerLogin"{
+	  header("location: owner_dash.php");
+	  exit;
+  }
+  if($_SESSION["userType"]=="LesseeLogin"{
+	  header("location: lessee_dash.php");
+	  exit;
+  }
 }
- 
-// Include config file
+
+// Include config file to startup database
 require_once "config.php";
  
 // Define variables and initialize with empty values
@@ -66,7 +72,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;                            
+                            $_SESSION["username"] = $username;
+							$_SESSION["userType"] = $sub;
                             
                             // Redirect user to welcome page
 							if($sub == "OwnerLogin"){
@@ -142,17 +149,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			<h3>View or update account information, listings, or contracts</h3>
 			<br/><br/>
 				<h4>Credentials</h4>
-				<h5><span style="color:red"><?php echo $_SESSION["err"];?></span></h5>
-				
 			   <form method = "post">
 				<div class="6u$ 12u$(small)">
 					<div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
 						<label>Email  :</label><input type = "email" name = "email" class = "box" value="<?php echo $username; ?>"> 
-						<span class="help-block"><?php echo $username_err; ?></span>
+						<span style="color:red"><?php echo $username_err; ?></span>
 					</div> 
 					<div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
 						<label>Password  :</label><input type = "password" name = "password" class = "box" value = "6n1yGl%!o2">
-						<span class="help-block"><?php echo $password_err; ?></span><br/>
+						<span style="color:red"><?php echo $password_err; ?></span><br/>
 					</div>
 				</div>
 				  <input type = "submit" name = "Submit" value ="LesseeLogin" class="button special">&emsp;&emsp;<br /><br />
