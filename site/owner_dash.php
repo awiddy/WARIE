@@ -1,4 +1,12 @@
-﻿<!DOCTYPE HTML>
+﻿<?php session_start();?>
+ <?php
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
+<!DOCTYPE HTML>
 <!--
 	Binary by TEMPLATED
 	templated.co @templatedco
@@ -30,7 +38,7 @@
 				<li><a href="browse.html">Browse Warehouses</a></li>
 				<li><a href="lessees.html">Lease a warehouse</a></li>
 				<li><a href="owners.html">List your warehouse</a></li>
-				<li><a href="login.php">Login</a></li>
+				<li><a href="logout.php">Logout</a></li>
 			</ul>
 		</nav>
 
@@ -87,8 +95,41 @@
 								if( $_GET["name"]=="warehouse_activity"){
 									echo"
 									<h3>Warehouse Activity</h3>
-									<p> 
+									<p> Here is Your Optimized Activity
 									</p>
+									
+										  <head>";
+										echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
+										echo'<script type="text/javascript">
+											  google.charts.load(\'current\', {\'packages\':[\'corechart\']});
+											  google.charts.setOnLoadCallback(drawChart);
+
+											  function drawChart() {
+
+												var data = google.visualization.arrayToDataTable([
+												  [\'Task\', \'Hours per Day\'],
+												  [\'Work\',     11],
+												  [\'Eat\',      2],
+												  [\'Commute\',  2],
+												  [\'Watch TV\', 2],
+												  [\'Sleep\',    7]
+												]);
+
+												var options = {
+												  title: \'My Daily Activities\'
+												};
+
+												var chart = new google.visualization.PieChart(document.getElementById(\'piechart\'));
+
+												chart.draw(data, options);
+											  }
+											</script>';
+										echo"</head>
+										  <body>
+											<div id=\"piechart\" style=\"width: 900px; height: 500px;\"></div>
+										  </body>
+										
+									
 							</div>
 						</div>
 					</div>"; 
@@ -109,11 +150,13 @@
                     <hr /> <!-- separating line-->
            
 			<!-- table -->
+			<!-- prospective contracts -->
                 <?php
 					function prospective_conts(){
 						echo"<h2>Accept or decline contracts</h2>";
 						/*$Owner_ID= $_POST["Owner_ID"];*/
-						$Owner_ID="201"; //hardcoded ID
+						//$Owner_ID="201"; //hardcoded ID
+						$Owner_ID=$_SESSION[id]; //hardcoded ID
 						$servername = "mydb.ics.purdue.edu";
 						$username = "g1090423";
 						$password = "marioboys";
@@ -182,11 +225,11 @@
 							echo"
 						</table>";
 						}
-
+/*Existing contracts table*/
 					function existing_conts(){
 						echo"<h2>Your existing contracts</h2>";
 						/*$Owner_ID= $_POST["Owner_ID"];*/
-						$Owner_ID="201"; //hardcoded ID
+						$Owner_ID="201"; //hardcoded ID <Need to change to variable 
 						$servername = "mydb.ics.purdue.edu";
 						$username = "g1090423";
 						$password = "marioboys";

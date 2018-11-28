@@ -4,11 +4,11 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-  if($_SESSION["userType"]=="OwnerLogin"{
+  if($_SESSION["userType"]=="OwnerLogin"){
 	  header("location: owner_dash.php");
 	  exit;
   }
-  if($_SESSION["userType"]=="LesseeLogin"{
+  if($_SESSION["userType"]=="LesseeLogin"){
 	  header("location: lessee_dash.php");
 	  exit;
   }
@@ -26,14 +26,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  $sub = $_POST["Submit"];
  
     // Check if username is empty
-    if(empty(trim($_POST["username"]))){
+    if(!isset($_POST["username"])){
         $username_err = "Please enter username.";
     } else{
         $username = trim($_POST["username"]);
     }
     
     // Check if password is empty
-    if(empty(trim($_POST["password"]))){
+    if(empty($_POST["password"])){
         $password_err = "Please enter your password.";
     } else{
         $password = trim($_POST["password"]);
@@ -43,9 +43,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err)){
 		// Prepare a select statement
 		if($sub == "OwnerLogin"){
-        $sql = "SELECT ID, Email, Password FROM Owner FROM Owner WHERE Email = ?";
+        $sql = "SELECT ID, Email, Password FROM Owner WHERE Email = ?";
 		} else {
-			$sql = "SELECT ID, Email, Password FROM Owner FROM Lessee WHERE Email = ?";
+			$sql = "SELECT ID, Email, Password FROM Lessee WHERE Email = ?";
 		}
         
         if($stmt = mysqli_prepare($link, $sql)){
@@ -79,7 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							if($sub == "OwnerLogin"){
 								header("location: owner_dash.php");
 							} else if($sub == "LesseeLogin"){
-								header("location: lessee_dash.php");
+								header("location: lessees.php");
 							}
                         } else {
                             // Display an error message if password is not valid
@@ -149,14 +149,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			<h3>View or update account information, listings, or contracts</h3>
 			<br/><br/>
 				<h4>Credentials</h4>
-			   <form method = "post">
 				<div class="6u$ 12u$(small)">
+				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 					<div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-						<label>Email  :</label><input type = "email" name = "email" class = "box" value="<?php echo $username; ?>"> 
+						<label>Email  :</label><input type = "text" name = "username" class = "box" value="<?php echo $username; ?>"> 
 						<span style="color:red"><?php echo $username_err; ?></span>
 					</div> 
 					<div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-						<label>Password  :</label><input type = "password" name = "password" class = "box" value = "6n1yGl%!o2">
+						<label>Password  :</label><input type = "password" name = "password" class = "box">
 						<span style="color:red"><?php echo $password_err; ?></span><br/>
 					</div>
 				</div>
