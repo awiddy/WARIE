@@ -91,7 +91,7 @@
 					$result = $conn->query($sql);
 					echo "<style>td,tr:hover{opacity:0.6;} th:hover{opacity:1.0;}</style>";
 					echo"<table width = 950px>";
-					echo"<th>Warehouse ID</th><th>Storage Capacity</th><th>Price</th><th>Zipcode</th><th>City</th><th>State</th><th>Owner ID</th><th>Owner Rating</th>";
+					echo"<th>Warehouse ID</th><th>Storage Capacity</th><th>Price ($/sq ft/month)</th><th>Zipcode</th><th>City</th><th>State</th><th>Owner ID</th><th>Owner Rating</th>";
 					
 					if ($result->num_rows > 0) {
 					// output data of each row
