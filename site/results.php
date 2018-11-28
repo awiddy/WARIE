@@ -50,7 +50,7 @@
 					</header>
 					<p><font color="black">
 						</br>
-						Click on any results to learn more information about the warehouse, and who owns it.
+						Click on any Warehouse ID to draft up a contract for that location.
 					</font></p>
 					
 					
