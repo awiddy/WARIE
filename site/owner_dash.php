@@ -89,15 +89,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									You currently have [5] active contracts</p>
 							</div>
 						</div>
-					</div>"; 
-					existing_conts(); 
+					</div>";
+					existing_conts();
 									}
 								if( $_GET["name"]=="warehouse_activity"){
 									echo"
 									<h3>Warehouse Activity</h3>
 									<p> Here is Your Optimized Activity
 									</p>
-									
+
 										  <head>";
 										echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
 										echo'<script type="text/javascript">
@@ -128,27 +128,27 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 										  <body>
 											<div id=\"piechart\" style=\"width: 900px; height: 500px;\"></div>
 										  </body>
-										
-									
+
+
 							</div>
 						</div>
-					</div>"; 
-					//[php function yieldning some info or query](); 
+					</div>";
+					//[php function yieldning some info or query]();
 									}
 								if( $_GET["name"]=="account"){
 									echo"
 									<h3>Your Account</h3>
-									<p> 
+									<p>
 									</p>
 							</div>
 						</div>
-					</div>"; 
-					//[php function yieldning some info or query](); 
+					</div>";
+					//[php function yieldning some info or query]();
 									}
 								?>
 
                     <hr /> <!-- separating line-->
-           
+
 			<!-- table -->
 			<!-- prospective contracts -->
                 <?php
@@ -204,7 +204,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							if ($result->num_rows > 0) {
 							// output data of each row
 							while($row = $result->fetch_assoc()) {
-                        
+
 							echo"
 							<tr><td><a href='request.php'>".$row['Warehouse_ID']. "</a></td>
 							<td>".$row["Start Date"]."</td>
@@ -229,7 +229,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					function existing_conts(){
 						echo"<h2>Your existing contracts</h2>";
 						/*$Owner_ID= $_POST["Owner_ID"];*/
-						$Owner_ID="201"; //hardcoded ID <Need to change to variable 
+						$Owner_ID="201"; //hardcoded ID <Need to change to variable
 						$servername = "mydb.ics.purdue.edu";
 						$username = "g1090423";
 						$password = "marioboys";
@@ -277,7 +277,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							if ($result->num_rows > 0) {
 							// output data of each row
 							while($row = $result->fetch_assoc()) {
-                        
+
 							echo"
 							<tr><td><a href='request.php'>".$row['Warehouse_ID']. "</a></td><td>".$row["Start Date"]."</td><td>".round($row["End Date"],2)."</td><td>".$row["Rented_Space"]."</td><td>".$row["Lessee_ID"]."</td><td>".$row["Signing_date"]."</td><td>";
 							/*echo"
@@ -302,8 +302,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 		<!-- Footer -->
 			<footer id="footer">
-				<div class="copyright">
-					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
+				<div class="copyright" style="font-weight:500;">
+					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:500;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:500;">Unsplash</a>.
 				</div>
 			</footer>
 

@@ -30,7 +30,7 @@
 					<li><a href="login.php">Login</a></li>
 				</ul>
 			</nav>
-			
+
 		<!--Banner-->
 		<section class="banner_layout banner_login">
 				<div class="inner">
@@ -43,7 +43,7 @@
 			<section id="main">
 							<section id="main">
 				<div class="slimmer">
-					<h2>Terms and Conditions</h2>					
+					<h2>Terms and Conditions</h2>
 					<p>Below is our simple, 3 sectioned contract. Fill out your relevant information, and submit your request to the warehouse owner.</p>
 
 					<?php $signing_date=new DateTime(date("Y-m-d"));
@@ -56,9 +56,9 @@
 					$zip = $_GET['z'];
 					echo "<ul><h3>Persons</h3><li>This contract for the rental of a warehouse is made this day, <b>".date('Y/m/d'). "</b>, by and between ";
 					?>
-					
+
 					<form name="contractInputs" method="post" action="http://web.ics.purdue.edu/~g1090423/success.php" onsubmit="return validate()">
-					
+
 					<div class="6u 12u$(xsmall)">
 					<input type="text" name="l_fname" id="l_fname" value="" placeholder="Lessee First Name" required />
 					<input type="text" name="l_lname" id="l_lname" value="" placeholder="Lessee Last Name" required />
@@ -75,12 +75,12 @@
 					</div> and the goods stored will be
 					<div class="6u 12u$(xsmall)">
 					<input type="text" name="goods" id="goods" value="" placeholder="Goods to be stored" required />
-					</div> hereafter referred to as Goods. The price of <b>$<?php echo($price) ?></b> $/sq ft/month set forward by the owner will be tendered to the Owner upon a monthly basis by the Lessee</li>	
+					</div> hereafter referred to as Goods. The price of <b>$<?php echo($price) ?></b> $/sq ft/month set forward by the owner will be tendered to the Owner upon a monthly basis by the Lessee</li>
 					<br><h3>Dates</h3>
-					<li>The Lessee shall have access to and use of the warehouse from 8:00 am on 
+					<li>The Lessee shall have access to and use of the warehouse from 8:00 am on
 					<div class="6u 12u$(xsmall)">
 					<input type="date" name="start_date" id="start_date" value="" placeholder="Contract start date" required />
-					</div>to 5 pm on 
+					</div>to 5 pm on
 					<div class="6u 12u$(xsmall)">
 					<input type="date" name="end_date" id="end_date" value="" placeholder="Contract end date" required /> for the purpose of storing the Lessee's Goods.</li>
 					<br></div></ul>
@@ -104,11 +104,11 @@
 					</form>
 					</div>
 					</section>
-					
-					<!-- Footer -->
+
+		<!-- Footer -->
 			<footer id="footer">
-				<div class="copyright">
-					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
+				<div class="copyright" style="font-weight:500;">
+					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:500;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:500;">Unsplash</a>.
 				</div>
 			</footer>
 
