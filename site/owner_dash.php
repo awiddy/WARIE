@@ -10,6 +10,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+		</style>
 	</head>
 	<body>
 
@@ -53,37 +55,61 @@
 								<li><a href="?name=existing_contracts" class="button special">Existing Contracts &emsp;&ensp; </a></li><br><br>
 								<li><a href="?name=warehouse_activity" class="button special">Warehouse Activity&ensp;&ensp;</a></li><br><br>
 								<li><a href="?name=account" class="button special">Account &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a></li><br><br>
-								<li><a href="?name=contracts" class="button special">Contracts &emsp;&emsp;&emsp; &emsp; &emsp;</a></li>
 							</ul>
                         </div>
 
                         <div class="9u$ 12u$(xsmall)">
                             <!-- new column-->
-                            <div class="slimmer">
+                            <div class="slimmer" margin-left="4em">
 								<?php
-                                if( $_GET["name"]=="existing_contracts"){
-									echo"<h3>Existing Contracts</h3>";
-									}
-								if( $_GET["name"]=="prospective_contracts"){
-									echo"<h3>Prospective Contracts</h3>";
-									}
-
-								?>
+								if( $_GET["name"]!="existing_contracts" && $_GET["name"]!="warehouse_activity" && $_GET["name"]!="account"){ //OR operator used to set this selection to default
+									echo"
+									<h3>Prospective Contracts</h3>
+									<p>Complete a contract action by clicking its green ID on the left.<br>
+									You currently have [5] prospective contracts <br>
+									[Insert some R graph or personalized info]
+									</p>
 							</div>
 						</div>
-					</div>
+					</div>"; //ends div reaching outside this php section, done for formatting
+					prospective_conts(); //placeholder existing conts
+									}
+                                if( $_GET["name"]=="existing_contracts"){
+									echo"
+									<h3>Existing Contracts</h3>
+									<p>Click a green contract ID to view more details<br>
+									You currently have [5] active contracts</p>
+							</div>
+						</div>
+					</div>"; 
+					existing_conts(); 
+									}
+								if( $_GET["name"]=="warehouse_activity"){
+									echo"
+									<h3>Warehouse Activity</h3>
+									<p> 
+									</p>
+							</div>
+						</div>
+					</div>"; 
+					//[php function yieldning some info or query](); 
+									}
+								if( $_GET["name"]=="account"){
+									echo"
+									<h3>Your Account</h3>
+									<p> 
+									</p>
+							</div>
+						</div>
+					</div>"; 
+					//[php function yieldning some info or query](); 
+									}
+								?>
 
                     <hr /> <!-- separating line-->
            
 			<!-- table -->
-                <?php	
-					if( $_GET["name"]=="existing_contracts"){
-							existing_conts();
-						}
-					if( $_GET["name"]=="prospective_contracts"){
-							prospective_conts();
-						}
-
+                <?php
 					function prospective_conts(){
 						echo"<h2>Accept or decline contracts</h2>";
 						/*$Owner_ID= $_POST["Owner_ID"];*/
@@ -137,7 +163,12 @@
 							while($row = $result->fetch_assoc()) {
                         
 							echo"
-							<tr><td><a href='request.php'>".$row['Warehouse_ID']. "</a></td><td>".$row["Start Date"]."</td><td>".round($row["End Date"],2)."</td><td>".$row["Rented_Space"]."</td><td>".$row["Lessee_ID"]."</td><td>".$row["Signing_date"]."</td><td>";
+							<tr><td><a href='request.php'>".$row['Warehouse_ID']. "</a></td>
+							<td>".$row["Start Date"]."</td>
+							<td>".round($row["End Date"],2)."</td>
+							<td>".$row["Rented_Space"]."</td>
+							<td>".$row["Lessee_ID"]."</td>
+							<td>".$row["Signing_date"]."</td>";
 							/*echo"
 							<tr><td><a href='request.php'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>";*/
 							//echo "ID: " . $row["ID"]. "Capacity: ".$row["Capacity"]. "Price: ".$row["Price"]. "Zipcode: ".$row["Zipcode"] ."City: ".$row["City"]. "State: ".$row["State"]. "Owner ID: ".$row["Owner_ID"]. "Owner Rating: ".$row["Owner_Rating"];
@@ -219,12 +250,6 @@
 							echo"
 						</table>";
 						}
-
-					function existing()
-					{
-						echo "I Exist!\n";
-					}
-
                 ?>
                 </font></p>
 
