@@ -156,7 +156,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						echo"<h2>Accept or decline contracts</h2>";
 						/*$Owner_ID= $_POST["Owner_ID"];*/
 						//$Owner_ID="201"; //hardcoded ID
-						$Owner_ID=$_SESSION[id]; //hardcoded ID
+						$Owner_ID=$_SESSION["id"]; //hardcoded ID
 						$servername = "mydb.ics.purdue.edu";
 						$username = "g1090423";
 						$password = "marioboys";
@@ -171,14 +171,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 						/*$sql_1 = "SELECT *";
 						$sql_2 = "FROM Warehouse WHERE Owner_ID=$Owner_ID";*/
-						$sql_1 = "SELECT *";
-						$sql_2 = "FROM Contract WHERE Owner_ID=$Owner_ID AND Approval=0";
-						$sql = $sql_1.$sql_2;
+						$sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=0";
 
-						/*$sql_1 = "SELECT W.ID, StorageCapacity,BasePrice,Zipcode,City,State,Owner_ID,R.Rating as Owner_Rating ";
-						$sql_2 = "FROM (Warehouse W INNER JOIN(SELECT MIN(Open_Space),WarehouseID FROM Availability WHERE WeekFromDate BETWEEN ".$start_date_week." AND ".$end_date_week." GROUP BY WarehouseID) A ";
-						$sql_3 = "ON W.ID = A.WarehouseID) INNER JOIN (SELECT Rating,Owner.ID FROM Owner) R ON W.Owner_ID=R.ID WHERE StorageType = ".$storage_type." AND City = '".$city."' ORDER BY ";
-						$sql = $sql_1.$sql_2.$sql_3; */
+
 
 						$result = $conn->query($sql);
 						echo "
@@ -193,6 +188,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						</style>";
 						echo"<table width=950px>
 							";
+							
 							echo"
 							<th>Warehouse ID</th>
 							<th>Start Date</th>
@@ -229,7 +225,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					function existing_conts(){
 						echo"<h2>Your existing contracts</h2>";
 						/*$Owner_ID= $_POST["Owner_ID"];*/
-						$Owner_ID="201"; //hardcoded ID <Need to change to variable
+						$Owner_ID = $_SESSION["id"];
 						$servername = "mydb.ics.purdue.edu";
 						$username = "g1090423";
 						$password = "marioboys";
@@ -244,14 +240,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 						/*$sql_1 = "SELECT *";
 						$sql_2 = "FROM Warehouse WHERE Owner_ID=$Owner_ID";*/
-						$sql_1 = "SELECT *";
-						$sql_2 = "FROM Contract WHERE Owner_ID=$Owner_ID AND Approval=1";
-						$sql = $sql_1.$sql_2;
-
-						/*$sql_1 = "SELECT W.ID, StorageCapacity,BasePrice,Zipcode,City,State,Owner_ID,R.Rating as Owner_Rating ";
-						$sql_2 = "FROM (Warehouse W INNER JOIN(SELECT MIN(Open_Space),WarehouseID FROM Availability WHERE WeekFromDate BETWEEN ".$start_date_week." AND ".$end_date_week." GROUP BY WarehouseID) A ";
-						$sql_3 = "ON W.ID = A.WarehouseID) INNER JOIN (SELECT Rating,Owner.ID FROM Owner) R ON W.Owner_ID=R.ID WHERE StorageType = ".$storage_type." AND City = '".$city."' ORDER BY ";
-						$sql = $sql_1.$sql_2.$sql_3; */
+						$sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=1";
 
 						$result = $conn->query($sql);
 						echo "
