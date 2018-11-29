@@ -20,6 +20,7 @@
 				<a href="index.html" class="logo"><strong>WARIE</strong> &ensp; Home</a>
 				<nav>
 					<a href="#menu">Menu</a>
+					<a href="about.html">About</a>
 				</nav>
 			</header>
 
@@ -52,11 +53,11 @@
 						</br>
 						Click on any Warehouse ID to draft up a contract for that location.
 					</font></p>
-					
-					
 
 
-					<?php 
+
+
+					<?php
 					$storage_type = $_POST["storagetype"];
 					$city = $_POST["city"];
 					$start_date = $_POST["start_date"];
@@ -67,62 +68,60 @@
 					$username = "g1090423";
 					$password = "marioboys";
 					$dbname = "g1090423";
-					
-					
+
 					// Create connection
 					$conn = new mysqli($servername, $username, $password, $dbname);
 					// Check connection
 					if ($conn->connect_error) {
 					die("Connection failed: " . $conn->connect_error);
-					} 
+					}
 					$start_date1= date_create("$start_date");
 					$end_date1=date_create("$end_date");
 					$current_date = new DateTime(date("Y-m-d"));
-					
+
 					$start_date_week = ceil((date_diff($start_date1, $current_date))/7);
 					$end_date_week = ceil((date_diff($end_date1, $current_date))/7);
 					$sql_1 = "SELECT W.ID, StorageCapacity,BasePrice,Zipcode,City,State,Owner_ID,R.Rating as Owner_Rating ";
 					$sql_2 = "FROM (Warehouse W INNER JOIN(SELECT MIN(Open_Space),WarehouseID FROM Availability WHERE WeekFromDate BETWEEN ".$start_date_week." AND ".$end_date_week." GROUP BY WarehouseID) A ";
 					$sql_3 = "ON W.ID = A.WarehouseID) INNER JOIN (SELECT Rating,Owner.ID FROM Owner) R ON W.Owner_ID=R.ID WHERE StorageType = ".$storage_type." AND City = '".$city."' ORDER BY ";
 					$sql = $sql_1.$sql_2.$sql_3;
-					
+
 					if($sort_val==1){$sql=$sql."BasePrice";};
 					if($sort_val==2){$sql=$sql."Owner_Rating DESC";};
-					
+
 					$result = $conn->query($sql);
-					
 					echo "<style>td,tr:hover{opacity:0.6;} th:hover{opacity:1.0;}</style>";
 					echo"<table width = 950px>";
 					echo"<th>Warehouse ID</th><th>Storage Capacity</th><th>Price ($/sq ft/month)</th><th>Zipcode</th><th>City</th><th>State</th><th>Owner ID</th><th>Owner Rating</th>";
-					
+
 					if ($result->num_rows > 0) {
 					// output data of each row
 					while($row = $result->fetch_assoc()) {
-					
+
 					echo"<tr><td><a href='request.php?w=".$row['ID']."&o=".$row['Owner_ID']."&pr=".$row['BasePrice']."&c=".$row['City']."&st=".$row['State']."&z=".$row["Zipcode"]."' target='_blank'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>".$row["Owner_ID"]."</td><td>".$row["Owner_Rating"]."</td></tr>";
 					//echo "ID: " . $row["ID"]. "Capacity: ".$row["Capacity"]. "Price: ".$row["Price"]. "Zipcode: ".$row["Zipcode"] ."City: ".$row["City"]. "State: ".$row["State"]. "Owner ID: ".$row["Owner_ID"]. "Owner Rating: ".$row["Owner_Rating"];
-					
+
 					echo"</td>";
 						}
 						} else {
-							echo "<h3>0 results</h3>";
+							echo "0 results";
 							}
 							$conn->close();
 					echo"</table>";
-					
+
 					?>
 					</font></p>
-					
-					
-					
+
+
+
 					<a href="browse.html" class="button special" target="_blank">Search Again</a>
 				</div>
 			</section>
 
 		<!-- Footer -->
 			<footer id="footer">
-				<div class="copyright">
-					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
+				<div class="copyright" style="font-weight:500;">
+					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:500;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:500;">Unsplash</a>.
 				</div>
 			</footer>
 

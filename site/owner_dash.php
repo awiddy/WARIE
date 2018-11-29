@@ -28,6 +28,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			<a href="index.html" class="logo"><strong>WARIE</strong> &ensp; Home</a>
 			<nav>
 				<a href="#menu">Menu</a>
+				<a href="about.html">About</a>
 			</nav>
 		</header>
 
