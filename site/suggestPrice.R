@@ -1,6 +1,5 @@
 DailyNN<-function(){
   require("neuralnet")
-  require("RMySQL")
   library(neuralnet)
   n<-2000 #number of samples to train the NN on
   

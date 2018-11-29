@@ -59,18 +59,19 @@
 						</br></br>	</br></br>
 
 
-							<div class="12u$">
-							<div class="select-wrapper">
-								<h4>Storage Environment:</h4>
-								<select name="storagetype" required>
-										<option value="">- Storage Type -</option>
-										<option value="1">General</option>
-										<option value="2">Dry</option>
-										<option value="3">Refrigerated</option>
-										<option value="4">Frozen</option>
-										</select>
-										</div>
-										</div>
+								<h4>Storage Environment:</h4></br></br>
+								<div class="4u 12u$(xsmall)">
+									<input type="radio" id="priority-low" name="priority" checked>
+									<label for="priority-low">General Storage</label>
+								</div>
+								<div class="4u 12u$(xsmall)">
+									<input type="radio" id="priority-normal" name="priority">
+									<label for="priority-normal">Cold</label>
+								</div>
+								<div class="4u$ 12u$(xsmall)">
+									<input type="radio" id="priority-high" name="priority">
+									<label for="priority-high">Dry</label>
+								</div>
 								</br></br>
 
 								<div class="12u$">
@@ -102,19 +103,7 @@
 								</br>
 								</br>
 								</br>
-								<!-- Need to be able to find the lat long based off the zipcode -->
-								<h4>Suggest a Price</h4>
-								<?php
-								//$lat = ?;
-								//$long = ?;
-								//$zip = $_POST["zip"];
-								//$capacity= $_post["size"];
-								//$storagetype= $_POST["storagetype"];
-								
-								//$out = shell_exec("Rscript suggestPrice.R $zip $capacity $storagetype $lat $long 2>/dev/null"); //suggest price still needs commmandArgs<-TRUE and all that
 
-								
-								?>
 								<ul class="actions">
 									<li><input type="reset" value="Create Listing" /></li>
 								</ul>
@@ -126,8 +115,8 @@
 
 		<!-- Footer -->
 			<footer id="footer">
-				<div class="copyright" style="font-weight:500;">
-					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:500;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:500;">Unsplash</a>.
+				<div class="copyright">
+					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
 				</div>
 			</footer>
 

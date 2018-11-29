@@ -30,7 +30,7 @@
 					<li><a href="login.php">Login</a></li>
 				</ul>
 			</nav>
-
+			
 		<!--Banner-->
 		<section class="banner_layout banner_login">
 				<div class="inner">
@@ -44,7 +44,7 @@
 				<div class="slimmer">
 					<h3>Please wait until you hear back from the owner.</h3>
 					<a href="browse.html" class="button special" target="_blank">Search Again</a>
-					<?php
+					<?php 
 					$storage_amt = $_POST["storage_amt"];
 					$start_date_raw = $_POST["start_date"];
 					$end_date_raw = $_POST["end_date"];
@@ -55,13 +55,13 @@
 					$w_id = $_POST["w_id"];
 					$signing_date1=new DateTime(date("Y-m-d"));
 					$approval=0;
-
+					
 					$start_date1= date_create("$start_date_raw");
 					$end_date1=date_create("$end_date_raw");
 					$current_date = new DateTime(date("Y-m-d"));
 					$start_date_week = ceil((date_diff($start_date1, $current_date))/7);
 					$end_date_week = ceil((date_diff($end_date1, $current_date))/7);
-
+					
 					$servername = "mydb.ics.purdue.edu";
 					$username = "g1090423";
 					$password = "marioboys";
@@ -72,19 +72,19 @@
 					// Check connection
 					if ($conn->connect_error) {
 					die("Connection failed: " . $conn->connect_error);
-					}
+					} 
 
-
+					
 					$o_id_qry="SELECT ID FROM Owner WHERE FirstName ='".$o_fname."' AND LastName='".$o_lname."'";
 					$o_id_sql=$conn->query($o_id_qry);
 					$row1 = $o_id_sql->fetch_assoc();
 					$o_id=$row1['ID'];
-
+					
 					$l_id_qry="SELECT ID FROM Lessee WHERE FirstName ='".$l_fname."' AND LastName='".$l_lname."'";
 					$l_id_sql=$conn->query($l_id_qry);
 					$row2 = $l_id_sql->fetch_assoc();
 					$l_id=$row2['ID'];
-
+					
 					$signing_date = $signing_date1->format('Y-m-d');
 					$start_date=$start_date1->format('Y-m-d');
 					$end_date=$end_date1->format('Y-m-d');
@@ -92,15 +92,19 @@
 
 					$sql = "INSERT INTO Contract (`Start Date`,`End Date`,Lessee_ID,Owner_ID,Rented_Space, Signing_date,Warehouse_ID,Approval) VALUES ('".$start_date."','".$end_date."',".$l_id.",".$o_id.",".$storage_amt.",'".$signing_date."',".$w_id.",".$approval.")";
 					mysqli_query($conn,$sql);
+
+					
+					mysqli_close($conn);
+
 					?>
 
 					</div>
 					</section>
-
-		<!-- Footer -->
+					
+					<!-- Footer -->
 			<footer id="footer">
-				<div class="copyright" style="font-weight:500;">
-					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:500;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:500;">Unsplash</a>.
+				<div class="copyright">
+					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
 				</div>
 			</footer>
 
