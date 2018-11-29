@@ -71,7 +71,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             <div class="slimmer" margin-left="4em">
 								<?php
 								
-									$Owner_ID=$_SESSION["id"]; //hardcoded ID
+									$Owner_ID=$_SESSION["id"]; 
 									$servername = "mydb.ics.purdue.edu";
 									$username = "g1090423";
 									$password = "marioboys";
@@ -82,11 +82,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									if ($conn->connect_error) {
 									die("Connection failed: " . $conn->connect_error);
 									}
-									$count_qry = "SELECT COUNT(*) FROM Contract WHERE Owner_ID = ".$Owner_ID."";
-									$count = $conn->query($count_qry);
-									$row = $count->fetch_assoc();
+									$count1_qry = "SELECT COUNT(*) FROM Contract WHERE Owner_ID = ".$Owner_ID." AND Approval=1";
+									$count1 = $conn->query($count1_qry);
+									$row1 = $count1->fetch_assoc();
 									
-									
+									$count2_qry = "SELECT COUNT(*) FROM Contract WHERE Owner_ID = ".$Owner_ID." AND Approval=0";
+									$count2 = $conn->query($count2_qry);
+									$row2 = $count2->fetch_assoc();
 
 								if( $_GET["name"]!="existing_contracts" && $_GET["name"]!="warehouse_activity" && $_GET["name"]!="account"){ //OR operator used to set this selection to default
 									echo"
@@ -96,7 +98,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 									<h3>Prospective Contracts</h3>
 									<p>Complete a contract action by clicking its green ID on the left.<br>
-									You currently have [".$row["COUNT(*)"]."] prospective contracts <br>
+									You currently have [".$row2["COUNT(*)"]."] prospective contracts <br>
 									[Insert some R graph or personalized info]
 									</p>
 							</div>
@@ -108,7 +110,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									echo"
 									<h3>Existing Contracts</h3>
 									<p>Click a green contract ID to view more details<br>
-									You currently have [".$row["COUNT(*)"]."] active contracts</p>
+									You currently have [".$row1["COUNT(*)"]."] active contracts</p>
 							</div>
 						</div>
 					</div>";
@@ -195,11 +197,51 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						$sql_2 = "FROM Warehouse WHERE Owner_ID=$Owner_ID";*/
 						$sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=0";
 
-						$count_qry = "SELECT COUNT(*) FROM Contract WHERE Owner_ID = ".$Owner_ID."";
-						$count = $conn->query($count_qry);
-						$row = $count->fetch_assoc();
+
 
 						$result = $conn->query($sql);
+						
+						$ID = $_SESSION["id"];
+						
+						$sql2 = "SELECT ID FROM Warehouse WHERE Owner_ID = ".$ID."";
+						$WID = $conn->query($sql2);
+						$row3 = $WID->fetch_assoc();
+						echo ($row["ID"]);
+						$WID2=(int)$row3["ID"];
+						#$location='S:\Softgrid\v5\BF13EC5E-3AD1-479A-9A79-62710CF57235\9E30E881-D22F-4EB9-9514-EAFD8721E6CA\Root\RStudio\bin\rstudio.exe';
+						#$lastline = exec("".$location." W:\www\OwnerContractOpt.R $WID2",$full_output,$return_status);
+						#$lastline = exec("S:\Softgrid\v5\BF13EC5E-3AD1-479A-9A79-62710CF57235\9E30E881-D22F-4EB9-9514-EAFD8721E6CA\Root\RStudio\bin\rstudio.exe C:\Users\g1090423\W:\www\OwnerContractOpt.R $WID2",$full_output,$return_status);
+						#$out = shell_exec("Rscript --verbose OwnerContractOpt_test.R $WID2 2>&1");
+						$out = shell_exec("Rscript OwnerContractOpt_test.R $WID2 2>/dev/null");
+						$result2 = explode(" ",$out);
+						#echo ($result2[1]);
+						#echo ($lastline);
+						#echo implode("\n",$full_output);
+						#print_r($full_output);
+						
+						print_r($result2);
+
+						echo "
+						<style>
+							td, tr:hover {
+								opacity: 0.6;
+							}
+
+							th:hover {
+								opacity: 1.0;
+							}
+						</style>";
+						echo"<table width=450px>";
+						echo"<th>Optimized Contract ID</th><th>Accept</th><th>Deny</th>";
+						for ($x=1;$x<= ((count($result2))-1);$x++){
+						echo"<tr><td>".$result2[$x]."<td>check accept</td><td>check no</td></td></tr>";
+						}
+						echo"</table>";
+						
+						
+						
+						
+						##not printing correct warehouses for logged in owner
 						echo "
 						<style>
 							td, tr:hover {
