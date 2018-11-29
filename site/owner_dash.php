@@ -70,11 +70,33 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             <!-- new column-->
                             <div class="slimmer" margin-left="4em">
 								<?php
+								
+									$Owner_ID=$_SESSION["id"]; //hardcoded ID
+									$servername = "mydb.ics.purdue.edu";
+									$username = "g1090423";
+									$password = "marioboys";
+									$dbname = "g1090423";
+									// Create connection
+									$conn = new mysqli($servername, $username, $password, $dbname);
+									// Check connection
+									if ($conn->connect_error) {
+									die("Connection failed: " . $conn->connect_error);
+									}
+									$count_qry = "SELECT COUNT(*) FROM Contract WHERE Owner_ID = ".$Owner_ID."";
+									$count = $conn->query($count_qry);
+									$row = $count->fetch_assoc();
+									
+									
+
 								if( $_GET["name"]!="existing_contracts" && $_GET["name"]!="warehouse_activity" && $_GET["name"]!="account"){ //OR operator used to set this selection to default
 									echo"
+									
+
+						
+
 									<h3>Prospective Contracts</h3>
 									<p>Complete a contract action by clicking its green ID on the left.<br>
-									You currently have [5] prospective contracts <br>
+									You currently have [".$row["COUNT(*)"]."] prospective contracts <br>
 									[Insert some R graph or personalized info]
 									</p>
 							</div>
@@ -86,7 +108,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									echo"
 									<h3>Existing Contracts</h3>
 									<p>Click a green contract ID to view more details<br>
-									You currently have [5] active contracts</p>
+									You currently have [".$row["COUNT(*)"]."] active contracts</p>
 							</div>
 						</div>
 					</div>";
@@ -173,7 +195,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						$sql_2 = "FROM Warehouse WHERE Owner_ID=$Owner_ID";*/
 						$sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=0";
 
-
+						$count_qry = "SELECT COUNT(*) FROM Contract WHERE Owner_ID = ".$Owner_ID."";
+						$count = $conn->query($count_qry);
+						$row = $count->fetch_assoc();
 
 						$result = $conn->query($sql);
 						echo "
