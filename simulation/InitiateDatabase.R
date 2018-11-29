@@ -2,6 +2,7 @@ InitiateDatabase <- function(){
   
   #################INitiates everything from scratch and deletes old data from database. You need to only call the function to populate database######
   ###Takes  Time####
+  
   setwd('\\\\nas01.itap.purdue.edu\\puhome\\My Documents\\GitHub\\WARIE\\simulation')
   source("simulation_data.R")
   source("getPrices.R")
