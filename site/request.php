@@ -1,4 +1,11 @@
-<?php session_start();?>
+<?php session_start();
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE HTML>
 <!--
 	Binary by TEMPLATED
@@ -61,7 +68,7 @@
 					$start_date = $_GET['sd'];
 					$end_date = $_GET['ed'];
 					$storage_needed = $_GET['sn'];
-					$Owner_ID=$_SESSION["id"]; 
+					$l_id=$_SESSION["id"]; 
 					
 					// Create connection
 					$conn = new mysqli($servername, $username, $password, $dbname);
@@ -78,7 +85,7 @@
 					echo "<ul><h3>Persons</h3><li>This contract for the rental of a warehouse is made this day, <u>".date('Y/m/d'). "</u>, by and between ";
 					?>
 					
-					<form name="contractInputs" method="post" action="http://web.ics.purdue.edu/~g1090423/success.php" onsubmit="return validate()">
+					<form name="contractInputs" method="post" action="http://web.ics.purdue.edu/~g1090423/success.php?<?php echo("&sn=".$storage_needed."&o=".$o_id."&w=".$w_id."&l=".$l_id.""); ?>" onsubmit="return validate()">
 					
 					<div class="6u 12u$(xsmall)">
 					<input type="text" name="l_fname" id="l_fname" value="" placeholder="Lessee First Name" required />
