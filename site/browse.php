@@ -1,11 +1,4 @@
-<?php session_start();
 
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
-    exit;
-}
-?>
 <!DOCTYPE HTML>
 <!--
 	Binary by TEMPLATED
@@ -18,6 +11,51 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		
+		<script>
+		//validate isn't working for some reason
+		function validate(){
+		
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0
+		var yyyy = today.getFullYear();
+
+		if(dd<10) {
+			dd = '0'+dd
+					} 
+
+		if(mm<10) {
+			mm = '0'+mm
+			} 
+
+		today = mm + '/' + dd + '/' + yyyy;
+		document.write(today);
+		
+		var start_date = new Date(document.forms["allInputs"]["start_date"].value);
+		var end_date = new Date(document.forms["allInputs"]["end_date"].value);
+		var err1 = (start_date > end_date);
+		var err2 = (start_date == end_date);
+		var err3 = (start_date <= (current_date+6));
+		var err4 = (end_date<=(start_date+13));
+		var err5 = (start_date<current_date);
+		
+		if(err1){
+			alert("Start date cannot be after end date");
+			return false;
+		}else if (err2){
+			alert("Start date and end date must be at least 1 week (7 days) apart");
+			return false;
+		}else if (err3 || err5){
+			alert("Start date must be at least 1 week (7 days) after today"); 
+			return false;
+		}else if (err4){
+			alert("End date must be at least 1 week (7 days) after start");
+			return false;
+		}else{ return true;}
+		}
+		
+		</script>
 	</head>
 	<body>
 
@@ -26,7 +64,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<a href="index.html" class="logo"><strong>WARIE</strong> &ensp; Home</a>
 				<nav>
 					<a href="#menu">Menu</a>
-					<a href="about.html">About</a>
 				</nav>
 			</header>
 
@@ -53,7 +90,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			<section id="main">
 				<div class="slimmer">
 					<h3>Select your criteria to narrow the results</h3>
-					<form name="allInputs" method="post" action="http://web.ics.purdue.edu/~g1090423/results.php">
+					<form name="allInputs" method="post" action="results.php">
 						<div class="row uniform 50%">
 							<div class="12u$">
 								<div class="select-wrapper">
@@ -93,30 +130,43 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 										</div>
 									<br><br><h4>How much space will you  be needing?</h4></br></br>
 									<div class="12u$">
-										<input type="number" min="0" name="storage_needed" id="storage_needed" value="" placeholder="Space Needed" required />
+										<input type="number" name="storage_needed" id="storage_needed" value="" min = "0" placeholder="Space Needed" required />
 									</div>
 									<br><br><h4>When do you need your contract to start?</h4></br></br>
+
 									<div class="12u$">
-										<input type="date" name="start_date" id="start_date" onblur="endDate()" value="" min = "0" max="0" placeholder="Start Date" required />
-									<script>
+										<input type="date" name="start_date" id="start_date" value="" min="start_min" max = "start_max" placeholder="Start Date"  required />
+																		<script> 
+									/*
+									//get all new dates and set to today
+									var start_min = new Date().toISOString().split('T')[0];
+									var start_max = new Date().toISOString().split('T')[0];
+									var end_min = new Date().toISOString().split('T')[0];
+									var end_max = new Date().toISOString().split('T')[0];
+									//set actual min/max values of all dates based on today
+									start_min.setDate(start_min.getDate()+7); 
+									start_max.setDate(start_max.getDate()+103);
+									end_min.setDate(end_min.getDate()+14); 
+									end_max.setDate(end_max.getDate()+ 364)
+									document.getElementById("start_min").value=start_min;
+									document.getElementById("start_max").value=start_max;
+									document.getElementById("end_min").value=end_min;
+									document.getElementById("end_max").value=end_max;*/
 									
-									start_date.min = new Date().toISOString().split("T")[0];
-									
+									var today=new Date()toISOString().split('T')[0];
+									document.getElementsByName("start_date")[0].setAttribute('min',today+7);//min start date is 1 week out from today
+									document.getElementsByName("start_date")[0].setAttribute('max',today+103); //max start date is 24 weeks (96 days) out from 1 week (7 days) from today
+									document.getElementsByName("end_date")[0].setAttribute('min',today+14);//min contract length is 1 week (7 days) after the start date (7 days away)
+									document.getElementsByName("end_date")[0].setAttribute('max',today+364);//max end date is 52 weeks (364 days) from today
+
+
 									</script>
 									</div>
 									<br><br><h4>When will your contract be ending?</h4></br></br>
 									<div class="12u$">
-										<input type="date" name="end_date" id="end_date" value="" min="0" max="0" placeholder="End Date" required />
+										<input type="date" name="end_date" id="end_date" value="" min = "end_min" max = "end_max" placeholder="End Date" required />
 									</div>
-									<script>
-									
-									end_date.min = new Date().toISOString().split("T")[0];
-									
-									function endDate(){
-										end_date.min = start_date.value;
-									}
-									
-									</script>
+
 								</br></br>
 									<div class="12u$">
 									<div class="select-wrapper">
@@ -125,11 +175,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 											<option value="">- Sort -</option>
 											<option value="1">Price ($/sq ft/month)</option>
 											<option value="2">Rating</option>
-
+											
 										</select>
 									</div>
 								</div>
-
+							
 								</br></br>
 
 								<ul class="actions">
@@ -143,19 +193,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 		<!-- Footer -->
 			<footer id="footer">
-<<<<<<< HEAD
-				<div class="copyright" style="font-weight:500;">
-					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:500;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:500;">Unsplash</a>.
-=======
-			<ul class="icons">
-					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-				</ul>
-				<a href ="terms_conditions.html">Terms and Conditions</a>	
 				<div class="copyright">
 					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
->>>>>>> a98533b6c6390b87272b3e25acc13fdf53149bd3
 				</div>
 			</footer>
 
@@ -165,6 +204,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-		
+
 	</body>
 </html>

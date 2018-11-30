@@ -46,57 +46,46 @@
 					<h3>Please wait until you hear back from the owner.</h3>
 					<a href="browse.html" class="button special" target="_blank">Search Again</a>
 					<?php 
-					$storage_amt = $_POST["storage_amt"];
+					//Retreiving data from URL/Post function, as well as setting variables for the query/DB connection
 					$start_date_raw = $_POST["start_date"];
 					$end_date_raw = $_POST["end_date"];
-					$o_fname = $_POST["o_fname"];
-					$o_lname = $_POST["o_lname"];
-					$l_fname = $_POST["l_fname"];
-					$l_lname = $_POST["l_lname"];
-					$w_id = $_POST["w_id"];
+					$o_id = $_GET['o'];
+					$l_id = $_GET['l'];
+					$sn = $_GET['sn'];
+					$w_id = $_GET['w'];
 					$signing_date1=new DateTime(date("Y-m-d"));
-					$approval=0;
-					
+					$approval=0; //approval always starts as 0, because it starts as unaccepted/pending
 					$start_date1= date_create("$start_date_raw");
 					$end_date1=date_create("$end_date_raw");
 					$current_date = new DateTime(date("Y-m-d"));
-					$start_date_week = ceil((date_diff($start_date1, $current_date))/7);
-					$end_date_week = ceil((date_diff($end_date1, $current_date))/7);
+					
+					//$start_date_week = ceil((date_diff($start_date1, $current_date))/7); 
+					//$end_date_week = ceil((date_diff($end_date1, $current_date))/7);
 					
 					$servername = "mydb.ics.purdue.edu";
 					$username = "g1090423";
 					$password = "marioboys";
 					$dbname = "g1090423";
 
-					// Create connection
+					//Create connection
 					$conn = new mysqli($servername, $username, $password, $dbname);
-					// Check connection
+					//Check connection
 					if ($conn->connect_error) {
-					die("Connection failed: " . $conn->connect_error);
-					} 
+						die("Connection failed: " . $conn->connect_error);
+						} 
 
-					
-					$o_id_qry="SELECT ID FROM Owner WHERE FirstName ='".$o_fname."' AND LastName='".$o_lname."'";
-					$o_id_sql=$conn->query($o_id_qry);
-					$row1 = $o_id_sql->fetch_assoc();
-					$o_id=$row1['ID'];
-					
-					$l_id_qry="SELECT ID FROM Lessee WHERE FirstName ='".$l_fname."' AND LastName='".$l_lname."'";
-					$l_id_sql=$conn->query($l_id_qry);
-					$row2 = $l_id_sql->fetch_assoc();
-					$l_id=$row2['ID'];
-					
+				
+					//Ensuring dates are in correct format
 					$signing_date = $signing_date1->format('Y-m-d');
 					$start_date=$start_date1->format('Y-m-d');
 					$end_date=$end_date1->format('Y-m-d');
 
-
-					$sql = "INSERT INTO Contract (`Start Date`,`End Date`,Lessee_ID,Owner_ID,Rented_Space, Signing_date,Warehouse_ID,Approval) VALUES ('".$start_date."','".$end_date."',".$l_id.",".$o_id.",".$storage_amt.",'".$signing_date."',".$w_id.",".$approval.")";
+					//Writing query to add requested contract into Contract table in DB
+					$sql = "INSERT INTO Contract (`Start Date`,`End Date`,Lessee_ID,Owner_ID,Rented_Space, Signing_date,Warehouse_ID,Approval) VALUES ('".$start_date."','".$end_date."',".$l_id.",".$o_id.",".$sn.",'".$signing_date."',".$w_id.",".$approval.")";
+					//echo($sql);
+					//echo("<br>o id is ".$o_id." sos");
 					mysqli_query($conn,$sql);
-
-					
 					mysqli_close($conn);
-
 					?>
 
 					</div>
@@ -104,6 +93,12 @@
 					
 					<!-- Footer -->
 			<footer id="footer">
+			<ul class="icons">
+					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+				</ul>
+				<a href ="terms_conditions.html">Terms and Conditions</a>	
 				<div class="copyright">
 					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
 				</div>

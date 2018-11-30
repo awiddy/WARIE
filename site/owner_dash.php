@@ -121,41 +121,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									echo"
 									<h3>Warehouse Activity</h3>
 									<p> Here is Your Optimized Activity
-									</p>
+									</p>";
 
-										  <head>";
-										echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
-										echo'<script type="text/javascript">
-											  google.charts.load(\'current\', {\'packages\':[\'corechart\']});
-											  google.charts.setOnLoadCallback(drawChart);
+									pieChart();
+									lineCurve();
 
-											  function drawChart() {
-
-												var data = google.visualization.arrayToDataTable([
-												  [\'Task\', \'Hours per Day\'],
-												  [\'Work\',     11],
-												  [\'Eat\',      2],
-												  [\'Commute\',  2],
-												  [\'Watch TV\', 2],
-												  [\'Sleep\',    7]
-												]);
-
-												var options = {
-												  title: \'My Daily Activities\'
-												};
-
-												var chart = new google.visualization.PieChart(document.getElementById(\'piechart\'));
-
-												chart.draw(data, options);
-											  }
-											</script>';
-										echo"</head>
-										  <body>
-											<div id=\"piechart\" style=\"width: 900px; height: 500px;\"></div>
-										  </body>
-
-
-							</div>
+						echo"</div>
 						</div>
 					</div>";
 					//[php function yieldning some info or query]();
@@ -349,7 +320,74 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							echo"
 						</table>";
 						}
-                ?>
+                
+					function pieChart()
+					{
+							echo"<head>";
+										echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
+										echo'<script type="text/javascript">
+											  google.charts.load(\'current\', {\'packages\':[\'corechart\']});
+											  google.charts.setOnLoadCallback(drawChart);
+
+											  function drawChart() {
+
+												var data = google.visualization.arrayToDataTable([
+												  [\'Task\', \'Hours per Day\'],
+												  [\'Work\',     11],
+												  [\'Eat\',      2],
+												  [\'Commute\',  2],
+												  [\'Watch TV\', 2],
+												  [\'Sleep\',    7]
+												]);
+
+												var options = {
+												  title: \'My Daily Activities\'
+												};
+
+												var chart = new google.visualization.PieChart(document.getElementById(\'piechart\'));
+
+												chart.draw(data, options);
+											  }
+											</script>';
+										echo"</head>
+										  <body>
+											<div id=\"piechart\" style=\"width: 900px; height: 500px;\"></div>
+										  </body>";
+					}
+					function lineCurve()
+					{
+							echo"<head>";
+										echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
+										echo'<script type="text/javascript">
+										  google.charts.load(\'current\', {\'packages\':[\'corechart\']});
+										  google.charts.setOnLoadCallback(drawChart);
+
+										  function drawChart() {
+											var data = google.visualization.arrayToDataTable([
+											  [\'Year\', \'Sales\', \'Expenses\'],
+											  [\'2004\',  1000,      400],
+											  [\'2005\',  1170,      460],
+											  [\'2006\',  660,       1120],
+											  [\'2007\',  1030,      540]
+											]);
+
+											var options = {
+											  title: \'Company Performance\',
+											  curveType: \'function\',
+											  legend: { position: \'bottom\' }
+											};
+
+											var chart = new google.visualization.LineChart(document.getElementById(\'curve_chart\'));
+
+											chart.draw(data, options);
+										  }
+										</script>';
+									echo"</head>
+									  <body>
+										<div id=\"curve_chart\" style=\"width: 900px; height: 500px\"></div>
+									  </body>";
+					}
+				?>
                 </font></p>
 
                 </section>
