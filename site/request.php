@@ -53,7 +53,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<h2>Terms and Conditions</h2>					
 					<p>Below is our simple, 3 sectioned contract. Fill out your relevant information, and submit your request to the warehouse owner.</p>
 					
-					<?php $signing_date=new DateTime(date("Y-m-d"));
+					<?php 
+					//Retreiving values from URL and setting values for DB connection
+					$signing_date=new DateTime(date("Y-m-d"));
 					$servername = "mydb.ics.purdue.edu";
 					$username = "g1090423";
 					$password = "marioboys";
@@ -70,29 +72,33 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					$storage_needed = $_GET['sn'];
 					$l_id=$_SESSION["id"]; 
 					
-					// Create connection
+					//Create connection
 					$conn = new mysqli($servername, $username, $password, $dbname);
-					// Check connection
+					//Check connection
 					if ($conn->connect_error) {
-					die("Connection failed: " . $conn->connect_error);
-					} 
+						die("Connection failed: " . $conn->connect_error);
+						} 
+					//Creating and executing a query to receive the full name of the Owner of the Warehouse selected (from the results page) by the user 
 					$qry1="SELECT FirstName, LastName, Email FROM Owner WHERE ID = ".$o_id."";
 					$fullname = $conn->query($qry1);
 					$row1 = $fullname->fetch_assoc();
 					
 					
-
+				//Writing up the contract
+					
 					echo "<ul><h3>Persons</h3><li>This contract for the rental of a warehouse is made this day, <u>".date('Y/m/d'). "</u>, by and between ";
 					?>
-					
+					<!-- Submitting this form sends all the information inputted/selected by the user to the success page-->
 					<form name="contractInputs" method="post" action="http://web.ics.purdue.edu/~g1090423/success.php?<?php echo("&sn=".$storage_needed."&o=".$o_id."&w=".$w_id."&l=".$l_id.""); ?>" onsubmit="return validate()">
 					
+					<!-- Lessee enters full name here -->
 					<div class="6u 12u$(xsmall)">
 					<input type="text" name="l_fname" id="l_fname" value="" placeholder="Lessee First Name" required />
 					<input type="text" name="l_lname" id="l_lname" value="" placeholder="Lessee Last Name" required />
 					</div> hereafter referred to as the Lessee, and
-					
-					<?php echo("<u>".$row1['FirstName']." ".$row1['LastName']."</u> (<u>".$row1['Email'].")</u>");?>
+					<!-- Auto-filling the contract with information about the Owner and the contract based on the inputted/selected information by the user-->
+					<?php 
+					echo("<u>".$row1['FirstName']." ".$row1['LastName']."</u> (<u>".$row1['Email'].")</u>");?>
 					 hereafter referred to as the Owner, at the location  of Warehouse ID #<u><?php echo ($w_id)?></u> located in <u><?php echo "".$city.", ".$state.", ".$zip.","?></u>
 					owned and agreed upon by the Owner, hereafter referred to as the warehouse.</li>
 					<h3>Logistics</h3>
@@ -112,7 +118,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<li>Lessee will be liable for any physical damages, legal actions, and/or loss of reputation or business opportunities that Owner may incur as a consequence of the actions of Lessee or any of Lessee's guests
 					while Lessee is in control of the warehouse, and shall indemnify and hold harmless the Owner against any and all legal actions which may arise from Lessee's use of the warehouse.</li>
 					</ul>
-					<!--<div class="4u 12u$(xsmall)">
+									<!--<div class="4u 12u$(xsmall)">
 										<input type="radio" id="disagree" name="agreement">
 										<label for="disagree">I do not agree to the above terms and conditions.</label>
 									</div>-->

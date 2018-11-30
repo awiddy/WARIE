@@ -45,50 +45,46 @@
 					<h3>Please wait until you hear back from the owner.</h3>
 					<a href="browse.html" class="button special" target="_blank">Search Again</a>
 					<?php 
+					//Retreiving data from URL/Post function, as well as setting variables for the query/DB connection
 					$start_date_raw = $_POST["start_date"];
 					$end_date_raw = $_POST["end_date"];
 					$o_id = $_GET['o'];
 					$l_id = $_GET['l'];
 					$sn = $_GET['sn'];
 					$w_id = $_GET['w'];
-					
-					
 					$signing_date1=new DateTime(date("Y-m-d"));
-					$approval=0;
-					
+					$approval=0; //approval always starts as 0, because it starts as unaccepted/pending
 					$start_date1= date_create("$start_date_raw");
 					$end_date1=date_create("$end_date_raw");
 					$current_date = new DateTime(date("Y-m-d"));
-					$start_date_week = ceil((date_diff($start_date1, $current_date))/7);
-					$end_date_week = ceil((date_diff($end_date1, $current_date))/7);
+					
+					//$start_date_week = ceil((date_diff($start_date1, $current_date))/7); 
+					//$end_date_week = ceil((date_diff($end_date1, $current_date))/7);
 					
 					$servername = "mydb.ics.purdue.edu";
 					$username = "g1090423";
 					$password = "marioboys";
 					$dbname = "g1090423";
 
-					// Create connection
+					//Create connection
 					$conn = new mysqli($servername, $username, $password, $dbname);
-					// Check connection
+					//Check connection
 					if ($conn->connect_error) {
-					die("Connection failed: " . $conn->connect_error);
-					} 
+						die("Connection failed: " . $conn->connect_error);
+						} 
 
 				
-					
+					//Ensuring dates are in correct format
 					$signing_date = $signing_date1->format('Y-m-d');
 					$start_date=$start_date1->format('Y-m-d');
 					$end_date=$end_date1->format('Y-m-d');
 
-
+					//Writing query to add requested contract into Contract table in DB
 					$sql = "INSERT INTO Contract (`Start Date`,`End Date`,Lessee_ID,Owner_ID,Rented_Space, Signing_date,Warehouse_ID,Approval) VALUES ('".$start_date."','".$end_date."',".$l_id.",".$o_id.",".$sn.",'".$signing_date."',".$w_id.",".$approval.")";
-					echo($sql);
-					echo("<br>o id is ".$o_id." sos");
+					//echo($sql);
+					//echo("<br>o id is ".$o_id." sos");
 					mysqli_query($conn,$sql);
-
-					
 					mysqli_close($conn);
-
 					?>
 
 					</div>
