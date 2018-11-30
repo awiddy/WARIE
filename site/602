@@ -1,0 +1,34 @@
+
+R version 3.5.1 (2018-07-02) -- "Feather Spray"
+Copyright (C) 2018 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> #get all availability for all weeks from the owners warehouse
+> #add all the space requests into the schedule for every week regardless of max space requirments
+> #Score each of the requests that are in the first week, for each week that a Contracts belongs to,Total Score = SUM for all weeks(Score for week i = (current space - MaxCapacity) - requestedspace)
+> #Pick the Contracts with the highest score and remove it
+> #Move onto the next week if max capacity constraints are met
+> 
+> #ContractOPT <- function(WAREHOUSEID){
+> 
+> args<- commandArgs(TRUE)
+> ID<- as.numeric(args[1])
+> 
+> mydb<-dbConnect(MySQL(),user="g1090423",password="marioboys",dbname="g1090423",host = "mydb.ics.purdue.edu")
+Error in dbConnect(MySQL(), user = "g1090423", password = "marioboys",  : 
+  could not find function "dbConnect"
+Execution halted

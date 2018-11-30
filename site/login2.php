@@ -1,7 +1,7 @@
 <?php
 // Initialize the session
 session_start();
-
+ 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
   if($_SESSION["userType"]=="OwnerLogin"){
@@ -16,29 +16,29 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
 // Include config file to startup database
 require_once "config.php";
-
+ 
 // Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = "";
-
+ 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  $sub = $_POST["Submit"];
-
+ 
     // Check if username is empty
     if(!isset($_POST["username"])){
         $username_err = "Please enter username.";
     } else{
         $username = trim($_POST["username"]);
     }
-
+    
     // Check if password is empty
     if(empty($_POST["password"])){
         $password_err = "Please enter your password.";
     } else{
         $password = trim($_POST["password"]);
     }
-
+    
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
 		// Prepare a select statement
@@ -47,39 +47,39 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		} else {
 			$sql = "SELECT ID, Email, Password FROM Lessee WHERE Email = ?";
 		}
-
+        
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
-
+            
             // Set parameters
             $param_username = $username;
-
+            
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Store result
                 mysqli_stmt_store_result($stmt);
-
+                
                 // Check if username exists, if yes then verify password
-                if(mysqli_stmt_num_rows($stmt) == 1){
+                if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
                     mysqli_stmt_bind_result($stmt, $id, $username, $sqlpassword);
                     if(mysqli_stmt_fetch($stmt)){
                         if($password == $sqlpassword){
                             // Password is correct, so start a new session
                             session_start();
-
+                            
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
 							$_SESSION["userType"] = $sub;
-
+                            
                             // Redirect user to welcome page
 							if($sub == "OwnerLogin"){
 								header("location: owner_dash.php");
 							} else if($sub == "LesseeLogin"){
-								header("location: lessees.php");
+								header("location: lessee_dash.php");
 							}
                         } else {
                             // Display an error message if password is not valid
@@ -94,11 +94,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo "Oops! Something went wrong. Please try again later.";
             }
         }
-
+        
         // Close statement
         mysqli_stmt_close($stmt);
     }
-
+    
     // Close connection
     mysqli_close($link);
 }
@@ -152,9 +152,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				<div class="6u$ 12u$(small)">
 				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 					<div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-						<label>Email  :</label><input type = "text" name = "username" class = "box" value="<?php echo $username; ?>">
+						<label>Email  :</label><input type = "text" name = "username" class = "box" value="<?php echo $username; ?>"> 
 						<span style="color:red"><?php echo $username_err; ?></span>
-					</div>
+					</div> 
 					<div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
 						<label>Password  :</label><input type = "password" name = "password" class = "box">
 						<span style="color:red"><?php echo $password_err; ?></span><br/>
@@ -164,18 +164,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				  <input type = "submit" name = "Submit" value = "OwnerLogin" class="button special">&emsp;&emsp;<br />
 			   </form>
 			</div>
-		</section>
-
+		</section>	
+		
 		<!-- Footer -->
 		<footer id="footer">
-			<div class="copyright" style="font-weight:500;">
-			<ul class="icons">
-					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-				</ul>
-				<a href ="terms_conditions.html">Terms and Conditions</a>	
-				&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:500;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:500;">Unsplash</a>.
+			<div class="copyright">
+				&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
 			</div>
 		</footer>
 
@@ -184,6 +178,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		<script src="assets/js/jquery.scrolly.min.js"></script>
 		<script src="assets/js/skel.min.js"></script>
 		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+		<script src="assets/js/main.js"></script>	
 	</body>
 </html>
