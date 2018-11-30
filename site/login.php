@@ -111,7 +111,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 -->
 <html>
 	<head>
-		<title>Register</title>
+		<title>Login</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -122,7 +122,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				<a href="index.html" class="logo"><strong>WARIE</strong> &ensp; Home</a>
 				<nav>
 					<a href="#menu">Menu</a>
-					<a href="about.html">About</a>
 				</nav>
 			</header>
 
@@ -133,7 +132,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					<li><a href="browse.html">Browse Warehouses</a></li>
 					<li><a href="lessees.html">Lease a warehouse</a></li>
 					<li><a href="owners.html">List your warehouse</a></li>
-					<li><a href="login.html">Login</a></li>
+					<li><a href="login.php">Login</a></li>
 				</ul>
 			</nav>
 
@@ -153,33 +152,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				<div class="6u$ 12u$(small)">
 				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 					<div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-						<label>Email  :</label><input type = "text" name = "username" class = "box" value="<?php echo $username; ?>">
+						<label>Email  :<input type = "text" name = "username" class = "box" value="<?php echo $username; ?>"></label>
 						<span style="color:red"><?php echo $username_err; ?></span>
 					</div>
 					<div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-						<label>Password  :</label><input type = "password" name = "password" class = "box">
-						<span style="color:red"><?php echo $password_err; ?></span><br/>
+						<label>Password  :<input type = "password" name = "password" class = "box"></label>
+						<span style="color:red"><?php echo $password_err; ?></span>
 					</div>
 				</div>
 				  <input type = "submit" name = "Submit" value ="LesseeLogin" class="button special">&emsp;&emsp;<br /><br />
 				  <input type = "submit" name = "Submit" value = "OwnerLogin" class="button special">&emsp;&emsp;<br />
 			   </form>
+			   <br><li><a href="registerpage.php">Don't have an account? Sign up here!</a></li>
 			</div>
 		</section>
 
 		<!-- Footer -->
-			<footer id="footer">
-				 <ul class="icons">
+		<footer id="footer">
+			<div class="copyright" style="font-weight:500;">
+			<ul class="icons">
 					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 				</ul>
-				<a href ="terms_conditions.html">Terms and Conditions</a><br><br>
-
-				<div class="copyright" style="font-weight:300; font-size: 10px;">
-					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:300;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:300;">Unsplash</a>.
-				</div>
-			</footer>
+				<a href ="terms_conditions.html">Terms and Conditions</a>	
+				&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:500;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:500;">Unsplash</a>.
+			</div>
+		</footer>
 
 	<!-- Scripts -->
 		<script src="assets/js/jquery.min.js"></script>
