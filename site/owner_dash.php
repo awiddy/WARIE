@@ -71,8 +71,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                             <!-- new column-->
                             <div class="slimmer" margin-left="4em">
 								<?php
-								
-									$Owner_ID=$_SESSION["id"]; 
+
+									$Owner_ID=$_SESSION["id"];
 									$servername = "mydb.ics.purdue.edu";
 									$username = "g1090423";
 									$password = "marioboys";
@@ -86,16 +86,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									$count1_qry = "SELECT COUNT(*) FROM Contract WHERE Owner_ID = ".$Owner_ID." AND Approval=1";
 									$count1 = $conn->query($count1_qry);
 									$row1 = $count1->fetch_assoc();
-									
+
 									$count2_qry = "SELECT COUNT(*) FROM Contract WHERE Owner_ID = ".$Owner_ID." AND Approval=0";
 									$count2 = $conn->query($count2_qry);
 									$row2 = $count2->fetch_assoc();
 
 								if( $_GET["name"]!="existing_contracts" && $_GET["name"]!="warehouse_activity" && $_GET["name"]!="account"){ //OR operator used to set this selection to default
 									echo"
-									
 
-						
+
+
 
 									<h3>Prospective Contracts</h3>
 									<p>Complete a contract action by clicking its green ID on the left.<br>
@@ -172,9 +172,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 
 						$result = $conn->query($sql);
-						
+
 						$ID = $_SESSION["id"];
-						
+
 						$sql2 = "SELECT ID FROM Warehouse WHERE Owner_ID = ".$ID."";
 						$WID = $conn->query($sql2);
 						$row3 = $WID->fetch_assoc();
@@ -190,7 +190,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						#echo ($lastline);
 						#echo implode("\n",$full_output);
 						#print_r($full_output);
-						
+
 						print_r($result2);
 
 						echo "
@@ -209,10 +209,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						echo"<tr><td>".$result2[$x]."<td>check accept</td><td>check no</td></td></tr>";
 						}
 						echo"</table>";
-						
-						
-						
-						
+
+
+
+
 						##not printing correct warehouses for logged in owner
 						echo "
 						<style>
@@ -226,7 +226,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						</style>";
 						echo"<table width=950px>
 							";
-							
+
 							echo"
 							<th>Warehouse ID</th>
 							<th>Start Date</th>
@@ -320,7 +320,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							echo"
 						</table>";
 						}
-                
+
 					function pieChart()
 					{
 							echo"<head>";
@@ -396,8 +396,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 		<!-- Footer -->
 			<footer id="footer">
-				<div class="copyright" style="font-weight:500;">
-					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:500;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:500;">Unsplash</a>.
+				 <ul class="icons">
+					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+				</ul>
+				<a href ="terms_conditions.html">Terms and Conditions</a><br><br>
+
+				<div class="copyright" style="font-weight:300; font-size: 10px;">
+					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:300;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:300;">Unsplash</a>.
 				</div>
 			</footer>
 

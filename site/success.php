@@ -31,7 +31,7 @@
 					<li><a href="login.php">Login</a></li>
 				</ul>
 			</nav>
-			
+
 		<!--Banner-->
 		<section class="banner_layout banner_login">
 				<div class="inner">
@@ -45,7 +45,7 @@
 				<div class="slimmer">
 					<h3>Please wait until you hear back from the owner.</h3>
 					<a href="browse.html" class="button special" target="_blank">Search Again</a>
-					<?php 
+					<?php
 					//Retreiving data from URL/Post function, as well as setting variables for the query/DB connection
 					$start_date_raw = $_POST["start_date"];
 					$end_date_raw = $_POST["end_date"];
@@ -58,10 +58,10 @@
 					$start_date1= date_create("$start_date_raw");
 					$end_date1=date_create("$end_date_raw");
 					$current_date = new DateTime(date("Y-m-d"));
-					
-					//$start_date_week = ceil((date_diff($start_date1, $current_date))/7); 
+
+					//$start_date_week = ceil((date_diff($start_date1, $current_date))/7);
 					//$end_date_week = ceil((date_diff($end_date1, $current_date))/7);
-					
+
 					$servername = "mydb.ics.purdue.edu";
 					$username = "g1090423";
 					$password = "marioboys";
@@ -72,9 +72,9 @@
 					//Check connection
 					if ($conn->connect_error) {
 						die("Connection failed: " . $conn->connect_error);
-						} 
+						}
 
-				
+
 					//Ensuring dates are in correct format
 					$signing_date = $signing_date1->format('Y-m-d');
 					$start_date=$start_date1->format('Y-m-d');
@@ -90,19 +90,20 @@
 
 					</div>
 					</section>
-					
+
 					<!-- Footer -->
-			<footer id="footer">
-			<ul class="icons">
-					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-				</ul>
-				<a href ="terms_conditions.html">Terms and Conditions</a>	
-				<div class="copyright">
-					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
-				</div>
-			</footer>
+						<footer id="footer">
+							 <ul class="icons">
+								<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+								<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							</ul>
+							<a href ="terms_conditions.html">Terms and Conditions</a><br><br>
+
+							<div class="copyright" style="font-weight:300; font-size: 10px;">
+								&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:300;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:300;">Unsplash</a>.
+							</div>
+						</footer>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>

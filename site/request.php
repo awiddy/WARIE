@@ -39,7 +39,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<li><a href="login.php">Login</a></li>
 				</ul>
 			</nav>
-			
+
 		<!--Banner-->
 		<section class="banner_layout banner_login">
 				<div class="inner">
@@ -51,10 +51,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<!-- Main -->
 			<section id="main">
 				<div class="slimmer">
-					<h2>Terms and Conditions</h2>					
+					<h2>Terms and Conditions</h2>
 					<p>Below is our simple, 3 sectioned contract. Fill out your relevant information, and submit your request to the warehouse owner.</p>
-					
-					<?php 
+
+					<?php
 					//Retreiving values from URL and setting values for DB connection
 					$signing_date=new DateTime(date("Y-m-d"));
 					$servername = "mydb.ics.purdue.edu";
@@ -71,34 +71,34 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					$start_date = $_GET['sd'];
 					$end_date = $_GET['ed'];
 					$storage_needed = $_GET['sn'];
-					$l_id=$_SESSION["id"]; 
-					
+					$l_id=$_SESSION["id"];
+
 					//Create connection
 					$conn = new mysqli($servername, $username, $password, $dbname);
 					//Check connection
 					if ($conn->connect_error) {
 						die("Connection failed: " . $conn->connect_error);
-						} 
-					//Creating and executing a query to receive the full name of the Owner of the Warehouse selected (from the results page) by the user 
+						}
+					//Creating and executing a query to receive the full name of the Owner of the Warehouse selected (from the results page) by the user
 					$qry1="SELECT FirstName, LastName, Email FROM Owner WHERE ID = ".$o_id."";
 					$fullname = $conn->query($qry1);
 					$row1 = $fullname->fetch_assoc();
-					
-					
+
+
 				//Writing up the contract
-					
+
 					echo "<ul><h3>Persons</h3><li>This contract for the rental of a warehouse is made this day, <u>".date('Y/m/d'). "</u>, by and between ";
 					?>
 					<!-- Submitting this form sends all the information inputted/selected by the user to the success page-->
 					<form name="contractInputs" method="post" action="http://web.ics.purdue.edu/~g1090423/success.php?<?php echo("&sn=".$storage_needed."&o=".$o_id."&w=".$w_id."&l=".$l_id.""); ?>" onsubmit="return validate()">
-					
+
 					<!-- Lessee enters full name here -->
 					<div class="6u 12u$(xsmall)">
 					<input type="text" name="l_fname" id="l_fname" value="" placeholder="Lessee First Name" required />
 					<input type="text" name="l_lname" id="l_lname" value="" placeholder="Lessee Last Name" required />
 					</div> hereafter referred to as the Lessee, and
 					<!-- Auto-filling the contract with information about the Owner and the contract based on the inputted/selected information by the user-->
-					<?php 
+					<?php
 					echo("<u>".$row1['FirstName']." ".$row1['LastName']."</u> (<u>".$row1['Email'].")</u>");?>
 					 hereafter referred to as the Owner, at the location  of Warehouse ID #<u><?php echo ($w_id)?></u> located in <u><?php echo "".$city.", ".$state.", ".$zip.","?></u>
 					owned and agreed upon by the Owner, hereafter referred to as the warehouse.</li>
@@ -107,7 +107,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					 and the goods stored will be
 					<div class="6u 12u$(xsmall)">
 					<input type="text" name="goods" id="goods" value="" placeholder="Goods to be stored" required />
-					</div> hereafter referred to as Goods. The price of $<u><?php echo($price); ?></u> /sq ft/ month set forward by the owner will be tendered to the Owner upon a monthly basis by the Lessee</li>	
+					</div> hereafter referred to as Goods. The price of $<u><?php echo($price); ?></u> /sq ft/ month set forward by the owner will be tendered to the Owner upon a monthly basis by the Lessee</li>
 					<br><h3>Dates</h3>
 					<li>The Lessee shall have access to and use of the warehouse from 8:00 am on <?php echo ("<u>".$start_date."</u>");?>
 					to 5 pm on <?php echo("<u>".$end_date."</u>");?>
@@ -135,17 +135,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<?php $conn->close();?>
 
 					<!-- Footer -->
-			<footer id="footer">
-			<ul class="icons">
-					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-				</ul>
-				<a href ="terms_conditions.html">Terms and Conditions</a>	
-				<div class="copyright">
-					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
-				</div>
-			</footer>
+      			<footer id="footer">
+      				 <ul class="icons">
+      					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+      					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+      					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+      				</ul>
+      				<a href ="terms_conditions.html">Terms and Conditions</a><br><br>
+
+      				<div class="copyright" style="font-weight:300; font-size: 10px;">
+      					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:300;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:300;">Unsplash</a>.
+      				</div>
+      			</footer>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>

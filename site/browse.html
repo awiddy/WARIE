@@ -99,9 +99,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									<div class="12u$">
 										<input type="date" name="start_date" id="start_date" onblur="endDate()" value="" min = "0" max="0" placeholder="Start Date" required />
 									<script>
-									
+
 									start_date.min = new Date().toISOString().split("T")[0];
-									
+
 									</script>
 									</div>
 									<br><br><h4>When will your contract be ending?</h4></br></br>
@@ -109,13 +109,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 										<input type="date" name="end_date" id="end_date" value="" min="0" max="0" placeholder="End Date" required />
 									</div>
 									<script>
-									
+
 									end_date.min = new Date().toISOString().split("T")[0];
-									
+
 									function endDate(){
 										end_date.min = start_date.value;
 									}
-									
+
 									</script>
 								</br></br>
 									<div class="12u$">
@@ -143,21 +143,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 		<!-- Footer -->
 			<footer id="footer">
-<<<<<<< HEAD
-				<div class="copyright" style="font-weight:500;">
-					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:500;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:500;">Unsplash</a>.
-=======
-			<ul class="icons">
-					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-				</ul>
-				<a href ="terms_conditions.html">Terms and Conditions</a>	
-				<div class="copyright">
-					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
->>>>>>> a98533b6c6390b87272b3e25acc13fdf53149bd3
-				</div>
-			</footer>
+  			<footer id="footer">
+  				 <ul class="icons">
+  					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+  					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+  					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+  				</ul>
+  				<a href ="terms_conditions.html">Terms and Conditions</a><br><br>
+
+  				<div class="copyright" style="font-weight:300; font-size: 10px;">
+  					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:300;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:300;">Unsplash</a>.
+  				</div>
+  			</footer>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
@@ -165,6 +162,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-		
+
 	</body>
 </html>
