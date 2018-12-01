@@ -52,7 +52,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 						<!-- <h3>Select your criteria to narrow the results</h3> -->
 					</header>
-					<form method="post" action="newhouse.php">
+					<form method="post" action="newhouse_suggest.php">
 						<div class="row uniform 50%">
 							<div class="6u 12u$(xsmall)">
 								<h4>Warehouse location:</h4>
@@ -143,18 +143,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								<br>
 								<div class="6u$ 12u$(xsmall)">
 								<ul class="actions">
-									<li><input type="submit" name="suggestprice" value="Suggest a price for me!" onsubmit="Suggest()"/></li>
+									<li><button type="submit" name="suggestprice"> <!--value="Suggest a price for me!"-->Suggest a price for me! <!--onsubmit="Suggest()"--></button></li>
 									<li><div class="tooltip"> What is this?
-									<span class="tooltiptext">Our advanced AI takes into account all these parameters, and suggests a price for your warehouse.</span>
+									<span class="tooltiptext">Our AI takes into account all these parameters, and suggests a price for your warehouse.</span>
 									</div></li>
 								</ul>
-								
-								
 								</div>
-						</div>
+								</div>
 								</form>
 
-								<?php function Suggest(){
+								<?php /*function Suggest(){
 								$zip = $_POST["zip"];
 								$storagecapacity=$_POST["storagecapacity"];
 								$storagetype=$_POST["storagetype"];
@@ -174,7 +172,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									Suggest();
 								}
 							
-								echo($out);?>
+								echo($out);*/?>
 								</div>
 								
 								<form method="post" action="#">

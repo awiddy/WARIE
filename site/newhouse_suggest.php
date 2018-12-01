@@ -52,15 +52,24 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 						<!-- <h3>Select your criteria to narrow the results</h3> -->
 					</header>
-					<form method="post" action="newhouse.php">
+					<form method="post" action="newhouse_suggest.php">
+					<?php
+					$lat = $_POST['lat'];
+					$long = $_POST['long'];
+					$storagecapacity=$_POST['storagecapacity'];
+					$zip=$_POST['zip'];
+					$storagetype=$_POST['storagetype'];
+					
+					
+					?>
 						<div class="row uniform 50%">
 							<div class="6u 12u$(xsmall)">
 								<h4>Warehouse location:</h4>
-								<input type="number" name="zip" id="zip" value="" placeholder="Zip code" />
+								<input type="number" name="zip" id="zip" value="<?php echo($zip);?>" placeholder="Zip code" />
 							</div>
 							<div class="6u 12u$(xsmall)">
 								<h4>Location latitude:</h4>
-								<input type="number" name="lat" id="lat" value="" placeholder="Latitude" />
+								<input type="number" name="lat" id="lat" value="<?php echo($lat);?>" placeholder="Latitude" />
 							</div>
 
 
@@ -68,11 +77,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 							<div class="6u 12u$(xsmall)">
 								<h4>Storage capacity (sq ft):</h4>
-								<input type="number" min="0" name="storagecapacity" id="storagecapacity" value="" placeholder="Square feet" />
+								<input type="number" min="500" name="storagecapacity" id="storagecapacity" value="<?php echo($storagecapacity);?>" placeholder="Square feet" />
 							</div>
 							<div class="6u 12u$(xsmall)">
 								<h4>Location longitude:</h4>
-								<input type="number" name="long" id="long" value="" placeholder="Longitude" />
+								<input type="number" name="long" id="long" value="<?php echo($long);?>" placeholder="Longitude" />
 							</div>
 						<br><br><br><br>
 						<style>
@@ -126,7 +135,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								<div class="12u$">
 								<div class="select-wrapper">
 								<h4>Storage Environment:</h4>
-								<select name="storagetype" required>
+								<select name="storagetype" value = "1" required>
 										<option value="">- Storage Type -</option>
 										<option value="1">General</option>
 										<option value="2">Dry</option>
@@ -143,15 +152,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								<br>
 								<div class="6u$ 12u$(xsmall)">
 								<ul class="actions">
-									<li><input type="submit" name="suggestprice" value="Suggest a price for me!" onsubmit="Suggest()"/></li>
+									<li><button type="submit" name="suggestprice">Suggest a price for me!</button></li>
 									<li><div class="tooltip"> What is this?
-									<span class="tooltiptext">Our advanced AI takes into account all these parameters, and suggests a price for your warehouse.</span>
+									<span class="tooltiptext">Our AI takes into account all these parameters, and suggests a price for your warehouse.</span>
 									</div></li>
 								</ul>
 								
 								
 								</div>
-						</div>
+								</div>
 								</form>
 
 								<?php function Suggest(){
