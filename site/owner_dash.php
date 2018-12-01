@@ -257,7 +257,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							<tr>
 							<td><a href='request.php'>".$row['ID']. "</a></td>
 							<".$switch_style.">".$row['Start Date']."</td>
-							<td>".round($row['End Date'],2)."</td>
+							<td>".$row['End Date']."</td>
 							<td>".$row['Rented_Space']."</td>
 							<td>".$row['Lessee_ID']."</td>
 							<td>".$row['Signing_date']."</td>

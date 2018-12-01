@@ -12,23 +12,30 @@ $servername = "mydb.ics.purdue.edu";
 						}
 
 $Warehouse_ID = $_POST["Warehouse_ID"];
-$Start_Date = $_POST["Start_Date"];
-$End_Date = $_POST["End_Date"];
+$Start_Date = $_POST["Start_date"];
+$End_Date = $_POST["End_date"];
 $Rented_Space = $_POST["Rented_Space"];
-
-$sql = "UPDATE Availability 
-SET Open_Space=(SELECT Open_Space FROM Availability WHERE WeekFromDate Between ".$Start_Date." AND ".$End_Date." AND  Warehouse_ID = ".$Warehouse_ID.") - ".$Rented_Space."  
-WHERE WeekFromDate Between ".$Start_Date." AND ".$End_Date."AND  Warehouse_ID = ".$Warehouse_ID."";
+#echo "sdgdhfh".$End_Date;
+#echo $Start_Date;
+echo $start_date_week;
+$current_date = new DateTime(date("Y-m-d"));
+$start_date_week = ceil((date_diff($Start_Date, $current_date))/7);
+$end_date_week = ceil((date_diff($End_Date, $current_date))/7);
+					
+$sql = "UPDATE Availability SET Open_Space = Open_Space - ".$Rented_Space." WHERE WeekFromDate Between ".$start_date_week." AND ".$end_date_week." AND  WarehouseID = ".$Warehouse_ID."";
 
 $result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE HTML>
 <!--
 	Binary by TEMPLATED
 	templated.co @templatedco
+	SELECT Open_Space FROM Availability WHERE WeekFromDate Between ".$Start_Date." AND ".$End_Date." AND WarehouseID = ".$Warehouse_ID.") - ".$Rented_Space." 
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
+
 <html>
 	<head>
 		<title>Login</title>
@@ -52,7 +59,7 @@ $result = $conn->query($sql);
 					<li><a href="browse.html">Browse Warehouses</a></li>
 					<li><a href="lessees.html">Lease a warehouse</a></li>
 					<li><a href="owners.html">List your warehouse</a></li>
-					<li><a href="login.php">Login</a></li>
+					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</nav>
 
