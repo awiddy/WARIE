@@ -22,7 +22,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			td, tr:hover {
 				opacity: 0.6;
 			}
-
 			th:hover {
 				opacity: 1.0;
 			}
@@ -115,7 +114,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									echo"
 									<h3>Existing Contracts</h3>
 									<p>Click a green contract ID to view more details<br>
-									You currently have [".$row1["COUNT(*)"]."] active contracts</p>
+									You currently have ".$row1["COUNT(*)"]." active contracts</p>
 							</div>
 						</div>
 					</div>";
@@ -125,7 +124,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									echo"
 									<h3>Your Account</h3>
 									<p>
-										See the info that we store about you in the table below.
+										See the account info we store about you below.
 									</p>
 							</div>
 						</div>
@@ -138,7 +137,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 			<!-- php functions for querying and printing results in table -->
                 <?php
-				
 					//function for making a table of requested contracts from data in SQL table
 					function requested_conts(){
 						echo"<h2>Your requested contracts</h2>";
@@ -155,8 +153,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						die("Connection failed: " . $conn->connect_error);
 						}
 
-						$sql_1 = "SELECT * FROM Contract WHERE Lessee_ID=$Lessee_ID AND Approval=0";
-						//$sql = "SELECT * FROM Contract WHERE Lessee_ID=1294 AND Approval=0";
+						$sql = "SELECT * FROM Contract WHERE Lessee_ID=".$Lessee_ID." AND Approval=0";
+						//$sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=0";
 
 						$result = $conn->query($sql);
 						echo "
@@ -205,7 +203,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					function existing_conts(){
 						echo"<h2>Your existing contracts</h2>";
 						/*$Owner_ID= $_POST["Owner_ID"];*/
-						$Owner_ID = $_SESSION["id"];
+						$Lessee_ID = $_SESSION["id"];
 						$servername = "mydb.ics.purdue.edu";
 						$username = "g1090423";
 						$password = "marioboys";
@@ -218,9 +216,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						die("Connection failed: " . $conn->connect_error);
 						}
 
-						/*$sql_1 = "SELECT *";
-						$sql_2 = "FROM Warehouse WHERE Owner_ID=$Owner_ID";*/
-						$sql = "SELECT * FROM Contract WHERE Lessee_ID=1294 AND Approval=1";
+						$sql = "SELECT * FROM Contract WHERE Lessee_ID=".$Lessee_ID." AND Approval=1";
+						//$sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=0";
 
 						$result = $conn->query($sql);
 						echo "
@@ -253,12 +250,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							<td>".round($row["End Date"],2)."</td>
 							<td>".$row["Rented_Space"]."</td>
 							<td>".$row["Lessee_ID"]."</td>
-							<td>".$row["Signing_date"]."</td><td>";
-							/*echo"
-							<tr><td><a href='request.php'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>";*/
-							//echo "ID: " . $row["ID"]. "Capacity: ".$row["Capacity"]. "Price: ".$row["Price"]. "Zipcode: ".$row["Zipcode"] ."City: ".$row["City"]. "State: ".$row["State"]. "Owner ID: ".$row["Owner_ID"]. "Owner Rating: ".$row["Owner_Rating"];
-
-							echo"</td>";
+							<td>".$row["Signing_date"]."</td>";
+							
+							echo"</tr>";
 							}
 							} else {
 							echo "0 results";
@@ -269,8 +263,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						}
 				
 					//function for making a table of account information from data in SQL table lessee
-					function account(){
-						echo"<h2>Your requested contracts</h2>";
+					function lessee_account(){
+						echo"<h2>Your existing contracts</h2>";
+						/*$Owner_ID= $_POST["Owner_ID"];*/
 						$Lessee_ID = $_SESSION["id"];
 						$servername = "mydb.ics.purdue.edu";
 						$username = "g1090423";
@@ -284,32 +279,40 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						die("Connection failed: " . $conn->connect_error);
 						}
 
-						$sql_1 = "SELECT * FROM Contract WHERE Lessee_ID=$Lessee_ID AND Approval=0";
-						//$sql = "SELECT * FROM Contract WHERE Lessee_ID=1294 AND Approval=0";
+						$sql = "SELECT * FROM Lessee WHERE ID=".$Lessee_ID."";
+						//$sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=0";
 
 						$result = $conn->query($sql);
-						echo "";
+						echo "
+						<style>
+							td, tr:hover {
+								opacity: 0.6;
+							}
+
+							th:hover {
+								opacity: 1.0;
+							}
+						</style>";
 						echo"<table width=950px>
 							";
 							echo"
-							<th>Warehouse ID</th>
-							<th>Start Date</th>
-							<th>End Date</th>
-							<th>Rented Space (Sqft.)</th>
-							<th>Lessee ID</th>
-							<th>Signing Date</th>";
+							<th>ID</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Rating</th>";
 
 							if ($result->num_rows > 0) {
 							// output data of each row
 							while($row = $result->fetch_assoc()) {
 
 							echo"
-							<tr><td><a href='request.php'>".$row['Warehouse_ID']. "</a></td>
-							<td>".$row["Start Date"]."</td>
-							<td>".round($row["End Date"],2)."</td>
-							<td>".$row["Rented_Space"]."</td>
-							<td>".$row["Lessee_ID"]."</td>
-							<td>".$row["Signing_date"]."</td>";
+							<tr>
+							<td><a href='request.php'>".$row['ID']. "</a></td>
+							<td>".$row["FirstName"]."</td>
+							<td>".$row["LastName"]."</td>
+							<td>".$row["Email"]."</td>
+							<td>".$row["Rating"]."</td>";
 							
 							echo"</tr>";
 							}
