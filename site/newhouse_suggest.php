@@ -52,7 +52,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 						<!-- <h3>Select your criteria to narrow the results</h3> -->
 					</header>
-					<form method="post" action="newhouse_suggest.php">
+					<form method="post" action="wsuccess.php">
 					<?php
 					$lat = $_POST['lat'];
 					$long = $_POST['long'];
@@ -147,12 +147,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								<br><br>
 								<div class="6u 12u$(xsmall)">
 								<h4>Price ($/sq ft/month)</h4>
-								<input type="number" name="price" id="price" step="0.01" value="" placeholder="Price" />
+								<input type="number" name="price" min = "0" id="price" step="0.01" value="" placeholder="Price" />
 								</div>
 								<br>
 								<div class="6u$ 12u$(xsmall)">
 								<ul class="actions">
-									<li><button type="submit" name="suggestprice">Suggest a price for me!</button></li>
+									<li><button type="button" name="suggestprice">Suggest a price for me!</button></li>
 									<li><div class="tooltip"> What is this?
 									<span class="tooltiptext">Our AI takes into account all these parameters, and suggests a price for your warehouse.</span>
 									</div></li>
@@ -161,7 +161,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								
 								</div>
 								</div>
-								</form>
+								
 
 								<?php function Suggest(){
 								$zip = $_POST["zip"];
@@ -186,21 +186,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								echo($out);?>
 								</div>
 								
-						<form method="get" action="wsuccess.php">
-							<?php
-							/*$lat = $_POST['lat'];
-							$long = $_POST['long'];
-							$zip = $_POST['zip'];
-							$sc = $_POST['sc'];
-							$st = $_POST['st'];
-							$pr = $_POST['sr'];*/
-							echo($lat);
-							echo($long);
-							?>
-							<!--
-							<div class="row uniform 50%">
-							<div class="12u$">
-							-->
+						
+							
 							<div class="slimmer">
 							<div class="6u 12u$(xsmall)">
 								<br><h4>City:</h4>

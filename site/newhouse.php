@@ -138,7 +138,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								<br><br>
 								<div class="6u 12u$(xsmall)">
 								<h4>Price ($/sq ft/month)</h4>
-								<input type="number" name="price" step="0.01" id="price" value="" placeholder="Price" />
+								<input type="number" name="price" min="0" step="0.01" id="price" value="" placeholder="Price" />
 								</div>
 								<br>
 								<div class="6u$ 12u$(xsmall)">

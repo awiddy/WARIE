@@ -55,16 +55,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<?php
 					//Retreiving data from Post/Session function, as well as setting variables for the query/DB connection
 					
-					$lat = $_POST['lat'];
-					echo($lat);
-					$long = $_POST['long'];
-					$zip = $_POST['zip'];
-					$storagecapacity=$_POST['storagecapacity'];
+					$city=$_POST['city'];
+					$state=$_POST['state'];
+					$zip=$_POST['zip'];
+					$lat=$_POST['lat'];
+					$long=$_POST['long'];
 					$storagetype=$_POST['storagetype'];
-					$price = $_POST['price'] * 12;
-					$o_id = $_SESSION['id'];
-					$city = $_GET['city'];
-					$state = $_GET['state'];
+					$storagecapacity=$_POST['storagecapacity'];
+					$price=($_POST['price'])*12;
+					$o_id=$_SESSION['id'];
 					
 					$servername = "mydb.ics.purdue.edu";
 					$username = "g1090423";
@@ -79,7 +78,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						}
 
 					//Writing query to add warehouse contract into table in DB
-					$sql = "INSERT INTO Warehouse (StorageCapacity,StorageType,BasePrice,Zipcode,City, State,Latitude,Longitude,Owner_ID) VALUES ('".$storagecapacity."','".$storagetype."',".$price.",".$zip.",".$city.",'".$state."',".$lat.",".$long.",".$o_id.")";
+					$sql = "INSERT INTO Warehouse (StorageCapacity,StorageType,BasePrice,Zipcode,City, State,Latitude,Longitude,Owner_ID) VALUES (".$storagecapacity.",".$storagetype.",".$price.",".$zip.",'".$city."','".$state."',".$lat.",".$long.",".$o_id.")";
 				
 					mysqli_query($conn,$sql);
 					mysqli_close($conn);
