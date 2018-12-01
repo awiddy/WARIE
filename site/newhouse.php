@@ -52,7 +52,7 @@
 							</div>
 							<div class="6u 12u$(xsmall)">
 								<h4>Location latitude (enter to 3 decimal places):</h4>
-								<input type="number" step = "0.001" name="lat" id="lat" value="" placeholder="Latitude" />
+								<input type="number" name="lat" id="lat" value="" placeholder="Latitude" />
 							</div>
 
 
@@ -64,7 +64,7 @@
 							</div>
 							<div class="6u 12u$(xsmall)">
 								<h4>Location longitude (enter to 3 decimal places):</h4>
-								<input type="number" step = "0.001" name="long" id="long" value="" placeholder="Longitude" />
+								<input type="number" name="long" id="long" value="" placeholder="Longitude" />
 							</div>
 						<br><br><br><br>
 						<style>
@@ -136,35 +136,42 @@
 								<div class="6u$ 12u$(xsmall)">
 								<ul class="actions">
 									<li><input type="submit" name="suggestprice" value="Suggest a price for me!" onsubmit="Suggest()"/></li>
+									<li><div class="tooltip"> What is this?
+									<span class="tooltiptext">Our advanced AI takes into account all these parameters, and suggests a price for your warehouse.</span>
+									</div></li>
 								</ul>
+								
+								
 								</div>
 								</div>
 								</form>
 
 								<?php function Suggest(){
-								echo("hello<br>");
 								$zip = $_POST["zip"];
 								$storagecapacity=$_POST["storagecapacity"];
 								$storagetype=$_POST["storagetype"];
 								$lat = $_POST["lat"];
 								$long = $_POST["long"];
-								echo($zip." ");
-								echo($storagetype." ");
-								echo($lat." ");
-								echo($long." ");
-								//how to get post method to javascript??
-								$out = shell_exec("Rscript --verbose suggestPrice_test.R $zip $storagecapacity $storagetype $lat $long 2>&1");
-								echo($out);}
+								echo("<div id='suggest'>
+								<h5>Suggested Price: </h5>");
+							
+								$out = shell_exec("Rscript suggestPrice_test.R $zip $storagecapacity $storagetype $lat $long 2>/dev/null");//2>&1
+								echo("<h5>$");
+								echo str_replace("[1]","",$out);
+								echo("/sq ft/month</h5>");
+								
+								}
+								
 								if(isset($_POST['suggestprice'])){
 									Suggest();
-								}?>
+								}
 
 
 
-								<div id="suggest">
-								<h5>Suggested Price: </h5>
-								<?php echo($out);?>
+								
+								echo($out);?>
 								</div>
+								
 								<form method="post" action="#">
 							<div class="row uniform 50%">
 							<div class="12u$">
