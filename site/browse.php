@@ -11,51 +11,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-
-		<script>
-		//validate isn't working for some reason
-		function validate(){
-
-		var today = new Date();
-		var dd = today.getDate();
-		var mm = today.getMonth()+1; //January is 0
-		var yyyy = today.getFullYear();
-
-		if(dd<10) {
-			dd = '0'+dd
-					}
-
-		if(mm<10) {
-			mm = '0'+mm
-			}
-
-		today = mm + '/' + dd + '/' + yyyy;
-		document.write(today);
-
-		var start_date = new Date(document.forms["allInputs"]["start_date"].value);
-		var end_date = new Date(document.forms["allInputs"]["end_date"].value);
-		var err1 = (start_date > end_date);
-		var err2 = (start_date == end_date);
-		var err3 = (start_date <= (current_date+6));
-		var err4 = (end_date<=(start_date+13));
-		var err5 = (start_date<current_date);
-
-		if(err1){
-			alert("Start date cannot be after end date");
-			return false;
-		}else if (err2){
-			alert("Start date and end date must be at least 1 week (7 days) apart");
-			return false;
-		}else if (err3 || err5){
-			alert("Start date must be at least 1 week (7 days) after today");
-			return false;
-		}else if (err4){
-			alert("End date must be at least 1 week (7 days) after start");
-			return false;
-		}else{ return true;}
-		}
-
-		</script>
 	</head>
 	<body>
 
