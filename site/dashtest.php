@@ -39,9 +39,9 @@
 		   $revenue = $data1['BasePrice']/365 *$data1['Rented_Space'] * $diffDays;
 		echo $revenue;
        }
-		
+		print_r($revenue);
 			
-	   $revenueTable = array_combine($data, $revenue);
+	   //$revenueTable = array_combine($data, $revenue);
 			
 			
 		// $revenueTable= array();
