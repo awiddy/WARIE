@@ -41,15 +41,17 @@
        }
 		
 			
-
-		$revenueTable= array();
-		$revenueTable['cols'] = array(
-			array('lable' => "StartDate", 'type'=>'date'),
-            array('lable' => "EndDate", 'type'=>'date'),
-            array('lable' => 'ID', 'type' => 'string'),
-			array('lable' => 'Warehouse_ID', 'type' => 'string'),
-			array('lable' => 'Revenue', 'type' => 'number'),
-		);
+	   $revenueTable = array_combine($data, $revenue);
+			
+			
+		// $revenueTable= array();
+		// $revenueTable['cols'] = array(
+			// array('lable' => "StartDate", 'type'=>'date'),
+            // array('lable' => "EndDate", 'type'=>'date'),
+            // array('lable' => 'ID', 'type' => 'string'),
+			// array('lable' => 'Warehouse_ID', 'type' => 'string'),
+			// array('lable' => 'Revenue', 'type' => 'number'),
+		// );
 		
 		// $revenue_rows = array();
 		// foreach( $data as $data1){
@@ -65,19 +67,15 @@
 			// $revenue_rows[] = array('c' => $temp);
 			
 		// }
-		$i = 0;
-		$NewArray = array();
-		foreach($data as $data1){
-			NewArray[] = array_merge($data1['Start Date'], $data1['End  Date'], $data1['ID'], $data['Warehouse_ID'], $revenue[$i]);
-			i++
 		
-		};
+		// $revenue = array($data['Start Date'],$data['End Date'], $data['ID'], $data['Warehouse_ID'], $Revenue); 
+		// print_r($revenue);
 		
-		
+		// print_r($data['End Date'];
 	
-		$revenueTable['rows'] = $NewArray;
-		$jsonTable = json_encode($revenueTable);
-		echo jsonTable
+		// $revenueTable['rows'] = $NewArray;
+		// $jsonTable = json_encode($revenueTable);
+		// echo jsonTable
 		
         // $contracts = array();
         // $contracts['cols'] = array(
