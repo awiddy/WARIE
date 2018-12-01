@@ -14,7 +14,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 -->
 <html>
 	<head>
-		<title>Owners</title>
+		<title>Lessee Account</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -60,7 +60,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <!-- begin row-->
                         <div class="3u 12u$(xsmall)">
 							<ul class="actions">
-								<li><a href="?name=prospective_contracts" class="button special">Prospective Contracts</a></li><br><br>
+								<li><a href="?name=requested_contracts" class="button special">Requested Contracts</a></li><br><br>
 								<li><a href="?name=existing_contracts" class="button special">Existing Contracts &emsp;&ensp; </a></li><br><br>
 								<li><a href="?name=warehouse_activity" class="button special">Warehouse Activity&ensp;&ensp;</a></li><br><br>
 								<li><a href="?name=account" class="button special">Account &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a></li><br><br>
@@ -97,15 +97,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 
 
-									<h3>Prospective Contracts</h3>
+									<h3>Requested Contracts</h3>
 									<p>Complete a contract action by clicking its green ID on the left.<br>
-									You currently have [".$row2["COUNT(*)"]."] prospective contracts <br>
+									You currently have [".$row2["COUNT(*)"]."] requested contracts <br>
 									[Insert some R graph or personalized info]
 									</p>
 							</div>
 						</div>
 					</div>"; //ends div reaching outside this php section, done for formatting
-					prospective_conts(); //placeholder existing conts
+					requested_conts(); //placeholder existing conts
 									}
                                 if( $_GET["name"]=="existing_contracts"){
 									echo"
@@ -146,9 +146,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     <hr /> <!-- separating line-->
 
 			<!-- table -->
-			<!-- prospective contracts -->
+			<!-- requested contracts -->
                 <?php
-					function prospective_conts(){
+					function requested_conts(){
 						echo"<h2>Accept or decline contracts</h2>";
 						/*$Owner_ID= $_POST["Owner_ID"];*/
 						//$Owner_ID="201"; //hardcoded ID
@@ -233,8 +233,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							<th>End Date</th>
 							<th>Rented Space</th>
 							<th>Lessee ID</th>
-							<th>Signing Date</th>
-							<th>Accept/Deny</th>";
+							<th>Signing Date</th>";
 
 							if ($result->num_rows > 0) {
 							// output data of each row
@@ -246,8 +245,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							<td>".round($row["End Date"],2)."</td>
 							<td>".$row["Rented_Space"]."</td>
 							<td>".$row["Lessee_ID"]."</td>
-							<td>".$row["Signing_date"]."</td>
-							<td><form><input type=submit value=".$ID." name = "Accept Contract"></form></td>";
+							<td>".$row["Signing_date"]."</td>";
 							/*echo"
 							<tr><td><a href='request.php'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>";*/
 							//echo "ID: " . $row["ID"]. "Capacity: ".$row["Capacity"]. "Price: ".$row["Price"]. "Zipcode: ".$row["Zipcode"] ."City: ".$row["City"]. "State: ".$row["State"]. "Owner ID: ".$row["Owner_ID"]. "Owner Rating: ".$row["Owner_Rating"];
