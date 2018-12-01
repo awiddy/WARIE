@@ -79,7 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							if($sub == "OwnerLogin"){
 								header("location: owner_dash.php");
 							} else if($sub == "LesseeLogin"){
-								header("location: lessees.php");
+								header("location: lessee_dash.php");
 							}
                         } else {
                             // Display an error message if password is not valid
@@ -122,6 +122,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				<a href="index.html" class="logo"><strong>WARIE</strong> &ensp; Home</a>
 				<nav>
 					<a href="#menu">Menu</a>
+					<a href="about.html">About</a>
 				</nav>
 			</header>
 
@@ -163,7 +164,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				  <input type = "submit" name = "Submit" value ="LesseeLogin" class="button special">&emsp;&emsp;<br /><br />
 				  <input type = "submit" name = "Submit" value = "OwnerLogin" class="button special">&emsp;&emsp;<br />
 			   </form>
-			   <br><li><a href="registerpage.php">Don't have an account? Sign up here!</a></li>
+			   <br><a href="registerpage.php">Don't have an account? Sign up here!</a>
 			</div>
 		</section>
 

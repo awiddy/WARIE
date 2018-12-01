@@ -21,7 +21,8 @@
         }
 
         /*$contracts_sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=1";*/
-        $contracts_sql = "SELECT * FROM Contract WHERE Owner_ID=5 AND Approval=1";
+        $contracts_sql = "Select Contract.*, Warehouse.StorageCapacity, Warehouse.BasePrice, Warehouse.Zipcode From Contract INNER JOIN Warehouse ON Contract.Warehouse_ID = Warehouse.ID Where Contract.Owner_ID = 1 AND Contract.Approval=1";
+		
         $result = mysqli_query($conn, $contracts_sql);
         $data = array();
         if(mysqli_num_rows($result)>0){
@@ -30,15 +31,54 @@
             }
         }
        
-
+		
+	   $revenue = array();
        foreach ($data as $data1){
-           echo $data1['Start Date'];
-           echo "        ";
+		   $diff = strtotime($data1['End Date']) - strtotime($data1['Start Date']);   //Site the Stack overflow
+		   $diffDays = floor($diff/(3600*24));
+		   $revenue = $data1['BasePrice']/365 *$data1['Rented_Space'] * $diffDays;
+		echo $revenue;
        }
+		
+			
 
-
-
-
+		$revenueTable= array();
+		$revenueTable['cols'] = array(
+			array('lable' => "StartDate", 'type'=>'date'),
+            array('lable' => "EndDate", 'type'=>'date'),
+            array('lable' => 'ID', 'type' => 'string'),
+			array('lable' => 'Warehouse_ID', 'type' => 'string'),
+			array('lable' => 'Revenue', 'type' => 'number'),
+		);
+		
+		// $revenue_rows = array();
+		// foreach( $data as $data1){
+			// $temp = array();
+			// $temp[] = array('v' => (date) $data1['StartDate']);
+			// $temp[] = array('v' => (date) $data1['EndDate']);
+			// $temp[] = array('v' => (string) $data1['ID']);
+			// $temp[] = array('v' => (string) $data1['Warehouse_ID']);
+			// $diff = strtotime($data1['End Date']) - strtotime($data1['Start Date']);   //Site the Stack overflow
+		    // $diffDays = floor($diff/(3600*24));
+		    // $revenue = $data1['BasePrice']/365 *$data1['Rented_Space'] * $diffDays;
+			// $temp[] = array('v' => (int) $revenue);
+			// $revenue_rows[] = array('c' => $temp);
+			
+		// }
+		$i = 0;
+		$NewArray = array();
+		foreach($data as $data1){
+			NewArray[] = array_merge($data1['Start Date'], $data1['End  Date'], $data1['ID'], $data['Warehouse_ID'], $revenue[$i]);
+			i++
+		
+		};
+		
+		
+	
+		$revenueTable['rows'] = $NewArray;
+		$jsonTable = json_encode($revenueTable);
+		echo jsonTable
+		
         // $contracts = array();
         // $contracts['cols'] = array(
         //     array('lable' => "StartDate", 'type'=>'string'),

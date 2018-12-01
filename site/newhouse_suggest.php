@@ -147,7 +147,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								<br><br>
 								<div class="6u 12u$(xsmall)">
 								<h4>Price ($/sq ft/month)</h4>
-								<input type="number" name="price" id="price" value="" placeholder="Price" />
+								<input type="number" name="price" id="price" step="0.01" value="" placeholder="Price" />
 								</div>
 								<br>
 								<div class="6u$ 12u$(xsmall)">
@@ -186,14 +186,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								echo($out);?>
 								</div>
 								
-						<form method="post" action="wsuccess.php">
+						<form method="get" action="wsuccess.php">
 							<?php
-							$lat = $_POST['lat'];
+							/*$lat = $_POST['lat'];
 							$long = $_POST['long'];
 							$zip = $_POST['zip'];
-							$storagecapacity=$_POST['storagecapacity'];
-							$storagetype=$_POST['storagetype'];
-							$price = $_POST['price'];
+							$sc = $_POST['sc'];
+							$st = $_POST['st'];
+							$pr = $_POST['sr'];*/
+							echo($lat);
+							echo($long);
 							?>
 							<!--
 							<div class="row uniform 50%">
@@ -231,7 +233,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								
 
 								<ul class="actions">
-									<li><button type="submit" name="createhouse">Create listing</button></li>
+									<li><button type="submit">Create listing</button></li>
 								</ul>
 								<!--</div>-->
 						

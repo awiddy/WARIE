@@ -54,16 +54,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<a href="newhouse.php" class="button special" target="_blank">Add another warehouse</a>
 					<?php
 					//Retreiving data from Post/Session function, as well as setting variables for the query/DB connection
-
+					
 					$lat = $_POST['lat'];
+					echo($lat);
 					$long = $_POST['long'];
 					$zip = $_POST['zip'];
 					$storagecapacity=$_POST['storagecapacity'];
 					$storagetype=$_POST['storagetype'];
-					$price = $_POST['price'];
+					$price = $_POST['price'] * 12;
 					$o_id = $_SESSION['id'];
-					$city = $_POST['city'];
-					$state = $_POST['state'];
+					$city = $_GET['city'];
+					$state = $_GET['state'];
 					
 					$servername = "mydb.ics.purdue.edu";
 					$username = "g1090423";

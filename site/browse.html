@@ -95,25 +95,32 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									<div class="12u$">
 										<input type="number" min="0" name="storage_needed" id="storage_needed" value="" placeholder="Space Needed" required />
 									</div>
-									<br><br><h4>When do you need your contract to start?</h4></br></br>
+									<br><br><h4>When do you need your contract to start? (Must be at least one week from today)</h4></br></br>
 									<div class="12u$">
 										<input type="date" name="start_date" id="start_date" onblur="endDate()" value="" min = "0" max="0" placeholder="Start Date" required />
 									<script>
 
-									start_date.min = new Date().toISOString().split("T")[0];
-
+									var d = new Date().getTime() + 86400000*7; //Gets seven days from today
+									var seven_days = new Date(d).toISOString().split("T")[0]; //Convert to string
+									start_date.min = seven_days; //Set min
+									
 									</script>
 									</div>
-									<br><br><h4>When will your contract be ending?</h4></br></br>
+									<br><br><h4>When will your contract be ending? (Minimum length is one week)</h4></br></br>
 									<div class="12u$">
 										<input type="date" name="end_date" id="end_date" value="" min="0" max="0" placeholder="End Date" required />
 									</div>
 									<script>
 
-									end_date.min = new Date().toISOString().split("T")[0];
-
+									var d = new Date().getTime() + 86400000*14; 
+									var seven_days = new Date(d).toISOString().split("T")[0]; //Same code but to initially make it 14 days from today
+									end_date.min = seven_days; 
+									
 									function endDate(){
-										end_date.min = start_date.value;
+										
+										var d1 = new Date(start_date.value).getTime() + 86400000*7; //Add 7 days to the value of the start date
+										
+										end_date.min = new Date(d1).toISOString().split("T")[0]; //set the end date minimum to above value
 									}
 
 									</script>

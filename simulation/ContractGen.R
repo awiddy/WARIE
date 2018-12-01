@@ -98,8 +98,8 @@ ContractGen <- function(){
   colnames(contracts3) <- c("Start Date", "End Date","ID","Lessee_Rating","Owner_Rating","Lessee_ID","Owner_ID","Rented_Space","Signing_date","Warehouse_ID","Approval")
   dbSendQuery(mydb,'DELETE FROM Contract')
   dbWriteTable(mydb, "Contract", contracts3,overwrite = T,row.names=FALSE)
-  dbSendQuery(mydb,'ALTER TABLE Contract MODIFY ID INTEGER NOT NULL AUTO_INCREMENT;')
-  dbSendQuery(mydb, 'ALTER TABLE Contract MODIFY ID ADD PRIMARY KEY("ID")')
+  #dbSendQuery(mydb,'ALTER TABLE Contract MODIFY ID INTEGER NOT NULL AUTO_INCREMENT;')
+  #dbSendQuery(mydb, 'ALTER TABLE Contract MODIFY ID ADD PRIMARY KEY("ID")')
   all_cons <- dbListConnections(MySQL())
   for (con in all_cons)
   {

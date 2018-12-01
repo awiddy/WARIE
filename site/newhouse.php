@@ -138,7 +138,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								<br><br>
 								<div class="6u 12u$(xsmall)">
 								<h4>Price ($/sq ft/month)</h4>
-								<input type="number" name="price" id="price" value="" placeholder="Price" />
+								<input type="number" name="price" step="0.01" id="price" value="" placeholder="Price" />
 								</div>
 								<br>
 								<div class="6u$ 12u$(xsmall)">
@@ -152,36 +152,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								</div>
 								</form>
 
-								<?php /*function Suggest(){
-								$zip = $_POST["zip"];
-								$storagecapacity=$_POST["storagecapacity"];
-								$storagetype=$_POST["storagetype"];
-								$lat = $_POST["lat"];
-								$long = $_POST["long"];
-								echo("<div id='suggest'>
-								<h5>Suggested Price: </h5>");
-							
-								$out = shell_exec("Rscript suggestPrice_test.R $zip $storagecapacity $storagetype $lat $long 2>/dev/null");//2>&1
-								echo("<h5>$");
-								echo str_replace("[1]","",$out);
-								echo("/sq ft/month</h5>");
 								
-								}
-								
-								if(isset($_POST['suggestprice'])){
-									Suggest();
-								}
-							
-								echo($out);*/?>
 								</div>
 								
-								<form method="post" action="#">
+								<!--<form method="post" action="#">
 							
-							<!--
+							
 							<div class="row uniform 50%">
 							<div class="12u$">
 							-->
-							<div class="6u 12u$(xsmall)">
+							<!--<div class="6u 12u$(xsmall)">
 								<h4>City:</h4>
 								<input type="text" name="city" id="city" value="" placeholder="City" />
 							</div>
@@ -196,7 +176,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								
 								<br><br>
 
-								<!--<div class="6u 12u$(xsmall)">-->
+								
 								
 								<br>
 								<div class="4u 12u$(xsmall)">
@@ -214,12 +194,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								<ul class="actions">
 									<li><input type="reset" value="Create Listing" /></li>
 								</ul>
-								<!--</div>-->
 						
 				</div>
 				</div>
-				</form>
+				</form>-->
 			</section>
+			
 
 		<!-- Footer -->
 			<footer id="footer">

@@ -2543,11 +2543,11 @@
 		width: 100%;
 	}
 
-		table tbody tr {
-			border: solid 1px;
-			border-left: 0;
-			border-right: 0;
-		}
+        table tbody tr {
+            border: solid 1px;
+            border-left: 0;
+            border-right: 0;
+        }
 
         table td {
             padding: 0.75em 0.75em;

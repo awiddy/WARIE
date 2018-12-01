@@ -70,6 +70,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <div class="9u$ 12u$(xsmall)">
                             <!-- new column-->
                             <div class="slimmer" margin-left="4em">
+								
+								
 								<?php
 
 									$Owner_ID=$_SESSION["id"];
@@ -190,10 +192,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						#echo ($lastline);
 						#echo implode("\n",$full_output);
 						#print_r($full_output);
+						$optContract = array_slice( $result2 , 1);
+						$optContract[0] = substr($optContract[0], 1);
+						$optContract[(count($optContract)-1)] = substr($optContract[(count($optContract)-1)],0,-2);
+						print_r($optContract);
+						#$integerIDs = array_map('intval', explode(' ', $out));
+						#$optContract = array_map('intval', $optContract);
+						
+						
 
-						print_r($result2);
-
-						echo "
+						/*echo "
 						<style>
 							td, tr:hover {
 								opacity: 0.6;
@@ -205,11 +213,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						</style>";
 						echo"<table width=450px>";
 						echo"<th>Optimized Contract ID</th><th>Accept</th><th>Deny</th>";
-						for ($x=1;$x<= ((count($result2))-1);$x++){
-						echo"<tr><td>".$result2[$x]."<td>check accept</td><td>check no</td></td></tr>";
+						for ($x=0;$x<= ((count($optContract))-1);$x++){
+						echo"<tr><td>".$optContract[$x]."<td>check accept</td><td>check no</td></td></tr>";
 						}
 						echo"</table>";
-
+						*/
 
 
 
@@ -228,29 +236,43 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							";
 
 							echo"
-							<th>Warehouse ID</th>
+							<th>Contract ID</th>
 							<th>Start Date</th>
 							<th>End Date</th>
 							<th>Rented Space</th>
 							<th>Lessee ID</th>
-							<th>Signing Date</th>";
+							<th>Signing Date</th>
+							<th>Accept/Deny</th>";
 
 							if ($result->num_rows > 0) {
 							// output data of each row
 							while($row = $result->fetch_assoc()) {
-
-							echo"
-							<tr><td><a href='request.php'>".$row['Warehouse_ID']. "</a></td>
-							<td>".$row["Start Date"]."</td>
-							<td>".round($row["End Date"],2)."</td>
-							<td>".$row["Rented_Space"]."</td>
-							<td>".$row["Lessee_ID"]."</td>
-							<td>".$row["Signing_date"]."</td>";
+								
+								if(in_array($row['ID'],$optContract, false)){
+									$switch_style="td style='color:blue;'";
+								}else{
+									$switch_style = "td";
+								}
+							echo("
+							<tr>
+							<td><a href='request.php'>".$row['ID']. "</a></td>
+							<".$switch_style.">".$row['Start Date']."</td>
+							<td>".round($row['End Date'],2)."</td>
+							<td>".$row['Rented_Space']."</td>
+							<td>".$row['Lessee_ID']."</td>
+							<td>".$row['Signing_date']."</td>
+							<td><form action = AvailUpdateAfterAccept.php method = post>
+								<input type='hidden' name='Start_date' value=".$row['Start Date'].">
+								<input type='hidden' name='End_date' value=".$row['End Date'].">
+								<input type='hidden' name='Rented_Space' value=".$row['Rented_Space'].">
+								<input type='hidden' name='Warehouse_ID' value=".$row['Warehouse_ID'].">
+								<button type='submit' value=".$row['ID']." name = 'ContractID'>Accept Contract</button>
+								</form></td>");
 							/*echo"
 							<tr><td><a href='request.php'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>";*/
 							//echo "ID: " . $row["ID"]. "Capacity: ".$row["Capacity"]. "Price: ".$row["Price"]. "Zipcode: ".$row["Zipcode"] ."City: ".$row["City"]. "State: ".$row["State"]. "Owner ID: ".$row["Owner_ID"]. "Owner Rating: ".$row["Owner_Rating"];
 
-							echo"</td>";
+							echo"</td></tr>";
 							}
 							} else {
 							echo "0 results";
