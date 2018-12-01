@@ -12,7 +12,7 @@
   storagetype<-as.numeric(args[3])
   lat<-as.numeric(args[4])
   long<-as.numeric(args[5])
-  
+
   latlong<-lat*long #treating the latitude and longitude as one entity ensures that the NN learns the significance
                     #of the pair of numbers, instead of the individial latitudes and longitudes
   #running NN
@@ -21,5 +21,6 @@
   
   #computing and returing prediction 
   pred<-compute(neural,suggest_df)
-  price_pred<-round(as.numeric(pred[2]),3)
+  price_pred<-round(as.numeric(pred[2]),2)
+  price_pred
 #}
