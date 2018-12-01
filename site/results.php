@@ -1,3 +1,10 @@
+<?php session_start();
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE HTML>
 <!--
 	Binary by TEMPLATED
@@ -6,21 +13,17 @@
 -->
 <html>
 	<head>
-		<title>Results</title>
+		<title>Request</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta http-equiv="Pragma" content="no-cache">
-		<META HTTP-EQUIV="Expires" CONTENT="-1">
 		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
+			</head>
 	<body>
-
-		<!-- Header -->
+	<!-- Header -->
 			<header id="header">
 				<a href="index.html" class="logo"><strong>WARIE</strong> &ensp; Home</a>
 				<nav>
 					<a href="#menu">Menu</a>
-					<a href="about.html">About</a>
 				</nav>
 			</header>
 
@@ -36,159 +39,109 @@
 			</nav>
 
 		<!--Banner-->
-			<section class="banner_layout banner_lessees">
+		<section class="banner_layout banner_login">
 				<div class="inner">
 				</br></br></br>
-					<h1><font color="white">Find the space you need</font></h1></br>
+					<h1><font color="white">Send a Request</font></h1></br>
 				</div>
 			</section>
 
 		<!-- Main -->
 			<section id="main">
 				<div class="slimmer">
-<<<<<<< HEAD
-					<header>
-						<h2>Search Results</h2>
-					</header>
-					<p><font color="black">
-						</br>
-						Click on any Warehouse ID to draft up a contract for that location.
-					</font></p>
-
-
-
+					<h2>Terms and Conditions</h2>
+					<p>Below is our simple, 3 sectioned contract. Fill out your relevant information, and submit your request to the warehouse owner.</p>
 
 					<?php
-=======
-					<header><h2>Search Results</h2></header>
-					<p><font color="black"></br>Click on any Warehouse ID to draft up a contract for that location.</font></p>
-
-					<?php
-					//Getting all inputted search parameters and setting values for DB connection
->>>>>>> a98533b6c6390b87272b3e25acc13fdf53149bd3
-					$storage_type = $_POST["storagetype"];
-					$city = $_POST["city"];
-					$start_date = $_POST["start_date"];
-					$end_date = $_POST["end_date"];
-					$storage_needed = $_POST["storage_needed"];
-					$sort_val = $_POST["sort_val"];
+					//Retreiving values from URL and setting values for DB connection
+					$signing_date=new DateTime(date("Y-m-d"));
 					$servername = "mydb.ics.purdue.edu";
 					$username = "g1090423";
 					$password = "marioboys";
 					$dbname = "g1090423";
-<<<<<<< HEAD
-
-					// Create connection
-=======
-
+					$o_id = $_GET['o'];
+					$w_id = $_GET['w'];
+					$price_raw = $_GET['pr'];
+					$price = round($price_raw,2);
+					$city = $_GET['c'];
+					$state = $_GET['st'];
+					$zip = $_GET['z'];
+					$start_date = $_GET['sd'];
+					$end_date = $_GET['ed'];
+					$storage_needed = $_GET['sn'];
+					$l_id=$_SESSION["id"];
 
 					//Create connection
->>>>>>> a98533b6c6390b87272b3e25acc13fdf53149bd3
 					$conn = new mysqli($servername, $username, $password, $dbname);
 					//Check connection
 					if ($conn->connect_error) {
-<<<<<<< HEAD
-					die("Connection failed: " . $conn->connect_error);
-					}
-					$start_date1= date_create("$start_date");
-					$end_date1=date_create("$end_date");
-					$current_date = new DateTime(date("Y-m-d"));
-
-=======
 						die("Connection failed: " . $conn->connect_error);
 						}
+					//Creating and executing a query to receive the full name of the Owner of the Warehouse selected (from the results page) by the user
+					$qry1="SELECT FirstName, LastName, Email FROM Owner WHERE ID = ".$o_id."";
+					$fullname = $conn->query($qry1);
+					$row1 = $fullname->fetch_assoc();
 
-					//Get user-selected dates in correct format
-					$start_date1= date_create("$start_date");
-					$end_date1=date_create("$end_date");
-					$current_date = new DateTime(date("Y-m-d"));
 
-					//Get user-selected dates in a format of "weeks out" (required for the search qry)
->>>>>>> a98533b6c6390b87272b3e25acc13fdf53149bd3
-					$start_date_week = ceil((date_diff($start_date1, $current_date))/7);
-					$end_date_week = ceil((date_diff($end_date1, $current_date))/7);
+				//Writing up the contract
 
-					//Create query that will return all warehouses in the correct location, with the correct storage type, that have enough availability between the weeks the user has searched for
-					$sql_1 = "SELECT W.ID, StorageCapacity,BasePrice,Zipcode,City,State,Owner_ID,R.Rating as Owner_Rating ";
-					$sql_2 = "FROM (Warehouse W INNER JOIN(SELECT MIN(Open_Space),WarehouseID FROM Availability WHERE WeekFromDate BETWEEN ".$start_date_week." AND ".$end_date_week." GROUP BY WarehouseID) A ";
-					$sql_3 = "ON W.ID = A.WarehouseID) INNER JOIN (SELECT Rating,Owner.ID FROM Owner) R ON W.Owner_ID=R.ID WHERE StorageType = ".$storage_type." AND City = '".$city."' ORDER BY ";
-					$sql = $sql_1.$sql_2.$sql_3;
-<<<<<<< HEAD
-
-					if($sort_val==1){$sql=$sql."BasePrice";};
-					if($sort_val==2){$sql=$sql."Owner_Rating DESC";};
-
-					$result = $conn->query($sql);
-					echo "<style>td,tr:hover{opacity:0.6;} th:hover{opacity:1.0;}</style>";
-					echo"<table width = 950px>";
-					echo"<th>Warehouse ID</th><th>Storage Capacity</th><th>Price ($/sq ft/month)</th><th>Zipcode</th><th>City</th><th>State</th><th>Owner ID</th><th>Owner Rating</th>";
-
-					if ($result->num_rows > 0) {
-					// output data of each row
-					while($row = $result->fetch_assoc()) {
-
-					echo"<tr><td><a href='request.php?w=".$row['ID']."&o=".$row['Owner_ID']."&pr=".$row['BasePrice']."&c=".$row['City']."&st=".$row['State']."&z=".$row["Zipcode"]."' target='_blank'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>".$row["Owner_ID"]."</td><td>".$row["Owner_Rating"]."</td></tr>";
-					//echo "ID: " . $row["ID"]. "Capacity: ".$row["Capacity"]. "Price: ".$row["Price"]. "Zipcode: ".$row["Zipcode"] ."City: ".$row["City"]. "State: ".$row["State"]. "Owner ID: ".$row["Owner_ID"]. "Owner Rating: ".$row["Owner_Rating"];
-
-					echo"</td>";
-						}
-						} else {
-							echo "0 results";
-=======
-					if($sort_val==1){$sql=$sql."BasePrice";};
-					if($sort_val==2){$sql=$sql."Owner_Rating DESC";};
-
-					//Get result of the above query
-					$result = $conn->query($sql);
-
-					//Start of the results table
-					echo "<style>td,tr:hover{opacity:0.6;} th:hover{opacity:1.0;}</style>";
-					echo"<table width = 950px>";
-					echo"<th>Warehouse ID</th><th>Storage Capacity</th><th>Price ($/sq ft/month)</th><th>Zipcode</th><th>City</th><th>State</th><th>Owner ID</th><th>Owner Rating</th>";
-
-					//If statement and while loop print all results returned from the above query
-					if ($result->num_rows > 0) {
-						while($row = $result->fetch_assoc()) {
-							//Warehouse ID appears as a link, which sends the user to a drafted contract for the user's inputted search parameters and selected warehouse information
-							echo"<tr><td><a href='request.php?w=".$row['ID']."&o=".$row['Owner_ID']."&pr=".$row['BasePrice']."&c=".$row['City']."&st=".$row['State']."&z=".$row['Zipcode']."&sd=".$start_date."&ed=".$end_date."&sn=".$storage_needed."' target='_blank'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>".$row["Owner_ID"]."</td><td>".$row["Owner_Rating"]."</td></tr>";
-							echo"</td>";
-							}
-						} else {
-							//showing the user if there are no relevant results
-							echo "<h3>0 results</h3>";
->>>>>>> a98533b6c6390b87272b3e25acc13fdf53149bd3
-							}
-							//close connection
-							$conn->close();
-					//End table
-					echo"</table>";
-<<<<<<< HEAD
-
+					echo "<ul><h3>Persons</h3><li>This contract for the rental of a warehouse is made this day, <u>".date('Y/m/d'). "</u>, by and between ";
 					?>
-					</font></p>
+					<!-- Submitting this form sends all the information inputted/selected by the user to the success page-->
+					<form name="contractInputs" method="post" action="http://web.ics.purdue.edu/~g1090423/success.php?<?php echo("&sn=".$storage_needed."&o=".$o_id."&w=".$w_id."&l=".$l_id.""); ?>" onsubmit="return validate()">
 
+					<!-- Lessee enters full name here -->
+					<div class="6u 12u$(xsmall)">
+					<input type="text" name="l_fname" id="l_fname" value="" placeholder="Lessee First Name" required />
+					<input type="text" name="l_lname" id="l_lname" value="" placeholder="Lessee Last Name" required />
+					</div> hereafter referred to as the Lessee, and
+					<!-- Auto-filling the contract with information about the Owner and the contract based on the inputted/selected information by the user-->
+					<?php
+					echo("<u>".$row1['FirstName']." ".$row1['LastName']."</u> (<u>".$row1['Email'].")</u>");?>
+					 hereafter referred to as the Owner, at the location  of Warehouse ID #<u><?php echo ($w_id)?></u> located in <u><?php echo "".$city.", ".$state.", ".$zip.","?></u>
+					owned and agreed upon by the Owner, hereafter referred to as the warehouse.</li>
+					<h3>Logistics</h3>
+					<li>This contract between the Lessee and Owner is for the storage amount of <u><?php echo($storage_needed);?></u> sq ft
+					 and the goods stored will be
+					<div class="6u 12u$(xsmall)">
+					<input type="text" name="goods" id="goods" value="" placeholder="Goods to be stored" required />
+					</div> hereafter referred to as Goods. The price of $<u><?php echo($price); ?></u> /sq ft/ month set forward by the owner will be tendered to the Owner upon a monthly basis by the Lessee</li>
+					<br><h3>Dates</h3>
+					<li>The Lessee shall have access to and use of the warehouse from 8:00 am on <?php echo ("<u>".$start_date."</u>");?>
+					to 5 pm on <?php echo("<u>".$end_date."</u>");?>
+					<br></div></ul>
+					<div class="slimmer">
+					<ul>
+					<li>Within 1 week (7 days) of the rental period’s expiration, Lessee shall return to Owner all keys and other access control devices in his/her possession.</li>
+					<li>Lessee shall remove all Goods, personal property, trash, and other items that were not present in the warehouse when Lessee took control of it.</li>
+					<li>Lessee will be liable for any physical damages, legal actions, and/or loss of reputation or business opportunities that Owner may incur as a consequence of the actions of Lessee or any of Lessee's guests
+					while Lessee is in control of the warehouse, and shall indemnify and hold harmless the Owner against any and all legal actions which may arise from Lessee's use of the warehouse.</li>
+					</ul>
+									<!--<div class="4u 12u$(xsmall)">
+										<input type="radio" id="disagree" name="agreement">
+										<label for="disagree">I do not agree to the above terms and conditions.</label>
+									</div>-->
+									<div class="4u 12u$(xsmall)">
+										<input type="radio" id="agree" name="agreement" required>
+										<label for="agree">I agree to the above terms and conditions.</label>
+									</div>
+								<input type="submit" value="Submit your request">
+					</div>
+					</form>
+					</div>
+					</section>
+					<?php $conn->close();?>
 
-
-=======
-					?>
-					</font></p>
-					<!-- Restart search -->
->>>>>>> a98533b6c6390b87272b3e25acc13fdf53149bd3
-					<a href="browse.html" class="button special" target="_blank">Search Again</a>
-				</div>
-			</section>
-
-		<!-- Footer -->
+					<!-- Footer -->
 			<footer id="footer">
-				 <ul class="icons">
+			<ul class="icons">
 					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 				</ul>
-				<a href ="terms_conditions.html">Terms and Conditions</a><br><br>
-
-				<div class="copyright" style="font-weight:300; font-size: 10px;">
-					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:300;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:300;">Unsplash</a>.
+				<a href ="terms_conditions.html">Terms and Conditions</a>
+				<div class="copyright">
+					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
 				</div>
 			</footer>
 
