@@ -181,6 +181,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							<div class="row uniform 50%">
 							<div class="12u$">
 							-->
+							<div class="6u 12u$(xsmall)">
+								<h4>City:</h4>
+								<input type="text" name="city" id="city" value="" placeholder="City" />
+							</div>
+							<div class="6u 12u$(xsmall)">
+								<h4>State:</h4>
+								<h5>Please input the state in it's 2 letter format</h5>
+								<input type="text" name="state" id="state" value="" placeholder="State" />
+							</div>
 								<div class="slimmer">
 									<h4>Describe your warehouse:</h4>
 									<textarea name="description" id="description" placeholder="Description" rows="6"></textarea>
