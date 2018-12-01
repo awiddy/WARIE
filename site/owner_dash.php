@@ -233,8 +233,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							<th>End Date</th>
 							<th>Rented Space</th>
 							<th>Lessee ID</th>
-							<th>Signing Date</th>
-							<th>Accept/Deny</th>";
+							<th>Signing Date</th>";
 
 							if ($result->num_rows > 0) {
 							// output data of each row
@@ -246,8 +245,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							<td>".round($row["End Date"],2)."</td>
 							<td>".$row["Rented_Space"]."</td>
 							<td>".$row["Lessee_ID"]."</td>
-							<td>".$row["Signing_date"]."</td>
-							<td><form><input type=submit value=".$ID." name = "Accept Contract"></form></td>";
+							<td>".$row["Signing_date"]."</td>";
 							/*echo"
 							<tr><td><a href='request.php'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>";*/
 							//echo "ID: " . $row["ID"]. "Capacity: ".$row["Capacity"]. "Price: ".$row["Price"]. "Zipcode: ".$row["Zipcode"] ."City: ".$row["City"]. "State: ".$row["State"]. "Owner ID: ".$row["Owner_ID"]. "Owner Rating: ".$row["Owner_Rating"];
