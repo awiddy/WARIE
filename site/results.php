@@ -98,7 +98,7 @@
 					if ($result->num_rows > 0) {
 						while($row = $result->fetch_assoc()) {
 							//Warehouse ID appears as a link, which sends the user to a drafted contract for the user's inputted search parameters and selected warehouse information
-							echo"<tr><td><a href='request.php?w=".$row['ID']."&o=".$row['Owner_ID']."&pr=".$row['BasePrice']."&c=".$row['City']."&st=".$row['State']."&z=".$row['Zipcode']."&sd=".$start_date."&ed=".$end_date."&sn=".$storage_needed."' target='_blank'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round($row["BasePrice"],2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>".$row["Owner_ID"]."</td><td>".$row["Owner_Rating"]."</td></tr>";
+							echo"<tr><td><a href='request.php?w=".$row['ID']."&o=".$row['Owner_ID']."&pr=".$row['BasePrice']."&c=".$row['City']."&st=".$row['State']."&z=".$row['Zipcode']."&sd=".$start_date."&ed=".$end_date."&sn=".$storage_needed."' target='_blank'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round(($row["BasePrice"])/12,2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>".$row["Owner_ID"]."</td><td>".$row["Owner_Rating"]."</td></tr>";
 							echo"</td>";
 							}
 						} else {

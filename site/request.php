@@ -64,7 +64,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					$o_id = $_GET['o'];
 					$w_id = $_GET['w'];
 					$price_raw = $_GET['pr'];
-					$price = round($price_raw,2);
+					$price = round($price_raw/12,2);
 					$city = $_GET['c'];
 					$state = $_GET['st'];
 					$zip = $_GET['z'];
