@@ -90,7 +90,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					echo "<ul><h3>Persons</h3><li>This contract for the rental of a warehouse is made this day, <u>".date('Y/m/d'). "</u>, by and between ";
 					?>
 					<!-- Submitting this form sends all the information inputted/selected by the user to the success page-->
-					<form name="contractInputs" method="post" action="http://web.ics.purdue.edu/~g1090423/success.php?<?php echo("&sn=".$storage_needed."&o=".$o_id."&w=".$w_id."&l=".$l_id.""); ?>" onsubmit="return validate()">
+					<form name="contractInputs" method="post" action="http://web.ics.purdue.edu/~g1090423/csuccess.php?<?php echo("&sn=".$storage_needed."&o=".$o_id."&w=".$w_id."&l=".$l_id."&sd=".$start_date."&ed=".$end_date.""); ?>" onsubmit="return validate()">
 
 					<!-- Lessee enters full name here -->
 					<div class="6u 12u$(xsmall)">
