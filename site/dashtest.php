@@ -1,7 +1,34 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-</head>
+    <!--Load the Ajax API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    // Load the Visualization API and the piechart package.
+    google.load('visualization', '1', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      // Create our data table out of JSON data loaded from server.
+      var data = new google.visualization.DataTable(<?=$jsonTable?>);
+      var options = {
+          title: 'My Weekly Plan',
+          is3D: 'true',
+          width: 800,
+          height: 600
+        };
+      // Instantiate and draw our chart, passing in some options.
+      // Do not forget to check your div ID
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+    </script>
+  </head>
 <body>
     <p>
         Test Google Dashboard
@@ -36,78 +63,43 @@
        foreach ($data as $data1){
 		   $diff = strtotime($data1['End Date']) - strtotime($data1['Start Date']);   //Site the Stack overflow
 		   $diffDays = floor($diff/(3600*24));
-		   $revenue = $data1['BasePrice']/365 *$data1['Rented_Space'] * $diffDays;
-		echo $revenue;
+           $revenue[] = $data1['BasePrice']/365 *$data1['Rented_Space'] * $diffDays;
        }
-		print_r($revenue);
+        //print_r($revenue);
+        
+        //$revenue_array  = array($data,$revenue);
+        //print_r($revenue_array);
 			
 	   //$revenueTable = array_combine($data, $revenue);
 			
 			
-		// $revenueTable= array();
-		// $revenueTable['cols'] = array(
-			// array('lable' => "StartDate", 'type'=>'date'),
-            // array('lable' => "EndDate", 'type'=>'date'),
-            // array('lable' => 'ID', 'type' => 'string'),
-			// array('lable' => 'Warehouse_ID', 'type' => 'string'),
-			// array('lable' => 'Revenue', 'type' => 'number'),
-		// );
+		$revenueTable= array();
+		$revenueTable['cols'] = array(
+			//array('lable' => "StartDate", 'type'=>'date'),
+            //array('lable' => "EndDate", 'type'=>'date'),
+            array('lable' => 'ID', 'type' => 'string'),
+            //array('lable' => 'Warehouse_ID', 'type' => 'string'),
+            array('lable' => 'revenue', 'type' => 'number'),
+		);
+		$i=0;
+		$revenue_rows = array();
+		foreach($data as $data2){
+			$temp = array();
+			//$temp[] = array('v' => (string) $data2['StartDate']);
+			//$temp[] = array('v' => (int) $data2['EndDate']);
+			$temp[] = array('v' => (int) $data2['ID']);
+			//$temp[] = array('v' => (int) $data2['Warehouse_ID']);
+            $temp[] = array('v' => (int) $revenue[$i]);
+            $revenue_rows[] = array('c' => $temp);
+            $i= $i++;
+            
+		}
 		
-		// $revenue_rows = array();
-		// foreach( $data as $data1){
-			// $temp = array();
-			// $temp[] = array('v' => (date) $data1['StartDate']);
-			// $temp[] = array('v' => (date) $data1['EndDate']);
-			// $temp[] = array('v' => (string) $data1['ID']);
-			// $temp[] = array('v' => (string) $data1['Warehouse_ID']);
-			// $diff = strtotime($data1['End Date']) - strtotime($data1['Start Date']);   //Site the Stack overflow
-		    // $diffDays = floor($diff/(3600*24));
-		    // $revenue = $data1['BasePrice']/365 *$data1['Rented_Space'] * $diffDays;
-			// $temp[] = array('v' => (int) $revenue);
-			// $revenue_rows[] = array('c' => $temp);
-			
-		// }
-		
-		// $revenue = array($data['Start Date'],$data['End Date'], $data['ID'], $data['Warehouse_ID'], $Revenue); 
-		// print_r($revenue);
-		
-		// print_r($data['End Date'];
-	
-		// $revenueTable['rows'] = $NewArray;
-		// $jsonTable = json_encode($revenueTable);
-		// echo jsonTable
-		
-        // $contracts = array();
-        // $contracts['cols'] = array(
-        //     array('lable' => "StartDate", 'type'=>'string'),
-        //     array('lable' => "EndDate", 'type'=>'string'),
-        //     array('lable' => 'ID', 'type' => 'string'),
-        //     array('lable' => "Lessee_Rating", 'type'=>'number'),
-        //     array('lable' => "Owner_Rating", 'type'=>'number'),
-        //     array('lable' => "Lessee_ID", 'type'=>'number'),
-        //     array('lable' => "Owner_ID", 'type'=>'number'),
-        //     array('lable' => "Rented_Space", 'type'=>'number'),
-        //     array('lable' => "SigningDate", 'type'=>'string'),
-        //     array('lable' => "Approval", 'type'=>'number'),
-        // );
-
-        // $contracts_rows = array();
-        // while($row = $contracts_result->fetch_assoc()){
-        //     $temp = array();
-        //     $temp[] = array('v' => (string) $row['StartDate']);
-        //     $temp[] = array('v' => (string) $row['EndDate']);
-        //     $temp[] = array('v' => (int) $row['ID']);
-        //     $temp[] = array('v' => (int) $row['Lessee_Rating']);
-        //     $temp[] = array('v' => (int) $row['Owner_Rating']);
-        //     $temp[] = array('v' => (int) $row['Lessee_ID']);
-        //     $temp[] = array('v' => (int) $row['Owner_ID']);
-        //     $temp[] = array('v' => (int) $row['Rented_Space']);
-        //     $temp[] = array('v' => (string) $row['SigningDate']);
-        //     $temp[] = array('v' => (int) $row['Approval']);
-        // }
-        // $contracts['rows'] = $contracts_rows;
-        // $jsonTable = json_encode($contracts);
-        // echo $jsonTable;
+        $revenueTable['rows'] = $revenue_rows;
+        $jsonTable = json_encode($revenueTable);
+        //echo $jsonTable; 
+        
+        
 
 
 
@@ -117,7 +109,10 @@
 
         $conn->close();
     ?>
-
+       <!--this is the div that will hold the pie chart-->
+    <div id="chart_div"></div> 
 </body>
+
+
 
 </html>
