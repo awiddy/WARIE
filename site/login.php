@@ -164,7 +164,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				  <input type = "submit" name = "Submit" value ="LesseeLogin" class="button special">&emsp;&emsp;<br /><br />
 				  <input type = "submit" name = "Submit" value = "OwnerLogin" class="button special">&emsp;&emsp;<br />
 			   </form>
-			   <br><a href="registerpage.php">Don't have an account? Sign up here!</a>
+			   <br>Don't have an account?<a href="registerpage.php"> Sign up here!</a>
+			   <br><a href="forgot.php" target="_blank">Forgot your password?</a>
 			</div>
 		</section>
 
