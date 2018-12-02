@@ -1,3 +1,5 @@
+<!-- DON'T FORCE LOGIN -->
+
 <!DOCTYPE HTML>
 <!--
 	Binary by TEMPLATED
@@ -47,6 +49,7 @@
 			<section id="main">
 				<div class="slimmer">
 					<header><h2>Enter your email here, and we'll send you a reset link</h2></header>
+					<!-- Send email to a page that will email the user and reset their password -->
 					<div class="6u$ 12u$(small)">
 					<form method="post" action = "send.php">
 					<input type="text" name="email" id="email" value="" placeholder="Email" required /><br>

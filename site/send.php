@@ -48,6 +48,7 @@
 			<section id="main">
 				<div class="slimmer">
 					<?php
+					//Receiving information from form on forgot.php and setting variables for DB connection
 					$email=$_POST['email'];
 					$servername = "mydb.ics.purdue.edu";
 					$username = "g1090423";
@@ -62,20 +63,18 @@
 						die("Connection failed: " . $conn->connect_error);
 						}
 					//https://www.xeweb.net/2011/02/11/generate-a-random-string-a-z-0-9-in-php/
-					//generate random string
+					//Generate random string that will serve as the new password
 					$length=10;//length of random string
 					$chars = array_merge(range('A','Z'),range('a','z'),range('0','9'));
 					$max=count($chars) - 1;
 					for($n=0;$n<$length;$n++){
 						$r = mt_rand(0,$max);
-						$str .=$chars[$r];
+						$newpass .=$chars[$r];
 					}
-					$newpass = $str;
-					
+										
 					//Find whether or not user is owner or lessee
 					$find_o = "SELECT * FROM Owner WHERE Email = '".$email."'";
 					$find_l = "SELECT * FROM Lessee WHERE Email = '".$email."'";
-					
 					$result_o = $conn->query($find_o);
 					$result_l = $conn->query($find_l);
 					$o = (mysqli_num_rows($result_o));
@@ -84,25 +83,24 @@
 					$qry_o = "UPDATE Owner SET Password = '".$newpass."' WHERE ID = ".$id."";
 					$qry_l = "UPDATE Lessee SET Password = '".$newpass."' WHERE ID = ".$id."";
 
-					//put random string in email
+					//Email including the new password
 					$msg="Hello from the Warie Staff,\n\n We have your new password that you have requested.\n\nNew password : ".$newpass."\nIf you would like to log in, please go to http://web.ics.purdue.edu/~g1090423/login.php \n\nThank you,\nWarie Staff";
 					$msg = wordwrap($msg,70); //wrap if lines are longer than 70 characters
 						
-					//replace password string with random string in appropriate table
+					//Replace existing password with the new one, ensuring to query the correct DB
 					if ($o==1){
 						mysqli_query($conn,$qry_o);
-						//send random string in email
-						mail($email,"Reset your password for Warie",$msg);
+						mail($email,"Reset your password for Warie",$msg); //sends email
 						echo("<header><h2>We have sent the reset email. If you did not receive the email after a few seconds, please <a href='forgot.php'>retry.</a></h2></header>");
 					
 					}else if ($l==1){
 						mysqli_query($conn,$qry_l);
-						//send random string in email
-						mail($email,"Reset your password for Warie",$msg);
+						mail($email,"Reset your password for Warie",$msg); //sends email
 						echo("<header><h2>We have sent the reset email. If you did not receive the email after a few seconds, please <a href='forgot.php'>retry.</a></h2></header>");
 						echo("<font></font>");
 					
 					}else{
+						//Prints if the email does not exist in the DB
 						echo("<header><h2>I'm sorry, we have no account attached to this email. If you'd like to create an account, please click <a href='registerpage.php'>here.</a></h2></header>");
 					}
 
