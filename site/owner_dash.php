@@ -19,6 +19,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
+      td, tr:hover {
+        opacity: 0.6;
+      }
+
+      th:hover {
+        opacity: 1.0;
+      }
 		</style>
 	</head>
 	<body>
@@ -70,8 +77,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <div class="9u$ 12u$(xsmall)">
                             <!-- new column-->
                             <div class="slimmer" margin-left="4em">
-								
-								
+
+
 								<?php
 
 									$Owner_ID=$_SESSION["id"];
@@ -198,8 +205,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						print_r($optContract);
 						#$integerIDs = array_map('intval', explode(' ', $out));
 						#$optContract = array_map('intval', $optContract);
-						
-						
+
+
 
 						/*echo "
 						<style>
@@ -247,7 +254,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							if ($result->num_rows > 0) {
 							// output data of each row
 							while($row = $result->fetch_assoc()) {
-								
+
 								if(in_array($row['ID'],$optContract, false)){
 									$switch_style="td style='color:blue;'";
 								}else{
@@ -303,16 +310,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						$sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=1";
 
 						$result = $conn->query($sql);
-						echo "
-						<style>
-							td, tr:hover {
-								opacity: 0.6;
-							}
-
-							th:hover {
-								opacity: 1.0;
-							}
-						</style>";
 						echo"<table width=950px>
 							";
 							echo"
@@ -334,6 +331,58 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							//echo "ID: " . $row["ID"]. "Capacity: ".$row["Capacity"]. "Price: ".$row["Price"]. "Zipcode: ".$row["Zipcode"] ."City: ".$row["City"]. "State: ".$row["State"]. "Owner ID: ".$row["Owner_ID"]. "Owner Rating: ".$row["Owner_Rating"];
 
 							echo"</td>";
+							}
+							} else {
+							echo "0 results";
+							}
+							$conn->close();
+							echo"
+						</table>";
+						}
+
+					//function for making a table of account information from data in SQL table owner
+					function owner_account(){
+						echo"<h2>Your existing contracts</h2>";
+						/*$Owner_ID= $_POST["Owner_ID"];*/
+						$Owner_ID = $_SESSION["id"];
+						$servername = "mydb.ics.purdue.edu";
+						$username = "g1090423";
+						$password = "marioboys";
+						$dbname = "g1090423";
+
+						// Create connection
+						$conn = new mysqli($servername, $username, $password, $dbname);
+						// Check connection
+						if ($conn->connect_error) {
+						die("Connection failed: " . $conn->connect_error);
+						}
+
+						$sql = "SELECT * FROM Owner WHERE ID=".$Owner_ID."";
+						//$sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=0";
+
+						$result = $conn->query($sql);
+						echo"<table width=950px>
+							";
+							echo"
+							<th>ID</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Rating</th>";
+
+							if ($result->num_rows > 0) {
+							// output data of each row
+							while($row = $result->fetch_assoc()) {
+
+							echo"
+							<tr>
+							<td><a href='request.php'>".$row['ID']. "</a></td>
+							<td>".$row["FirstName"]."</td>
+							<td>".$row["LastName"]."</td>
+							<td>".$row["Email"]."</td>
+							<td>".$row["Rating"]."</td>";
+
+							echo"</tr>";
 							}
 							} else {
 							echo "0 results";
