@@ -21,6 +21,6 @@
   
   #computing and returing prediction 
   pred<-compute(neural,suggest_df)
-  price_pred<-round(as.numeric(pred[2])/12,2)
+  price_pred<-round(as.numeric(pred[2])/12,2) #Price in DB $/sq ft/year, but display will be in $/sq ft/month
   price_pred
 #}
