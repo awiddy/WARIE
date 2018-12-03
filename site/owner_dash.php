@@ -19,13 +19,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
-      td, tr:hover {
-        opacity: 0.6;
-      }
-
-      th:hover {
-        opacity: 1.0;
-      }
 		</style>
 	</head>
 	<body>
@@ -77,8 +70,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <div class="9u$ 12u$(xsmall)">
                             <!-- new column-->
                             <div class="slimmer" margin-left="4em">
-
-
+								
+								
 								<?php
 
 									$Owner_ID=$_SESSION["id"];
@@ -131,7 +124,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									<h3>Warehouse Activity</h3>
 									<p> Here is Your Optimized Activity
 									</p>";
-
+									map();
 									pieChart();
 									lineCurve();
 
@@ -144,11 +137,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									echo"
 									<h3>Your Account</h3>
 									<p>
+										See the account info we store about you below.
 									</p>
 							</div>
 						</div>
 					</div>";
-					//[php function yieldning some info or query]();
+					owner_account();
 									}
 								?>
 
@@ -205,8 +199,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						print_r($optContract);
 						#$integerIDs = array_map('intval', explode(' ', $out));
 						#$optContract = array_map('intval', $optContract);
-
-
+						
+						
 
 						/*echo "
 						<style>
@@ -254,7 +248,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							if ($result->num_rows > 0) {
 							// output data of each row
 							while($row = $result->fetch_assoc()) {
-
+								
 								if(in_array($row['ID'],$optContract, false)){
 									$switch_style="td style='color:blue;'";
 								}else{
@@ -310,6 +304,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						$sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=1";
 
 						$result = $conn->query($sql);
+						echo "
+						<style>
+							td, tr:hover {
+								opacity: 0.6;
+							}
+
+							th:hover {
+								opacity: 1.0;
+							}
+						</style>";
 						echo"<table width=950px>
 							";
 							echo"
@@ -339,7 +343,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							echo"
 						</table>";
 						}
-
+						
 					//function for making a table of account information from data in SQL table owner
 					function owner_account(){
 						echo"<h2>Your existing contracts</h2>";
@@ -349,18 +353,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						$username = "g1090423";
 						$password = "marioboys";
 						$dbname = "g1090423";
-
-						// Create connection
+ 						// Create connection
 						$conn = new mysqli($servername, $username, $password, $dbname);
 						// Check connection
 						if ($conn->connect_error) {
 						die("Connection failed: " . $conn->connect_error);
 						}
-
-						$sql = "SELECT * FROM Owner WHERE ID=".$Owner_ID."";
+ 						$sql = "SELECT * FROM Owner WHERE ID=".$Owner_ID."";
 						//$sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=0";
-
-						$result = $conn->query($sql);
+ 						$result = $conn->query($sql);
 						echo"<table width=950px>
 							";
 							echo"
@@ -369,20 +370,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							<th>Last Name</th>
 							<th>Email</th>
 							<th>Rating</th>";
-
-							if ($result->num_rows > 0) {
+ 							if ($result->num_rows > 0) {
 							// output data of each row
 							while($row = $result->fetch_assoc()) {
-
-							echo"
+ 							echo"
 							<tr>
 							<td><a href='request.php'>".$row['ID']. "</a></td>
 							<td>".$row["FirstName"]."</td>
 							<td>".$row["LastName"]."</td>
 							<td>".$row["Email"]."</td>
 							<td>".$row["Rating"]."</td>";
-
-							echo"</tr>";
+ 							echo"</tr>";
 							}
 							} else {
 							echo "0 results";
@@ -391,7 +389,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							echo"
 						</table>";
 						}
-
+						
 					function pieChart()
 					{
 							echo"<head>";
@@ -425,6 +423,71 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 											<div id=\"piechart\" style=\"width: 900px; height: 500px;\"></div>
 										  </body>";
 					}
+					
+					function map()
+					{
+									/*Open Data base connection*/
+									$Owner_ID=$_SESSION["id"]; 
+									$servername = "mydb.ics.purdue.edu";
+									$username = "g1090423";
+									$password = "marioboys";
+									$dbname = "g1090423";
+									// Create connection
+									$conn = new mysqli($servername, $username, $password, $dbname);
+									// Check connection
+									if ($conn->connect_error) {
+									die("Connection failed: " . $conn->connect_error);
+									}
+								$location_sql = "Select Warehouse.Zipcode, Warehouse.ID From Warehouse Where Owner_ID = ".$Owner_ID."";
+								//$location_sql = "Select Warehouse.Zipcode, Warehouse.ID From Warehouse Where Owner_ID = 1";
+							
+								//Makes multidimensional array of contracts_sql query result
+								$location_result = mysqli_query($conn, $location_sql);
+								$location = array();
+								if(mysqli_num_rows($location_result)>0){
+									while($row = mysqli_fetch_assoc($location_result)){
+										$location[] = $row;
+									}
+								} 
+								$location_table = array();
+								foreach ($location as $location1){
+									$location_table[] = array((string)$location1['Zipcode'], (int)$location1['ID']); 
+								}
+							
+								$location_table = json_encode($location_table);
+								
+								
+									$conn->close();
+								
+							
+							echo"<head>";
+							echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
+							echo'<script>
+								google.charts.load(\'current\', { \'packages\': [\'map\'] });
+								google.charts.setOnLoadCallback(drawMap);
+							
+								function drawMap() {
+									var data = new google.visualization.DataTable();
+									data.addColumn(\'string\', \'zip\');
+									data.addColumn(\'number\', \'Warehouse ID\');
+									data.addRows('.$location_table.');
+							
+								var options = {
+								showTooltip: true,
+								showInfoWindow: true
+								};
+							
+								var map = new google.visualization.Map(document.getElementById(\'chart_div\'));
+							
+								map.draw(data, options);
+							};
+							</script>';
+							echo"</head>
+							
+							
+								<div id=\"chart_div\"></div>";
+					}
+					
 					function lineCurve()
 					{
 							echo"<head>";
@@ -488,3 +551,4 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 	</body>
 </html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
