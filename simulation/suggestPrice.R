@@ -47,7 +47,7 @@ DailyNN<-function(){
   
   all_cons <- dbListConnections(MySQL())
   for (con in all_cons){
-    dbDisconnect(con)
+    dbDisconnect(con) #disconnect from database
   }
   return(neural)
 }
