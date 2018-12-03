@@ -9,15 +9,10 @@ require("neuralnet")
 library(neuralnet)
 n<-100#number of samples we want to use to train the neural network
 
-#THIS METHOD OF CREATING TRAINING/TESTING DATA ISN'T GOOD, NEED TO FIND A NEW WAY TO CREATE BETTER TRAINING/TESTING DATA
-#populations<-sample(.5:9,n,replace=TRUE)
-#prices<-sample(5.00:13.00,n,replace=TRUE) #could be inputted using regression
-#rating<- sample(1:5,n,replace=TRUE)
-#storagetype<-sample(1:4,n,replace=TRUE)
-populations<-sort(populations,decreasing=TRUE)
-prices<-sort(prices,decreasing=TRUE)
-rating<-sort(rating,decreasing=TRUE)
-storagetype<-sort(storagetype,decreasing=TRUE)
+populations<-sort(populations,decreasing=TRUE) #sort populations largest to smallest
+prices<-sort(prices,decreasing=TRUE) #sort prices largest to smallest
+rating<-sort(rating,decreasing=TRUE) #sort ratings largest to smallest
+storagetype<-sort(storagetype,decreasing=TRUE) #sort storage types 1-4 largest to smallest
 
 #Create data fame that is split into training/testing data
 df<-data.frame(populations,rating,storagetype,prices) #it's important that prices is last
