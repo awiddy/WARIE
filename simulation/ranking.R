@@ -6,15 +6,15 @@ ranking<-function(filtered_warehouses, sort_user_rating, sort_price){
   #sort_user_rating = 1 or 0, checkbox for sorting by owner rating
   #sort_price = 1 or 0, sort by lowest price
   #sort_location = 1 or 0, ort by nearest to lessee
-  wID <- filtered_warehouses[1]
-  user_rating<-filtered_warehouses[2]
-  price<-filtered_warehouses[3]
+  wID <- filtered_warehouses[1] #warehouse ID
+  user_rating<-filtered_warehouses[2] #user ratings
+  price<-filtered_warehouses[3] #warehouse price
   
   bestweight<- 1
   weight<- 2
   
   #GOLF RULES, WANT LOW SCORE
-  for (i in 1:length(filtered_warehouses)){  
+  for (i in 1:length(filtered_warehouses)){  #for each warehouse
   if(sort_user_rating){
     #calc score
     score<-bestweight*(5-user_rating) + weight*price  
