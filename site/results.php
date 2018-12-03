@@ -12,6 +12,7 @@
 		<meta http-equiv="Pragma" content="no-cache">
 		<META HTTP-EQUIV="Expires" CONTENT="-1">
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="images/icon.ico" rel="shortcut icon">
 	</head>
 	<body>
 
