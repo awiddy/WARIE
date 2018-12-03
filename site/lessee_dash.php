@@ -184,7 +184,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							echo"
 							<tr><td><a href='request.php'>".$row['Warehouse_ID']. "</a></td>
 							<td>".$row["Start Date"]."</td>
-							<td>".round($row["End Date"],2)."</td>
+							<td>".$row["End Date"]."</td>
 							<td>".$row["Rented_Space"]."</td>
 							<td>".$row["Lessee_ID"]."</td>
 							<td>".$row["Signing_date"]."</td>";
@@ -245,7 +245,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							while($row = $result->fetch_assoc()) {
 
 							echo"
-							<tr><td><a href='request.php'>".$row['Warehouse_ID']. "</a></td>
+							<tr><td><a href='rate.php?wid=".$row['Warehouse_ID']."&id=".$row['Lessee_ID']."'>".$row['Warehouse_ID']. "</a></td>
 							<td>".$row["Start Date"]."</td>
 							<td>".round($row["End Date"],2)."</td>
 							<td>".$row["Rented_Space"]."</td>
