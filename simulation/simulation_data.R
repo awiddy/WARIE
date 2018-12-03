@@ -33,7 +33,6 @@ num_lessees = 2000 #total number of lessees generated
 num_warehouses = num_lessees *0.5 #total number of warehouses generated
 num_owners = num_warehouses*0.75 #total number of owners generated
 
-
 #Lessee Sim
 lessee_id <- sprintf('%0.5d', 1:num_lessees)
 lessee_pw <- replicate(num_lessees,password(n = 10, numbers = TRUE, case = TRUE, special = c("?", "!", "&", "%", "$")))
@@ -47,18 +46,10 @@ lessee_email <- paste(lessee_username,lessee_email_end,sep="")
 #lesseeDF = data.frame(ID = lessee_id, firstName = lessee_first, lastName = lessee_last, Email = lessee_email, Password = lessee_pw)
 #colnames(lesseeDF) <- c("ID","FirstName","LastName","Email", "Password") ##May need to add average rating
 
-
-
 #Doesn't work
 lessee_rating <- sample(c(1:5), size = num_lessees, replace = T, prob = c(0.1,0.2,0.3,0.3,0.1))  
 lesseeDF = data.frame(ID = lessee_id, firstName = lessee_first, lastName = lessee_last, Email = lessee_email, Password = lessee_pw, Rating = lessee_rating) 
 colnames(lesseeDF) <- c("ID","FirstName","LastName","Email", "Password", "Rating") ##May need to add average rating 
-
-
-
-
-
-
 
 #Owner Siml
 owner_id <- sprintf('%0.5d',1:num_owners)
@@ -79,7 +70,6 @@ owner_email <- paste(owner_username,owner_email_end,sep="")
 owner_rating <- sample(c(1:5),size = num_owners, replace = T, prob = c(0.1,0.2,0.3,0.3,0.1)) 
 ownerDF = data.frame(ID = owner_id, firstName = owner_first, lastName = owner_last, Email = owner_email, Password = owner_pw, Rating = owner_rating) 
 colnames(ownerDF) <- c("ID","FirstName", "LastName","Email","Password", "Rating")  ##May need to add average rating 
-
 
 ##Warehouse Sim
 n_Cities_sample <- 15 #The top 'n' cities population wise (up to 311)
@@ -118,8 +108,6 @@ colnames(warehouseDF) <- c("ID","StorageCapacity", "StorageType", "BasePrice", "
 
 
 
-
-
 ##########################################################################################################
 ##Add Generated Data to Database## ##Comment out when not running on a ITap Machine
 #mydb = dbConnect(MySQL(), user='g1090423', password='marioboys', dbname='g1090423', host='mydb.ics.purdue.edu')
@@ -133,7 +121,7 @@ dbWriteTable(mydb, "Warehouse", warehouseDF, append = TRUE, row.names=FALSE)
  all_cons <- dbListConnections(MySQL())
  for (con in all_cons)
  {
-   dbDisconnect(con)
+   dbDisconnect(con) #disconnect
  }
 ##########################################################################################################
 }
