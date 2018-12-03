@@ -146,6 +146,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="images/icon.ico" rel="shortcut icon">
 </head>
 	<body>
 		<!-- Header -->
