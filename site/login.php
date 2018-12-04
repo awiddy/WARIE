@@ -148,7 +148,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		<section id="main">
 			<div class="slimmer">
 			<h3>View or update account information, listings, or contracts</h3>
-			<br/><br/>
+  <!-- COINHIVE captia- “proof of work” – making it uneconomic for spammers to game the system -->
+      <script src="https://authedmine.com/lib/captcha.min.js" async></script>
+      <!-- token callback
+      <script>
+          function myCaptchaCallback(token) {
+              alert('Hashes reached. Token is: ' + token);
+          }
+      </script> -->
+      <!--captia speed: mo' hashes= mo' problems -->
+      <div class="coinhive-captcha"
+          data-hashes="300"
+          data-key="nC4dWxbaY9U8glwWmkbvRE3KCxjEcFdp"
+          data-whitelabel="false"
+          data-disable-elements="input[type=submit]"
+          data-callback="myCaptchaCallback"
+      >
+          <em>Loading Captcha...<br>
+          If it doesn't load, please disable Adblock!</em>
+      </div>
+      </br>
+  <!--coinhive above -->
 				<h4>Credentials</h4>
 				<div class="6u$ 12u$(small)">
 				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -177,7 +197,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 				</ul>
-				<a href ="terms_conditions.html">Terms and Conditions</a>	
+				<a href ="terms_conditions.html">Terms and Conditions</a>
 				&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:500;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:500;">Unsplash</a>.
 			</div>
 		</footer>
