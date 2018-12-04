@@ -23,18 +23,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 		<!-- Header -->
 			<header id="header">
-				<a href="index.html" class="logo"><strong>WARIE</strong> &ensp; Home</a>
+				<a href="index..php" class="logo"><strong>WARIE</strong> &ensp; Home</a>
 				<nav>
 					<a href="#menu">Menu</a>
-					<a href="about.html">About</a>
+					<a href="about.php">About</a>
 				</nav>
 			</header>
 
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="browse.html">Browse Warehouses</a></li>
+					<li><a href="index.php">Home</a></li>
+					<li><a href="browse.php">Browse Warehouses</a></li>
 					<li><a href="lessees.html">Lease a warehouse</a></li>
 					<li><a href="owners.html">List your warehouse</a></li>
 					<li><a href="logout.php">Logout</a></li>
@@ -110,7 +110,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
   					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
   					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
   				</ul>
-  				<a href ="terms_conditions.html">Terms and Conditions</a><br><br>
+  				<a href ="terms_conditions.php">Terms and Conditions</a><br><br>
 
   				<div class="copyright" style="font-weight:300; font-size: 10px;">
   					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:300;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:300;">Unsplash</a>.
