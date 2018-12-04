@@ -267,21 +267,21 @@
             $time_table = array();
             foreach ($time as $time1){
             
-                $date1 = new DateTime($time1['Start Date']);
-                $date2 = "new Date(".date_format($date1, 'Y').", ".((int) date_format($date1, 'm') - 1).", ".date_format($date1, 'd').")";
+                // $date1 = new DateTime($time1['Start Date']);
+                // $date2 = "Date(".date_format($date1, 'Y').", ".((int) date_format($date1, 'm') - 1).", ".date_format($date1, 'd').")";
 
-                $date3 = new DateTime($row['End Date']);
-                $date4 = "new Date(".date_format($date3, 'Y').", ".((int) date_format($date3, 'm') - 1).", ".date_format($date3, 'd').")";
+                // $date3 = new DateTime($time1['End Date']);
+                // $date4 = "Date(".date_format($date3, 'Y').", ".((int) date_format($date3, 'm') - 1).", ".date_format($date3, 'd').")";
                 
-
-
-                $time_table[] =array((string)$time1['ID'], $date2, $date4);     
+                $time_table[] =array((string)$time1['ID'], new DateTime($time1['Start Date']), new DateTime($time1['End Date']));     
 
             }
+            
 
+        
             
             
-            $time_table = json_encode($time_table, JSON_NUMERIC_CHECK);            
+            $time_table = json_encode($time_table);            
             print_r($time_table);
 
    
@@ -299,9 +299,9 @@
                 var dataTable = new google.visualization.DataTable();
 
                 dataTable.addColumn({ type: \'string\', id: \'ID\' });
-                dataTable.addColumn({ type: \'date\', id: \'Start\' });
-                dataTable.addColumn({ type: \'date\', id: \'End\' });
-                data.addRows('.$time_table.');
+                dataTable.addColumn({ type: \'datetime\', id: \'Start\' });
+                dataTable.addColumn({ type: \'datetime\', id: \'End\' });
+                dataTable.addRows('.$time_table.');
 
                 chart.draw(dataTable);
             }
