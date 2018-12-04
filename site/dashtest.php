@@ -13,8 +13,8 @@
         <tr>";
         space_filled();
         echo"</tr>
-        <tr>";
-        timeline2();
+        <tr></tr><tr>";
+        //timeline2();
         echo"<tr></table>";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         function map(){
@@ -387,13 +387,15 @@
     
                 echo"<head>";
                 echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
-                echo'<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>';
                 echo'<script type="text/javascript">
-                google.charts.load(\'current\', {\'packages\':[\'corechart\']});
+                google.charts.load(\'current\', {\'packages\':[\'timeline\']});
                 google.charts.setOnLoadCallback(drawChart);
                 function drawChart()
                 {
-                    var data = new google.visualization.DataTable('.$jsonTable.');
+                    
+                    var container = document.getElementById(\'timeline\');
+                    var chart = new google.visualization.Timeline(container);
+                    var dataTable = new google.visualization.DataTable('.$jsonTable.');
 
                     var options = {
                     title:\'Sensors Data\',
@@ -401,19 +403,14 @@
                     chartArea:{width:\'95%\', height:\'65%\'}
                     };
 
-                    var chart = new google.visualization.LineChart(document.getElementById(\'line_chart\'));
 
-                    chart.draw(data, options);
+                    chart.draw(dataTable, options);
                 }
                 </script>';
              
                echo" </head>  
 
-                <div class=\"page-wrapper\">
-                <br />
-                <h2 align=\"center\">Display Google Line Chart with JSON PHP & Mysql</h2>
-                <div id=\"line_chart\" style=\"width: 100%; height: 500px\"></div>
-                </div>";
+               <div id=\"timeline\" style=\"height: 500px;\"></div>";
 
         }
 
