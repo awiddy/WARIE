@@ -362,16 +362,17 @@
                 while($row = mysqli_fetch_array($result))
                 {
                 $sub_array = array();
-                $datetime = explode(".", $row["datetime"]);    
+                $StartTime = explode(".", $row["StartDate"]);
+                $EndTime = explode(".", $row["EndDate"]);    
                 $sub_array[] =  array(
-                    "v" => $row["StartTime"]
+                    "v" => $row["ID"]
                     );
                 
                 $sub_array[] =  array(
-                    "v" => 'Date(' . $StartTime[0] . '000)'
+                    "v" => 'Date(' . $row["StartDate"] . '000)'
                     );
                 $sub_array[] =  array(
-                    "v" => 'Date(' . $EndTime[0] . '000)'
+                    "v" => 'Date(' . $row["EndDate"] . '000)'
                     );
                 $rows[] =  array(
                     "c" => $sub_array
@@ -380,7 +381,7 @@
                 $table['rows'] = $rows;
                 $jsonTable = json_encode($table);
 
-            
+                print_r($jsonTable);
                 
 
     
