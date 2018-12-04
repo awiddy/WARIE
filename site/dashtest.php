@@ -14,7 +14,7 @@
         space_filled();
         echo"</tr>
         <tr>";
-        timeline();
+        timeline2();
         echo"<tr></table>";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         function map(){
@@ -255,7 +255,7 @@
             die("Connection failed: " . $conn->connect_error);
             }
             //Add dynamic sql
-            $time_sql = "Select * FROM Contract Where Owner_ID = 1 and Approval=1";
+            $time_sql = "Select ID, UNIX_TIMESTAMP(`Start Date`) as StartDate, UNIX_TIMESTAMP(`End Date`) as EndDate FROM Contract Where Owner_ID = 1 and Approval=1";
             
             $result = mysqli_query($conn, $time_sql);
             $time = array();
@@ -272,8 +272,12 @@
 
                 // $date3 = new DateTime($time1['End Date']);
                 // $date4 = "Date(".date_format($date3, 'Y').", ".((int) date_format($date3, 'm') - 1).", ".date_format($date3, 'd').")";
+                $date1 = 'new Date(' . $time1['StartDate'] . '000)';
+                $date2 = 'new Date(' . $time1['EndDate'] . '000)';
+
                 
-                $time_table[] =array((string)$time1['ID'], new DateTime($time1['Start Date']), new DateTime($time1['End Date']));     
+
+                $time_table[] =array((string)$time1['ID'], (string)$date1, (string)$date2);     
 
             }
             
@@ -310,6 +314,106 @@
         <body>
             <div id=\"timeline\" style=\"height: 180px;\"></div>
         </body>";
+        }
+
+
+
+        function timeline2()
+        {
+
+
+
+    
+                //index.php
+                /*Open Data base connection*/
+            $Owner_ID=$_SESSION["id"]; 
+            $servername = "mydb.ics.purdue.edu";
+            $username = "g1090423";
+            $password = "marioboys";
+            $dbname = "g1090423";
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+            }
+            //Add dynamic sql
+            $query = "Select ID, UNIX_TIMESTAMP(`Start Date`) as StartDate, UNIX_TIMESTAMP(`End Date`) as EndDate FROM Contract Where Owner_ID = 1 and Approval=1";
+                $result = mysqli_query($conn, $query);
+                $rows = array();
+                $table = array();
+
+                $table['cols'] = array(
+                array(
+                'label' => 'ID', 
+                'type' => 'string'
+                ),               
+                array(
+                'label' => 'StartTime', 
+                'type' => 'datetime'
+                ),
+                array(
+                    'label' => 'EndTime', 
+                    'type' => 'datetime'
+                    ),
+                    
+                );
+
+                while($row = mysqli_fetch_array($result))
+                {
+                $sub_array = array();
+                $datetime = explode(".", $row["datetime"]);    
+                $sub_array[] =  array(
+                    "v" => $row["StartTime"]
+                    );
+                
+                $sub_array[] =  array(
+                    "v" => 'Date(' . $StartTime[0] . '000)'
+                    );
+                $sub_array[] =  array(
+                    "v" => 'Date(' . $EndTime[0] . '000)'
+                    );
+                $rows[] =  array(
+                    "c" => $sub_array
+                    );
+                }
+                $table['rows'] = $rows;
+                $jsonTable = json_encode($table);
+
+            
+                
+
+    
+                echo"<head>";
+                echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
+                echo'<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>';
+                echo'<script type="text/javascript">
+                google.charts.load(\'current\', {\'packages\':[\'corechart\']});
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart()
+                {
+                    var data = new google.visualization.DataTable('.$jsonTable.');
+
+                    var options = {
+                    title:\'Sensors Data\',
+                    legend:{position:\'bottom\'},
+                    chartArea:{width:\'95%\', height:\'65%\'}
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById(\'line_chart\'));
+
+                    chart.draw(data, options);
+                }
+                </script>';
+             
+               echo" </head>  
+
+                <div class=\"page-wrapper\">
+                <br />
+                <h2 align=\"center\">Display Google Line Chart with JSON PHP & Mysql</h2>
+                <div id=\"line_chart\" style=\"width: 100%; height: 500px\"></div>
+                </div>";
+
         }
 
     ?>
