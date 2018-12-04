@@ -18,21 +18,21 @@
 
 		<!-- Header -->
 			<header id="header">
-				<a href="index.html" class="logo"><strong>WARIE</strong> &ensp; Home</a>
+				<a href="index.php" class="logo"><strong>WARIE</strong> &ensp; Home</a>
 				<nav>
 					<a href="#menu">Menu</a>
-					<a href="about.html">About</a>
+					<a href="about.php">About</a>
 				</nav>
 			</header>
 
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="browse.html">Browse Warehouses</a></li>
+					<li><a href="index.php">Home</a></li>
+					<li><a href="browse.php">Browse Warehouses</a></li>
 					<li><a href="lessees.html">Lease a warehouse</a></li>
 					<li><a href="owners.html">List your warehouse</a></li>
-					<li><a href="login.php">Login</a></li>
+					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</nav>
 
@@ -114,7 +114,7 @@
 					?>
 					</font></p>
 					<!-- Restart search -->
-					<a href="browse.html" class="button special" target="_blank">Search Again</a>
+					<a href="browse.php" class="button special" target="_blank">Search Again</a>
 				</div>
 			</section>
 
@@ -125,7 +125,7 @@
 					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 				</ul>
-				<a href ="terms_conditions.html">Terms and Conditions</a>	
+				<a href ="terms_conditions.php">Terms and Conditions</a>	
 				<div class="copyright">
 					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
 				</div>
