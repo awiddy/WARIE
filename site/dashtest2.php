@@ -4,6 +4,7 @@
 </head>
 
 <body>
+<div>
     <p>
         Test Google Dashboard Full
     </p>
@@ -11,19 +12,19 @@
     <?php
 
         dashboard();
+        
         echo"<table>
         <tr>
-        <div id=\"map_div\" style=\"width: 100%; height: 40%\"></div>
+        <td colspan=\"2\"><div id=\"map_div\" style=\"width: 40%; height: 40%\"></div></td>
         </tr>
         <tr>
-        <div id=\"rev_div\"></div>
+        <td><div id=\"rev_div\"></div></td>
+        <td><div id=\"Space_div\"></div></td>
         </tr>
-        <tr>
-        <div id=\"Space_div\"></div>
+        <td colspan=\"2\"><div id=\"timeline\" style=\"height: 500px;\"></div></td>
         </tr>
-        <div id=\"timeline\" style=\"height: 500px;\"></div>
-        </tr>
-        </table>";
+        </table>
+        </div>";
 
         ///Makes Dashboard////
         function dashboard(){
@@ -201,7 +202,7 @@
             echo"<head>";
             echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
             echo'<script type="text/javascript">
-            google.charts.load("visualization", "1", {packages:["map", "corechart", "timeline"], "mapsApiKey": "AIzaSyDi799MTv01g9mQ2C2p1km1v7v1bTIjs-Q"});
+            google.charts.load("visualization", "1", {packages:["map", "corechart", "timeline"], "mapsApiKey": "AIzaSyDlCFMRDDqE9uI1VaccIE8k7iHTbsfeD1I"});
             google.charts.setOnLoadCallback(init);
 
             function init () {
@@ -233,7 +234,7 @@
                 var options = {
                     title: \'Percentage Revenue by Contract\',
                     is3D: \'true\',
-                    width: 800,
+                    width: 600,
                     height: 600
                     };
                 
@@ -250,7 +251,7 @@
                 var options = {
                     title: \'Available Space\',
                     is3D: \'true\',
-                    width: 800,
+                    width: 600,
                     height: 600
                     };
                 
