@@ -12,6 +12,9 @@
         echo"</tr>
         <tr>";
         space_filled();
+        echo"</tr>
+        <tr>";
+        timeline();
         echo"<tr></table>";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         function map(){
@@ -235,7 +238,9 @@
                 <div id=\"chart1_div\"></div>";
 
         }
-        ////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         function timeline(){
             /*Open Data base connection*/
             $Owner_ID=$_SESSION["id"]; 
@@ -253,27 +258,60 @@
             $time_sql = "Select * FROM Contract Where Owner_ID = 1 and Approval=1";
             
             $result = mysqli_query($conn, $time_sql);
-            $space = array();
+            $time = array();
             if(mysqli_num_rows($result)>0){
                 while($row = mysqli_fetch_assoc($result)){
-                    $space[] = $row;
+                    $time[] = $row;
                 }
             }
-            $space_table = array();
-            $open_total = 0;
-            foreach ($space as $space1){
-                $open_total = $open_total + $space1['Open'];
-                $space_table[] =array((string)$space1['ID'], (int)$space1['Rented_Space']); 
-            }
+            $time_table = array();
+            foreach ($time as $time1){
             
-            $open_total = array("Open", (int)$open_total);
-            $space_table[] = $open_total;
-            
-            $space_table = json_encode($space_table);
-            
+                $date1 = new DateTime($time1['Start Date']);
+                $date2 = "new Date(".date_format($date1, 'Y').", ".((int) date_format($date1, 'm') - 1).", ".date_format($date1, 'd').")";
 
-        }
+                $date3 = new DateTime($row['End Date']);
+                $date4 = "new Date(".date_format($date3, 'Y').", ".((int) date_format($date3, 'm') - 1).", ".date_format($date3, 'd').")";
+                
+
+
+                $time_table[] =array((string)$time1['ID'], $date2, $date4);     
+
+            }
+
             
+            
+            $time_table = json_encode($time_table, JSON_NUMERIC_CHECK);            
+            print_r($time_table);
+
+   
+
+            $conn->close();
+         
+        echo"<head>";
+            echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
+            echo'<script type="text/javascript">
+            google.charts.load(\'current\', {\'packages\':[\'timeline\']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var container = document.getElementById(\'timeline\');
+                var chart = new google.visualization.Timeline(container);
+                var dataTable = new google.visualization.DataTable();
+
+                dataTable.addColumn({ type: \'string\', id: \'ID\' });
+                dataTable.addColumn({ type: \'date\', id: \'Start\' });
+                dataTable.addColumn({ type: \'date\', id: \'End\' });
+                data.addRows('.$time_table.');
+
+                chart.draw(dataTable);
+            }
+            </script>';
+        echo"</head>
+        <body>
+            <div id=\"timeline\" style=\"height: 180px;\"></div>
+        </body>";
+        }
+
     ?>
   </body>
 </html>
