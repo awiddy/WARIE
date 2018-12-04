@@ -1,6 +1,6 @@
 <?php session_start();
 
-// Check if the user is logged in, if not then redirect him to login page
+// Check if the user is logged in, if not then redirect them to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
@@ -36,7 +36,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<li><a href="browse.html">Browse Warehouses</a></li>
 					<li><a href="lessees.html">Lease a warehouse</a></li>
 					<li><a href="owners.html">List your warehouse</a></li>
-					<li><a href="logout.php">Login</a></li>
+					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</nav>
 
@@ -108,12 +108,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<div class="6u 12u$(xsmall)">
 					<input type="text" name="goods" id="goods" value="" placeholder="Goods to be stored" required />
 					</div> hereafter referred to as Goods. The price of $<u><?php echo($price); ?></u> /sq ft/ month set forward by the owner will be tendered to the Owner upon a monthly basis by the Lessee</li>
-					<br><h3>Dates</h3>
+					<br><h3>Dates and Times</h3>
 					<li>The Lessee shall have access to and use of the warehouse from 8:00 am on <?php echo ("<u>".$start_date."</u>");?>
 					to 5 pm on <?php echo("<u>".$end_date."</u>");?>
-					<br></div></ul>
-					<div class="slimmer">
-					<ul>
+					<br>
 					<li>Within 1 week (7 days) of the rental period’s expiration, Lessee shall return to Owner all keys and other access control devices in his/her possession.</li>
 					<li>Lessee shall remove all Goods, personal property, trash, and other items that were not present in the warehouse when Lessee took control of it.</li>
 					<li>Lessee will be liable for any physical damages, legal actions, and/or loss of reputation or business opportunities that Owner may incur as a consequence of the actions of Lessee or any of Lessee's guests

@@ -171,7 +171,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							";
 							echo"
 							<th>Warehouse ID</th>
-							<th>Start Date</th>
+							<th>Request Date</th>
 							<th>End Date</th>
 							<th>Rented Space (Sqft.)</th>
 							<th>Lessee ID</th>
@@ -182,7 +182,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							while($row = $result->fetch_assoc()) {
 
 							echo"
-							<tr><td><a href='request.php'>".$row['Warehouse_ID']. "</a></td>
+							<tr><td>".$row['Warehouse_ID']. "</td>
 							<td>".$row["Start Date"]."</td>
 							<td>".$row["End Date"]."</td>
 							<td>".$row["Rented_Space"]."</td>
