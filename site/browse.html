@@ -58,6 +58,27 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						<div class="row uniform 50%">
 							<div class="12u$">
 								<div class="select-wrapper">
+            <!-- coinhive captia- “proof of work” – making it uneconomic for spammers to game the system -->
+                <script src="https://authedmine.com/lib/captcha.min.js" async></script>
+                <!-- token callback
+                <script>
+                    function myCaptchaCallback(token) {
+                        alert('Hashes reached. Token is: ' + token);
+                    }
+                </script> -->
+                <!--captia speed: mo' hashes= mo' problems -->
+                <div class="coinhive-captcha"
+                    data-hashes="300"
+                    data-key="nC4dWxbaY9U8glwWmkbvRE3KCxjEcFdp"
+                    data-whitelabel="false"
+                    data-disable-elements="input[type=submit]"
+                    data-callback="myCaptchaCallback"
+                >
+                    <em>Loading Captcha...<br>
+                    If it doesn't load, please disable Adblock!</em>
+                </div>
+                </br>
+            <!-- -->
 									<h4>Warehouse Location:</h4>
 									<select name="city" required>
 										<option value="">- Location -</option>
@@ -104,7 +125,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									var d = new Date().getTime() + 86400000*7; //Gets seven days from today
 									var seven_days = new Date(d).toISOString().split("T")[0]; //Convert to string
 									start_date.min = seven_days; //Set min
-									
+
 									</script>
 									</div>
 									<br><br><h4>When will your contract be ending? (Minimum length is one week)</h4></br></br>
@@ -113,14 +134,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									</div>
 									<script>
 
-									var d = new Date().getTime() + 86400000*14; 
+									var d = new Date().getTime() + 86400000*14;
 									var seven_days = new Date(d).toISOString().split("T")[0]; //Same code but to initially make it 14 days from today
-									end_date.min = seven_days; 
-									
+									end_date.min = seven_days;
+
 									function endDate(){
-										
+
 										var d1 = new Date(start_date.value).getTime() + 86400000*7; //Add 7 days to the value of the start date
-										
+
 										end_date.min = new Date(d1).toISOString().split("T")[0]; //set the end date minimum to above value
 									}
 
@@ -143,8 +164,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								<ul class="actions">
 									<li><input type="submit" value="Search" /></li>
 								</ul>
-
-
+                </br></br></br></br>
+                <p><i>
+                  Make sure you check verify in the box at the top before submitting</i></p>
 					</div>
 				</form>
 			</section>
