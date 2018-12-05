@@ -1,6 +1,6 @@
 <?php session_start();
 
-// Check if the user is logged in, if not then redirect them to login page
+// Check if the user is logged in, if not then redirect him/her to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
@@ -18,6 +18,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="images/icon.ico" rel="shortcut icon">
 			</head>
 	<body>
 	<!-- Header -->
@@ -34,9 +35,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
-					<li><a href="logout.php">Logout</a></li>
+					<li><a href="newhouse.php">List your warehouse</a></li>
+					<li><a href="logout.php">Login</a></li>
 				</ul>
 			</nav>
 
@@ -64,7 +64,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					$o_id = $_GET['o'];
 					$w_id = $_GET['w'];
 					$price_raw = $_GET['pr'];
-					$price = round($price_raw/12,2); //price in DB is $/sq ft/year, but displayed is $/sq ft/month
+					$price = round($price_raw/12,2);
 					$city = $_GET['c'];
 					$state = $_GET['st'];
 					$zip = $_GET['z'];
@@ -85,7 +85,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					$row1 = $fullname->fetch_assoc();
 
 
-				//Writing up the contract
+					//Writing up the contract
 
 					echo "<ul><h3>Persons</h3><li>This contract for the rental of a warehouse is made this day, <u>".date('Y/m/d'). "</u>, by and between ";
 					?>
@@ -97,7 +97,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<input type="text" name="l_fname" id="l_fname" value="" placeholder="Lessee First Name" required />
 					<input type="text" name="l_lname" id="l_lname" value="" placeholder="Lessee Last Name" required />
 					</div> hereafter referred to as the Lessee, and
-					<!-- Auto-filling the contract with information about the Owner and the contract based on the inputted/selected information by the user-->
+					<!-- Auto-filling the contract with information about the Owner and the contract based on the inputted/selected information by the user on the browse page-->
+					<!-- Contract referenced from https://eforms.com/rental/commercial/facility-event-space-rental-agreement-template -->
 					<?php
 					echo("<u>".$row1['FirstName']." ".$row1['LastName']."</u> (<u>".$row1['Email'].")</u>");?>
 					 hereafter referred to as the Owner, at the location  of Warehouse ID #<u><?php echo ($w_id)?></u> located in <u><?php echo "".$city.", ".$state.", ".$zip.","?></u>
@@ -108,24 +109,23 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<div class="6u 12u$(xsmall)">
 					<input type="text" name="goods" id="goods" value="" placeholder="Goods to be stored" required />
 					</div> hereafter referred to as Goods. The price of $<u><?php echo($price); ?></u> /sq ft/ month set forward by the owner will be tendered to the Owner upon a monthly basis by the Lessee</li>
-					<br><h3>Dates and Times</h3>
+					<br><h3>Dates</h3>
 					<li>The Lessee shall have access to and use of the warehouse from 8:00 am on <?php echo ("<u>".$start_date."</u>");?>
 					to 5 pm on <?php echo("<u>".$end_date."</u>");?>
-					<br>
+					<br></div></ul>
+					<div class="slimmer">
+					<ul>
 					<li>Within 1 week (7 days) of the rental period’s expiration, Lessee shall return to Owner all keys and other access control devices in his/her possession.</li>
 					<li>Lessee shall remove all Goods, personal property, trash, and other items that were not present in the warehouse when Lessee took control of it.</li>
 					<li>Lessee will be liable for any physical damages, legal actions, and/or loss of reputation or business opportunities that Owner may incur as a consequence of the actions of Lessee or any of Lessee's guests
 					while Lessee is in control of the warehouse, and shall indemnify and hold harmless the Owner against any and all legal actions which may arise from Lessee's use of the warehouse.</li>
 					</ul>
-									<!--<div class="4u 12u$(xsmall)">
-										<input type="radio" id="disagree" name="agreement">
-										<label for="disagree">I do not agree to the above terms and conditions.</label>
-									</div>-->
-									<div class="4u 12u$(xsmall)">
-										<input type="radio" id="agree" name="agreement" required>
-										<label for="agree">I agree to the above terms and conditions.</label>
-									</div>
-								<input type="submit" value="Submit your request">
+					<div class="4u 12u$(xsmall)">
+						<input type="radio" id="agree" name="agreement" required>
+						<label for="agree">I agree to the above terms and conditions.</label>
+					</div>
+					<input type="submit" value="Submit your request">
+					
 					</div>
 					</form>
 					</div>
@@ -155,3 +155,4 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 	</body>
 </html>
+
