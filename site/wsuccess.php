@@ -4,6 +4,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	header("location: login.php");
     exit;
 }
+if($_SESSION['userType']=="LesseeLogin"){
+	header("location: lessee_dash.php");
+	exit;
+	}
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -17,6 +21,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="images/icon.ico" rel="shortcut icon">
 			</head>
 	<body>
 	<!-- Header -->
@@ -33,8 +38,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
+					<li><a href="newhouse.php">List your warehouse</a></li>
 					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</nav>
@@ -53,8 +57,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<h3>This warehouse is now linked to your account.</h3>
 					<a href="newhouse.php" class="button special" target="_blank">Add another warehouse</a>
 					<?php
-					//Retreiving data from Post/Session function, as well as setting variables for the query/DB connection
 					
+					//Retreiving data from Post/Session function, as well as setting variables for the query/DB connection
 					$city=$_POST['city'];
 					$state=$_POST['state'];
 					$zip=$_POST['zip'];
