@@ -1,3 +1,10 @@
+<?php session_start();
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+
+?>
 <!DOCTYPE HTML>
 <!--
 	Binary by TEMPLATED
@@ -31,7 +38,18 @@
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
 					<li><a href="newhouse.php">List your warehouse</a></li>
-					<li><a href="login.php">Login</a></li>
+					<?php
+					if(($_SESSION["userType"])=="LesseeLogin"){
+								$link = "lessee_dash.php";
+					}else if(($_SESSION["userType"])=="OwnerLogin"){
+								$link = "owner_dash.php";
+					} else if (($_SESSION["uesrType"])=="AdminLogin"){
+								$link = 'admin_dash.php';
+							}
+					echo("<li><a href='".$link."'>Dashboard</a></li>");
+
+							?>
+					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</nav>
 
@@ -47,7 +65,6 @@
 			<section id="main">
 				<div class="slimmer">
 					<header><h2>Search Results</h2></header>
-					<p><font color="black"></br>Click on any Warehouse ID to draft up a contract for that location.</font></p>
 					
 					<?php 
 					//Getting all inputted search parameters and setting values for DB connection
@@ -91,13 +108,17 @@
 					//Get result of the above query
 					$result = $conn->query($sql);
 					
+					
+					//If statement and while loop print all results returned from the above query 
+					if ($result->num_rows > 0) {
 					//Start of the results table
+					echo('<p><font color="black"></br>Click on any Warehouse ID to draft up a contract for that location.</font></p>');
+
 					echo "<style>td,tr:hover{opacity:0.6;} th:hover{opacity:1.0;}</style>";
 					echo"<table width = 950px>";
 					echo"<th>Warehouse ID</th><th>Storage Capacity</th><th>Price ($/sq ft/month)</th><th>Zipcode</th><th>City</th><th>State</th><th>Owner ID</th><th>Owner Rating</th>";
 					
-					//If statement and while loop print all results returned from the above query 
-					if ($result->num_rows > 0) {
+						
 						while($row = $result->fetch_assoc()) {
 							//Warehouse ID appears as a link, which sends the user to a drafted contract for the user's inputted search parameters and selected warehouse information
 							echo"<tr><td><a href='request.php?w=".$row['ID']."&o=".$row['Owner_ID']."&pr=".$row['BasePrice']."&c=".$row['City']."&st=".$row['State']."&z=".$row['Zipcode']."&sd=".$start_date."&ed=".$end_date."&sn=".$storage_needed."' target='_blank'>".$row['ID']. "</a></td><td>".$row["StorageCapacity"]."</td><td>".round(($row["BasePrice"])/12,2)."</td><td>".$row["Zipcode"]."</td><td>".$row["City"]."</td><td>".$row["State"]."</td><td>".$row["Owner_ID"]."</td><td>".$row["Owner_Rating"]."</td></tr>";

@@ -14,6 +14,7 @@
 		<meta http-equiv="Pragma" content="no-cache">
 		<META HTTP-EQUIV="Expires" CONTENT="-1">
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="images/icon.ico" rel="shortcut icon">
 	</head>
 	<body>
 
@@ -31,8 +32,7 @@
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
+					<li><a href="newhouse.php">List your warehouse</a></li>
 					<li><a href="login.php">Login</a></li>
 				</ul>
 			</nav>

@@ -86,7 +86,6 @@ if($_SESSION['userType']=="LesseeLogin"){
 				
 					mysqli_query($conn,$sql);
 					mysqli_close($conn);
-					echo($sql);
 					?>
 
 					</div>

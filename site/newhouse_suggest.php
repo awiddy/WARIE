@@ -4,6 +4,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	header("location: login.php");
     exit;
 }
+if($_SESSION['userType']=="LesseeLogin"){
+	header("location: lessee_dash.php");
+	exit;
+	}
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -17,12 +21,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="images/icon.ico" rel="shortcut icon">
 	</head>
 	<body>
 
 		<!-- Header -->
 			<header id="header">
-				<a href="index..php" class="logo"><strong>WARIE</strong> &ensp; Home</a>
+				<a href="index.php" class="logo"><strong>WARIE</strong> &ensp; Home</a>
 				<nav>
 					<a href="#menu">Menu</a>
 				</nav>
@@ -33,8 +38,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
+					<li><a href="newhouse.php">List your warehouse</a></li>
+					<?php if(($_SESSION["userType"])=="AdminLogin"){
+								$link = "admin_dash.php";
+							}else if(($_SESSION["userType"])=="OwnerLogin"){
+								$link = "owner_dash.php";
+							}
+							echo("<li><a href=".$link.">Dashboard</a></li>");
+							?>
 					<li><a href="logout.php">Login</a></li>
 				</ul>
 			</nav>
@@ -50,7 +61,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 						<h2>List a new warehouse</h2>
 						<p class="info">Enter information to create a new listing</p>
 
-						<!-- <h3>Select your criteria to narrow the results</h3> -->
 					</header>
 					<form method="post" action="wsuccess.php">
 					<?php
@@ -62,14 +72,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					
 					
 					?>
+					<!-- Auto fills information from last page and suggests price using neural network-->
 						<div class="row uniform 50%">
 							<div class="6u 12u$(xsmall)">
 								<h4>Warehouse location:</h4>
-								<input type="number" name="zip" id="zip" value="<?php echo($zip);?>" placeholder="Zip code" />
+								<input type="number" name="zip" id="zip" value="<?php echo($zip);?>" placeholder="Zip code" required />
 							</div>
 							<div class="6u 12u$(xsmall)">
 								<h4>Location latitude:</h4>
-								<input type="number" name="lat" id="lat" value="<?php echo($lat);?>" placeholder="Latitude" />
+								<input type="number" name="lat" id="lat" value="<?php echo($lat);?>" placeholder="Latitude" required />
 							</div>
 
 
@@ -77,53 +88,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 							<div class="6u 12u$(xsmall)">
 								<h4>Storage capacity (sq ft):</h4>
-								<input type="number" min="500" name="storagecapacity" id="storagecapacity" value="<?php echo($storagecapacity);?>" placeholder="Square feet" />
+								<input type="number" min="500" name="storagecapacity" id="storagecapacity" value="<?php echo($storagecapacity);?>" placeholder="Square feet" required />
 							</div>
 							<div class="6u 12u$(xsmall)">
 								<h4>Location longitude:</h4>
-								<input type="number" name="long" id="long" value="<?php echo($long);?>" placeholder="Longitude" />
+								<input type="number" name="long" id="long" value="<?php echo($long);?>" placeholder="Longitude" required />
 							</div>
 						<br><br><br><br>
-						<style>
-						.tooltip {
-						position: relative;
-						display: inline-block;
-						border-bottom: 1px dotted black;
-						}
-
-						.tooltip .tooltiptext {
-						visibility: hidden;
-						width: 220px;
-						background-color: #555;
-						color: #fff;
-						text-align: center;
-						border-radius: 6px;
-						padding: 5px 0;
-						position: absolute;
-						z-index: 1;
-						bottom: 125%;
-						left: 50%;
-						margin-left: -60px;
-						opacity: 0;
-						transition: opacity 0.1s;
-						}
-
-						.tooltip .tooltiptext::after {
-						content: "";
-						position: absolute;
-						top: 100%;
-						left: 50%;
-						margin-left: -5px;
-						border-width: 5px;
-						border-style: solid;
-						border-color: #555 transparent transparent transparent;
-						}
-
-					.tooltip:hover .tooltiptext {
-					visibility: visible;
-					opacity: 1;
-					}
-					</style>
+						
+					
 						<ul>
 						<li> Don't know your latitude and longitude? Search your zip code on <a href="https://www.latlong.net/" target="_blank">this website</a>.</li>
 						<li>
@@ -171,16 +144,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								$long = $_POST["long"];
 								echo("<div id='suggest'>
 								<h5>Suggested Price: </h5>");
-							
+							//Calling R script that suggests a price from the neural network
 								$out = shell_exec("Rscript suggestPrice_test.R $zip $storagecapacity $storagetype $lat $long 2>/dev/null");//2>&1
 								echo("<h5>$");
 								echo str_replace("[1]","",$out);
 								echo("/sq ft/month</h5>");
-								
 								}
 								
 								if(isset($_POST['suggestprice'])){
-									Suggest();
+									Suggest(); //calling function when button is pressed
 								}
 							
 								echo($out);?>
@@ -196,7 +168,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 							<div class="6u 12u$(xsmall)">
 								<br><h4>State:</h4>
 								<h5>Please input the state in it's 2 letter format</h5>
-								<input type="text" name="state" id="state" value="" placeholder="State" />
+								<input type="text" size = "2" name="state" id="state" value="" placeholder="State" />
 							</div>
 								
 									<br><h4>Describe your warehouse:</h4>
@@ -204,7 +176,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								
 								<br><br>
 
-								<!--<div class="6u 12u$(xsmall)">-->
 								
 								<br>
 								<div class="4u 12u$(xsmall)">
@@ -222,7 +193,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								<ul class="actions">
 									<li><button type="submit">Create listing</button></li>
 								</ul>
-								<!--</div>-->
 						
 				</div>
 				</div>

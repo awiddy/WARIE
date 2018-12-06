@@ -29,9 +29,17 @@
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
-					<?php if(isset($_SESSION["loggedin"])){ 
+					<li><a href="newhouse.php">List your warehouse</a></li>
+					<?php
+					//Displays login/logout depending on your status
+					if(isset($_SESSION["loggedin"])){
+							if(($_SESSION["userType"])=="LesseeLogin"){
+								$link = "lessee_dash.php";
+							}else if(($_SESSION["userType"])=="OwnerLogin"){
+								$link = "owner_dash.php";
+							}
+
+					echo("<li><a href='".$link."'>Dashboard</a></li>");
 					echo("<li><a href='logout.php'>Logout</a></li>");
 					}
 					else{
@@ -55,13 +63,12 @@
 		<!-- One -->
 			<article id="one" class="post style1">
 				<div class="image">
-					<img src="images/roofs_short.jpg" alt="" data-position="75% center" />
+					<img src="images/roofs_short.jpeg" alt="" data-position="75% center" />
 				</div>
 				<div class="content">
 					<div class="inner">
 						<header>
 							<h2><a href="lessees.html">Lease a warehouse</a></h2>
-							<!--<p class="info">3 days ago by <a href="#">Jane Doe</a></p>-->
 						</header>
 						<p>
 							With WARIE, you choose from a list of hundreds of warehouses.
@@ -81,7 +88,7 @@
 		<!-- Two -->
 			<article id="two" class="post invert style1 alt">
 				<div class="image">
-					<img src="images/doorwalk.jpg" alt="" data-position="10% center" />
+					<img src="images/doorwalk.jpeg" alt="" data-position="10% center" />
 				</div>
 				<div class="content">
 					<div class="inner">
@@ -89,7 +96,7 @@
 							<h2><a href="owners.html">List your warehouse</a></h2>
 						</header>
 						<p>
-							List your warehouse,
+							List your warehouse
 							and you'll be notified when someone is interested!
 						</p>
 						<ul class="actions">

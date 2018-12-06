@@ -15,11 +15,11 @@
         
         echo"<table>
         <tr>
-        <td colspan=\"2\"><div id=\"map_div\" style=\"width: 40%; height: 40%\"></div></td>
-        </tr>
-        <tr>
         <td><div id=\"rev_div\"></div></td>
         <td><div id=\"Space_div\"></div></td>
+        </tr>
+        <tr>
+        <td>Time Line </td>
         </tr>
         <td colspan=\"2\"><div id=\"timeline\" style=\"height: 500px;\"></div></td>
         </tr>
@@ -97,6 +97,7 @@
                 $revenue_table[] = array($data1['ID'],(int)$revenue); 
             }
             $revenue_table = json_encode($revenue_table);
+            print_r($revenue_table);
             $conn->close();   
                 
         ////////Bring In Space Data///////////
@@ -206,7 +207,7 @@
             google.charts.setOnLoadCallback(init);
 
             function init () {
-                drawMap();
+               
                 drawRev();
                 drawSpace();
                 drawTimeline(); 
@@ -249,7 +250,7 @@
                         dataSpace.addColumn(\'number\',\'Space\');
                         dataSpace.addRows('.$space_table.');
                 var options = {
-                    title: \'Available Space\',
+                    title: \'Space Occupied\',
                     is3D: \'true\',
                     width: 600,
                     height: 600
@@ -267,14 +268,10 @@
                 var Timeline = new google.visualization.Timeline(container);
                 var dataTime = new google.visualization.DataTable('.$jsonTable.');
 
-                var options = {
-                    title:\'Sensors Data\',
-                    legend:{position:\'bottom\'},
-                    chartArea:{width:\'95%\', height:\'65%\'}
-                    };
+                
 
 
-                Timeline.draw(dataTime, options);
+                Timeline.draw(dataTime);
             
             }
         

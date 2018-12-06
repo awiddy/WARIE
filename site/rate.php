@@ -18,12 +18,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="images/icon.ico" rel="shortcut icon">
 	</head>
 	<body>
 
 		<!-- Header -->
 			<header id="header">
-				<a href="index..php" class="logo"><strong>WARIE</strong> &ensp; Home</a>
+				<a href="index.php" class="logo"><strong>WARIE</strong> &ensp; Home</a>
 				<nav>
 					<a href="#menu">Menu</a>
 					<a href="about.php">About</a>
@@ -35,9 +36,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
-					<li><a href="logout.php">Logout</a></li>
+					<li><a href="newhouse.php">List your warehouse</a></li>
+					<li><a href= "logout.php">Logout</a></li>
 				</ul>
 			</nav>
 
@@ -69,32 +69,81 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					<!--  Link from dash goes here, sends over contract ID and lessee/owner id
 							If lessee logged in, send owner id. If owner logged in, send lessee id-->
 					<h3><?php echo("Please tell us about your overall experience with your contract in Warehouse #".$wid." and User ID ".$id.".");?></h3>
+					<!-- Forms for all factors of the rating -->
 					<h4>The user being rated is</h4>
 						<div class="6u 12u$(xsmall)">
 								User ID: <input type="number" name="id" id="id" value="<?php echo("".$id.""); ?>"  />
 						</div>
 						
-					<br><br><h4>Please rate your experience: </h4>
+					<br><br><h4>Please rate your the level of professionalism from the other user in this contract: </h4>
 					<div class="4u 12u$(xsmall)">
-						<input type="radio" id="rate1" name="rating" value="1">
-						<label for="rate1">1</label>
+						<input type="radio" id="prof_rate1" name="prof_rating" value="1">
+						<label for="prof_rate1">1</label>
 						</div>
 					<div class="4u 12u$(xsmall)">
-						<input type="radio" id="rate2" name="rating" value="2">
-						<label for="rate2">2</label>
+						<input type="radio" id="prof_rate2" name="prof_rating" value="2">
+						<label for="prof_rate2">2</label>
 					</div>
 					<div class="4u 12u$(xsmall)">
-						<input type="radio" id="rate3" name="rating" value="3">
-						<label for="rate3">3</label>
+						<input type="radio" id="prof_rate3" name="prof_rating" value="3">
+						<label for="prof_rate3">3</label>
 						</div>
 					<div class="4u 12u$(xsmall)">
-						<input type="radio" id="rate4" name="rating" value="4">
-						<label for="rate4">4</label>
+						<input type="radio" id="prof_rate4" name="prof_rating" value="4">
+						<label for="prof_rate4">4</label>
 					</div>
 					<div class="4u 12u$(xsmall)">
-						<input type="radio" id="rate5" name="rating" value="5" checked required>
-						<label for="rate5">5</label>
+						<input type="radio" id="prof_rate5" name="prof_rating" value="5" checked required>
+						<label for="prof_rate5">5</label>
 					</div>
+					
+					<br><br><h4>Please rate your experience with the communication between yourself and the other user in this contract: </h4>
+					<div class="4u 12u$(xsmall)">
+						<input type="radio" id="com_rate1" name="com_rating" value="1">
+						<label for="com_rate1">1</label>
+						</div>
+					<div class="4u 12u$(xsmall)">
+						<input type="radio" id="com_rate2" name="com_rating" value="2">
+						<label for="com_rate2">2</label>
+					</div>
+					<div class="4u 12u$(xsmall)">
+						<input type="radio" id="com_rate3" name="com_rating" value="3">
+						<label for="com_rate3">3</label>
+						</div>
+					<div class="4u 12u$(xsmall)">
+						<input type="radio" id="com_rate4" name="com_rating" value="4">
+						<label for="com_rate4">4</label>
+					</div>
+					<div class="4u 12u$(xsmall)">
+						<input type="radio" id="com_rate5" name="com_rating" value="5" checked required>
+						<label for="com_rate5">5</label>
+					</div>
+					
+						<br><br><h4>If you are a Lessee -- Please rate the cleanliness and general condition of the space at the beginning of the contract:<br>
+									If you are an Owner -- Please rate the cleanliness and general condition of the space at the end of the contract: </h4>
+					<div class="4u 12u$(xsmall)">
+						<input type="radio" id="clean_rate1" name="clean_rating" value="1">
+						<label for="clean_rate1">1</label>
+						</div>
+					<div class="4u 12u$(xsmall)">
+						<input type="radio" id="clean_rate2" name="clean_rating" value="2">
+						<label for="clean_rate2">2</label>
+					</div>
+					<div class="4u 12u$(xsmall)">
+						<input type="radio" id="clean_rate3" name="clean_rating" value="3">
+						<label for="clean_rate3">3</label>
+						</div>
+					<div class="4u 12u$(xsmall)">
+						<input type="radio" id="clean_rate4" name="clean_rating" value="4">
+						<label for="clean_rate4">4</label>
+					</div>
+					<div class="4u 12u$(xsmall)">
+						<input type="radio" id="clean_rate5" name="clean_rating" value="5" checked required>
+						<label for="clean_rate5">5</label>
+					</div>
+					
+					
+					
 					<ul class="actions">
 						<li><button type="submit" >Submit rating</button></li>
 					</ul>

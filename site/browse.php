@@ -18,6 +18,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="images/icon.ico" rel="shortcut icon">
 	</head>
 	<body>
 
@@ -35,9 +36,26 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
-					<li><a href="logout.php">Logout</a></li>
+					<li><a href="newhouse.php">List your warehouse</a></li>
+					<?php 
+					//displays login/logout depending on status
+					if(isset($_SESSION["loggedin"])){
+							if(($_SESSION["userType"])=="LesseeLogin"){
+								$link = "lessee_dash.php";
+							}else if(($_SESSION["userType"])=="OwnerLogin"){
+								$link = "owner_dash.php";
+							} else if (($_SESSION["uesrType"])=="AdminLogin"){
+								$link = 'admin_dash.php';
+							}
+					
+					echo("<li><a href='".$link."'>Dashboard</a></li>");
+					echo("<li><a href='logout.php'>Logout</a></li>");
+					}
+					else{
+					echo("<li><a href='login.php'>Login</a></li>");
+					}
+					?>
+					
 				</ul>
 			</nav>
 
@@ -98,13 +116,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									<br><br><h4>When do you need your contract to start? (Must be at least one week from today)</h4></br></br>
 									<div class="12u$">
 										<input type="date" name="start_date" id="start_date" onblur="endDate()" value="" min = "0" max="0" placeholder="Start Date" required />
+									
 									<script>
-
 									var d = new Date().getTime() + 86400000*7; //Gets seven days from today
 									var seven_days = new Date(d).toISOString().split("T")[0]; //Convert to string
 									start_date.min = seven_days; //Set min
-									
 									</script>
+									
 									</div>
 									<br><br><h4>When will your contract be ending? (Minimum length is one week)</h4></br></br>
 									<div class="12u$">
@@ -116,7 +134,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 									var seven_days = new Date(d).toISOString().split("T")[0]; //Same code but to initially make it 14 days from today
 									end_date.min = seven_days; 
 									
-									function endDate(){
+									function endDate(){ //gets called when you click away from start date text box
 										
 										var d1 = new Date(start_date.value).getTime() + 86400000*7; //Add 7 days to the value of the start date
 										

@@ -4,6 +4,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	header("location: login.php");
     exit;
 }
+if($_SESSION['userType']=="LesseeLogin"){
+	header("location: lessee_dash.php");
+	exit;
+	}
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -17,6 +21,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="images/icon.ico" rel="shortcut icon">
 	</head>
 	<body>
 
@@ -33,88 +38,59 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
-					<li><a href="logout.php">Login</a></li>
+					<li><a href="newhouse.php">List your warehouse</a></li>
+					<?php if(($_SESSION["userType"])=="AdminLogin"){
+								$link = "admin_dash.php";
+							}else if(($_SESSION["userType"])=="OwnerLogin"){
+								$link = "owner_dash.php";
+							}
+							echo("<li><a href=".$link.">Dashboard</a></li>");
+							?>
+					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</nav>
+
+		<!--Banner-->
+		<section class="banner_layout banner_utara">
+				<div class="inner">
+				</br></br></br>
+					<h1><font color="white">List a new warehouse</font></h1></br>
+					<h3>Enter information to create a new listing</h3>
+				</div>
+			</section>
 
 		<!-- Main -->
 			<section id="main">
 				<div class="inner">
 				<div class="slimmer">
-					<div class="image fit">
-						<img src="images/pic11.jpg" alt="" />
-					</div>
 					<header>
 						<h2>List a new warehouse</h2>
 						<p class="info">Enter information to create a new listing</p>
-
-						<!-- <h3>Select your criteria to narrow the results</h3> -->
+				<!-- Form for adding information into a new warehouse
+					when a price is suggested, it continues to a new page
+				-->
 					</header>
 					<form method="post" action="newhouse_suggest.php">
 						<div class="row uniform 50%">
 							<div class="6u 12u$(xsmall)">
 								<h4>Warehouse location:</h4>
-								<input type="number" name="zip" id="zip" value="" placeholder="Zip code" />
+								<input type="number" name="zip" id="zip" value="" placeholder="Zip code" required />
 							</div>
 							<div class="6u 12u$(xsmall)">
 								<h4>Location latitude:</h4>
-								<input type="number" name="lat" id="lat" value="" placeholder="Latitude" />
+								<input type="number" name="lat" id="lat" value="" placeholder="Latitude" required />
 							</div>
-
-
 							<br><br><br><br>
-
 							<div class="6u 12u$(xsmall)">
 								<h4>Storage capacity (sq ft):</h4>
-								<input type="number" min="0" name="storagecapacity" id="storagecapacity" value="" placeholder="Square feet" />
+								<input type="number" min="0" name="storagecapacity" id="storagecapacity" value="" placeholder="Square feet" required />
 							</div>
 							<div class="6u 12u$(xsmall)">
 								<h4>Location longitude:</h4>
-								<input type="number" name="long" id="long" value="" placeholder="Longitude" />
+								<input type="number" name="long" id="long" value="" placeholder="Longitude" required />
 							</div>
 						<br><br><br><br>
-						<style>
-						.tooltip {
-						position: relative;
-						display: inline-block;
-						border-bottom: 1px dotted black;
-						}
 
-						.tooltip .tooltiptext {
-						visibility: hidden;
-						width: 220px;
-						background-color: #555;
-						color: #fff;
-						text-align: center;
-						border-radius: 6px;
-						padding: 5px 0;
-						position: absolute;
-						z-index: 1;
-						bottom: 125%;
-						left: 50%;
-						margin-left: -60px;
-						opacity: 0;
-						transition: opacity 0.1s;
-						}
-
-						.tooltip .tooltiptext::after {
-						content: "";
-						position: absolute;
-						top: 100%;
-						left: 50%;
-						margin-left: -5px;
-						border-width: 5px;
-						border-style: solid;
-						border-color: #555 transparent transparent transparent;
-						}
-
-					.tooltip:hover .tooltiptext {
-					visibility: visible;
-					opacity: 1;
-					}
-					</style>
 						<ul>
 						<li> Don't know your latitude and longitude? Search your zip code on <a href="https://www.latlong.net/" target="_blank">this website</a>.</li>
 						<li>
@@ -143,7 +119,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								<br>
 								<div class="6u$ 12u$(xsmall)">
 								<ul class="actions">
-									<li><button type="submit" name="suggestprice"> <!--value="Suggest a price for me!"-->Suggest a price for me! <!--onsubmit="Suggest()"--></button></li>
+									<li><button type="submit" name="suggestprice"> Suggest a price for me! </button></li>
 									<li><div class="tooltip"> What is this?
 									<span class="tooltiptext">Our AI takes into account all these parameters, and suggests a price for your warehouse.</span>
 									</div></li>
@@ -152,54 +128,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 								</div>
 								</form>
 
-								
-								</div>
-								
-								<!--<form method="post" action="#">
-							
-							
-							<div class="row uniform 50%">
-							<div class="12u$">
-							-->
-							<!--<div class="6u 12u$(xsmall)">
-								<h4>City:</h4>
-								<input type="text" name="city" id="city" value="" placeholder="City" />
-							</div>
-							<div class="6u 12u$(xsmall)">
-								<h4>State:</h4>
-								<h5>Please input the state in it's 2 letter format</h5>
-								<input type="text" name="state" id="state" value="" placeholder="State" />
-							</div>
-								<div class="slimmer">
-									<h4>Describe your warehouse:</h4>
-									<textarea name="description" id="description" placeholder="Description" rows="6"></textarea>
-								
-								<br><br>
 
-								
-								
-								<br>
-								<div class="4u 12u$(xsmall)">
-									<input type="radio" id="disagree" name="term_check" checked>
-									<label for="disagree">I do not agree with the terms and conditions</label>
 								</div>
-								<div class="4u 12u$(xsmall)">
-									<input type="radio" id="agree" name="term_check">
-									<label for="agree">I have read and agree with the terms and conditions</label>
-								</div>
-								<br>
-								
-								
 
-								<ul class="actions">
-									<li><input type="reset" value="Create Listing" /></li>
-								</ul>
-						
-				</div>
-				</div>
-				</form>-->
+
 			</section>
-			
+
 
 		<!-- Footer -->
 			<footer id="footer">

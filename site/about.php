@@ -1,5 +1,4 @@
-﻿<?php session_start();?>
-
+<?php session_start();?>
 <!DOCTYPE HTML>
 <!--
 	Binary by TEMPLATED
@@ -13,7 +12,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link href="images/icon.ico" rel="shortcut icon">
-
 	</head>
 	<body>
 
@@ -31,9 +29,20 @@
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
-					<?php if(isset($_SESSION["loggedin"])){ 
+					<li><a href="newhouse.php">List your warehouse</a></li>
+					<?php
+
+					//Displays either login or logout depending on your status
+					if(isset($_SESSION["loggedin"])){
+							if(($_SESSION["userType"])=="LesseeLogin"){
+								$link = "lessee_dash.php";
+							}else if(($_SESSION["userType"])=="OwnerLogin"){
+								$link = "owner_dash.php";
+							}else if (($_SESSION["userType"])=="AdminLogin"){
+								$link = "admin_dash.php";
+							}
+
+					echo("<li><a href='".$link."'>Dashboard</a></li>");
 					echo("<li><a href='logout.php'>Logout</a></li>");
 					}
 					else{
@@ -48,6 +57,7 @@
 				<div class="inner">
 				</br></br></br>
 					<h1><font color="white">About WARIE</font></h1></br>
+					<h3>Connecting warehouse lessees and owners</h3>
 				</div>
 			</section>
 
@@ -64,23 +74,27 @@
 
                         <h2>How It Works</h2>
                         <p>
-                            If you're looking to lease storage space, simply put in your desired features, square footage, and
+                            If you're looking to <u>lease storage space</u>, simply put in your desired features, square footage, and
                             the dates which you would like to rent. Our search algorithm is tailored to show you the best possible selection to choose from.<br>
                         </p>
                         <p>
-                            As a warehouse owner, we provide advanced AI and machine learning to give you a recommended price for
+                            As a <u>warehouse owner</u>, we provide advanced AI and machine learning to give you a recommended price for
                             your warehouse based on other successful listings. Once your warehouse has been posted, you will be able to monitor the usage of your space in the
                             analytics page. As you have more and more contract requests, our optimized scheduling algorithm will give you the best subset of contracts to maximize
                             the potential of your warehouse.
                         </p>
-
+						<p>
+							Our business model depends on 2 main revenue streams: a monthly cut of monthly revenue and a service fee on a one time per contract basis.
+							In a departure from traditional websites, we have chosen to forgo ads and membership fees. All our owners pay is a cut of their monthly revenue. All our lessees pay is a
+							$10 per contract service fee and rent of the warehouse.
+						</p>
                         <h2>Contact Us</h2>
                         <p>
                             Have a question about WARIE? Don't hesitate to reach out via email, phone, or any of the social
                             media platforms that we are on.
                         </p>
                         <p>WARIE Headquarters<br>West Lafayette, IN 47907<br>765-1212-4444<br>wariestaff@gmail.com</p>
-                        
+
                         </div>
                     </div>
             </section>

@@ -2,7 +2,9 @@ DailyNN_test<-function(){
   require(RMySQL)
   require(neuralnet)
   library(neuralnet)
-  options(digits = 5)
+  options(digits = 5) #allowing as.numeric to pring 5 digits total
+  
+  #References: https://www.youtube.com/watch?v=LTg-qP9iGFY
   
   n<-2000 #number of samples to train the NN on
   

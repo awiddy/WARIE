@@ -8,18 +8,19 @@
     <?php
         echo"<table>
         <tr>";
-        revenue();
+        //revenue();
         echo"</tr>
         <tr>";
-        space_filled();
+        //space_filled();
         echo"</tr>
         <tr></tr><tr>";
         //timeline2();
+        //map();
         echo"<tr></table>";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         function map(){
 
-                /*Open Data base connection*/
+            /*Open Data base connection*/
             $Owner_ID=$_SESSION["id"]; 
             $servername = "mydb.ics.purdue.edu";
             $username = "g1090423";
@@ -281,15 +282,7 @@
 
             }
             
-
-        
-            
-            
             $time_table = json_encode($time_table);            
-            print_r($time_table);
-
-   
-
             $conn->close();
          
         echo"<head>";
@@ -318,7 +311,9 @@
 
 
 
-        function timeline2()
+        function timeline2()  
+        //Used: https://www.webslesson.info/2017/08/how-to-make-google-line-chart-by-using-php-json-data.html
+        //To figure out how to get the times to work properly.
         {
 
 
@@ -383,7 +378,7 @@
 
                 print_r($jsonTable);
                 
-
+                $conn->close();
     
                 echo"<head>";
                 echo'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';

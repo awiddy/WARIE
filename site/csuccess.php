@@ -17,6 +17,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="images/icon.ico" rel="shortcut icon">
 			</head>
 	<body>
 	<!-- Header -->
@@ -33,9 +34,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
-					<li><a href="logout.php">Login</a></li>
+					<li><a href="newhouse.php">List your warehouse</a></li>
+					<?php if(($_SESSION["userType"])=="LesseeLogin"){
+								$link = "lessee_dash.php";
+							}else if(($_SESSION["userType"])=="OwnerLogin"){
+								$link = "owner_dash.php";
+							}
+							echo("<li><a href=".$link.">Dashboard</a></li>");
+							?>
+					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</nav>
 
@@ -51,7 +58,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 			<section id="main">
 				<div class="slimmer">
 					<h3>Please wait until you hear back from the owner.</h3>
-					<a href="browse.html" class="button special" target="_blank">Search Again</a>
+					<a href="browse.php" class="button special" target="_blank">Search Again</a>
 					<?php
 					//Retreiving data from URL/Post function, as well as setting variables for the query/DB connection
 					$start_date_raw = $_GET["sd"];
@@ -69,6 +76,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					$password = "marioboys";
 					$dbname = "g1090423";
 
+					$email_qry = "SELECT Email FROM Owner WHERE ID = ".$o_id."";
+					$email_result = $conn->query($email_qry);
+					$row1 = $email_result->fetch_assoc();
+					$email = $row1['Email'];
+					
 					//Create connection
 					$conn = new mysqli($servername, $username, $password, $dbname);
 					//Check connection
@@ -79,13 +91,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 					//Ensuring dates are in correct format
 					$signing_date = $signing_date1->format('Y-m-d');
-					//$start_date=$start_date_raw->format('Y-m-d');
-					//$end_date=$end_date_raw->format('Y-m-d');
+					
 
 					//Writing query to add requested contract into Contract table in DB
 					$sql = "INSERT INTO Contract (`Start Date`,`End Date`,Lessee_ID,Owner_ID,Rented_Space, Signing_date,Warehouse_ID,Approval) VALUES ('".$start_date_raw."','".$end_date_raw."',".$l_id.",".$o_id.",".$sn.",'".$signing_date."',".$w_id.",".$approval.")";
 					
 					mysqli_query($conn,$sql);
+					$msg = "Hello from the Warie Staff!\n\nYou have a new requested Contract at Warehouse ID #".$w_id."\n\nTo review all prospective and existing contracts, please visit your Dashboard.\n\nThank you,\nWarie Staff.";
+					$msg = wordwrap($msg,70); //wrap if lines are longer than 70 characters
+					$subject = "New Contract Request at Warehouse #".$w_id."";
+					
+					mail($email,$subject,$msg); //sends email
+
+					
 					mysqli_close($conn);
 					?>
 

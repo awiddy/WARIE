@@ -18,6 +18,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="images/icon.ico" rel="shortcut icon">
 	</head>
 	<body>
 
@@ -35,8 +36,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
+					<li><a href="newhouse.php">List your warehouse</a></li>
 					<li><a href="logout.php">Logout</a></li>
 				</ul>
 			</nav>
@@ -45,17 +45,19 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		<section class="banner_layout banner_login">
 				<div class="inner">
 				</br></br></br>
-					<h1><font color="white">Thank you! Your feedback is important to us. If you have any further concerns, please contact us.</font></h1></br>
+					<h1><font color="white">Thank you! </font></h1></br>
 				</div>
 			</section>
 
 		<!-- Main -->
 			<section id="main">
 				<div class="slimmer">
-					<h3>Rating sent!</h3>
+					<h3>Rating sent! Your feedback is important to us. If you have any further concerns, please contact us.</h3>
 					<?php 
 					$type=$_POST['usertype']; //1 = lessee, 2 = owner
-					$rate=$_POST['rating'];
+					$prof_rate = $_POST['prof_rating'];
+					$com_rate = $_POST['com_rating'];
+					$clean_rate = $_POST['clean_rating'];
 					$id=$_POST['id'];
 					
 					$servername = "mydb.ics.purdue.edu";
@@ -81,10 +83,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 					$rate_old_result=$conn->query($qry_old);
 					$row1 = $rate_old_result->fetch_assoc();
 					$rate_old=$row1['Rating'];
+					$rate = ($prof_rate + $com_rate + $clean_rate)/3;
 					$rate_new = ($rate_old + $rate)/2;
 					$qry_new = "UPDATE ".$table." SET Rating = ".$rate_new." WHERE ID = ".$id."";
-					mysqli_query($conn,$qry_new);
 					
+					mysqli_query($conn,$qry_new);
 					mysqli_close($conn);
 
 					?>
@@ -92,18 +95,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 		<!-- Footer -->
 			<footer id="footer">
-  			<footer id="footer">
-  				 <ul class="icons">
-  					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-  					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-  					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-  				</ul>
-  				<a href ="terms_conditions.php">Terms and Conditions</a><br><br>
+				 <ul class="icons">
+					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+				</ul>
+				<a href ="terms_conditions.php">Terms and Conditions</a><br><br>
 
-  				<div class="copyright" style="font-weight:300; font-size: 10px;">
-  					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:300;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:300;">Unsplash</a>.
-  				</div>
-  			</footer>
+				<div class="copyright" style="font-weight:300; font-size: 10px;">
+					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:300;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:300;">Unsplash</a>.
+				</div>
+			</footer>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>

@@ -1,4 +1,6 @@
 <?php
+//Login/Logout/Registration page reference: https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php
+
 // Initialize the session
 session_start();
  

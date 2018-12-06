@@ -13,6 +13,8 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	  exit;
   }
 }
+//Login/Logout/Registration page reference: https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php
+
 
 // Include config file to startup database
 require_once "config.php";
@@ -80,7 +82,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								header("location: owner_dash.php");
 							} else if($sub == "LesseeLogin"){
 								header("location: lessee_dash.php");
-							}
+							} 
                         } else {
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -132,8 +134,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
+					<li><a href="newhouse.php">List your warehouse</a></li>
 					<li><a href="login.php">Login</a></li>
 				</ul>
 			</nav>
@@ -142,34 +143,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		<section class="banner_layout banner_login">
 				<div class="inner">
 				</br></br></br>
-					<h1><font color="white">Login with WARIE</font></h1></br>
+					<h1><font color="white">Login to WARIE</font></h1></br>
 				</div>
 		</section>
 	<!-- Forms and stuff -->
 		<section id="main">
 			<div class="slimmer">
-			<h3>View or update account information, listings, or contracts</h3>
-  <!-- COINHIVE captia- “proof of work” – making it uneconomic for spammers to game the system -->
-      <script src="https://authedmine.com/lib/captcha.min.js" async></script>
-      <!-- token callback
-      <script>
-          function myCaptchaCallback(token) {
-              alert('Hashes reached. Token is: ' + token);
-          }
-      </script> -->
-      <!--captia speed: mo' hashes= mo' problems -->
-      <div class="coinhive-captcha"
-          data-hashes="300"
-          data-key="nC4dWxbaY9U8glwWmkbvRE3KCxjEcFdp"
-          data-whitelabel="false"
-          data-disable-elements="input[type=submit]"
-          data-callback="myCaptchaCallback"
-      >
-          <em>Loading Captcha...<br>
-          If it doesn't load, please disable Adblock!</em>
-      </div>
-      </br>
-  <!--coinhive above -->
+			<h3>Sign in to get started with WARIE</h3>
+			<br/><br/>
 				<h4>Credentials</h4>
 				<div class="6u$ 12u$(small)">
 				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -186,7 +167,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				  <input type = "submit" name = "Submit" value = "OwnerLogin" class="button special">&emsp;&emsp;<br />
 			   </form>
 			   <br>Don't have an account?<a href="registerpage.php"> Sign up here!</a>
-			   <br><a href="forgot.php" target="_blank">Forgot your password?</a>
+			   <br><a href="forgot.php" target="_blank">Forgot your password?</a><br>
+			   <br><a href="admin_login.php">Admin Login</a>
 			</div>
 		</section>
 
@@ -198,7 +180,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 				</ul>
-				<a href ="terms_conditions.php">Terms and Conditions</a>
+				<a href ="terms_conditions.php">Terms and Conditions</a>	
+			 <div class="copyright" style="font-weight:300; font-size: 10px;">
 				&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:500;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:500;">Unsplash</a>.
 			</div>
 		</footer>
