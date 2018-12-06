@@ -30,9 +30,8 @@
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
-					<li><a href="logout.php">Logout</a></li>
+					<li><a href="newhouse.php">List your warehouse</a></li>
+					<li><a href="login.php">Login</a></li>
 				</ul>
 			</nav>
 
@@ -53,6 +52,7 @@
 					<?php 
 					//Getting all inputted search parameters and setting values for DB connection
 					$storage_type = $_POST["storagetype"];
+					$storage_capacity = $_POST["storage_needed"];
 					$city = $_POST["city"];
 					$start_date = $_POST["start_date"];
 					$end_date = $_POST["end_date"];
@@ -82,7 +82,7 @@
 					
 					//Create query that will return all warehouses in the correct location, with the correct storage type, that have enough availability between the weeks the user has searched for
 					$sql_1 = "SELECT W.ID, StorageCapacity,BasePrice,Zipcode,City,State,Owner_ID,R.Rating as Owner_Rating ";
-					$sql_2 = "FROM (Warehouse W INNER JOIN(SELECT MIN(Open_Space),WarehouseID FROM Availability WHERE WeekFromDate BETWEEN ".$start_date_week." AND ".$end_date_week." GROUP BY WarehouseID) A ";
+					$sql_2 = "FROM (Warehouse W INNER JOIN(SELECT MIN(Open_Space),WarehouseID FROM Availability WHERE Availability.Open_Space > ".$storage_capacity." AND WeekFromDate BETWEEN ".$start_date_week." AND ".$end_date_week." GROUP BY WarehouseID) A ";
 					$sql_3 = "ON W.ID = A.WarehouseID) INNER JOIN (SELECT Rating,Owner.ID FROM Owner) R ON W.Owner_ID=R.ID WHERE StorageType = ".$storage_type." AND City = '".$city."' ORDER BY ";
 					$sql = $sql_1.$sql_2.$sql_3;
 					if($sort_val==1){$sql=$sql."BasePrice";};
@@ -120,14 +120,15 @@
 
 		<!-- Footer -->
 			<footer id="footer">
-			<ul class="icons">
+				 <ul class="icons">
 					<li><a href="https://twitter.com/WARIE49834226" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="https://www.facebook.com/WARIE-639800186472059/?modal=admin_todo_tour" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 					<li><a href="https://www.instagram.com/warie_business/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 				</ul>
-				<a href ="terms_conditions.php">Terms and Conditions</a>	
-				<div class="copyright">
-					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.
+				<a href ="terms_conditions.php">Terms and Conditions</a><br><br>
+
+				<div class="copyright" style="font-weight:300; font-size: 10px;">
+					&copy; Untitled. Design: <a href="https://templated.co" style="font-weight:300;">TEMPLATED</a>. Images: <a href="https://unsplash.com" style="font-weight:300;">Unsplash</a>.
 				</div>
 			</footer>
 

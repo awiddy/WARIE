@@ -13,6 +13,7 @@
 		<meta http-equiv="Pragma" content="no-cache">
 		<META HTTP-EQUIV="Expires" CONTENT="-1">
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="images/icon.ico" rel="shortcut icon">
 	</head>
 	<body>
 
@@ -30,8 +31,7 @@
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
 					<li><a href="browse.php">Browse Warehouses</a></li>
-					<li><a href="lessees.html">Lease a warehouse</a></li>
-					<li><a href="owners.html">List your warehouse</a></li>
+					<li><a href="newhouse.php">List your warehouse</a></li>
 					<li><a href="login.php">Login</a></li>
 				</ul>
 			</nav>
@@ -56,6 +56,7 @@
 					$dbname = "g1090423";
 					$id = $_SESSION['id'];
 
+
 					//Create connection
 					$conn = new mysqli($servername, $username, $password, $dbname);
 					//Check connection
@@ -63,6 +64,7 @@
 						die("Connection failed: " . $conn->connect_error);
 						}
 					//https://www.xeweb.net/2011/02/11/generate-a-random-string-a-z-0-9-in-php/
+					//Referenced the above link in order to do this random password 
 					//Generate random string that will serve as the new password
 					$length=10;//length of random string
 					$chars = array_merge(range('A','Z'),range('a','z'),range('0','9'));
