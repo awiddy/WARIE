@@ -78,7 +78,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                     If it doesn't load, please disable Adblock!</em>
                 </div>
                 </br>
-            <!-- -->
+            <!-- dropdown menu for cities-->
 									<h4>Warehouse Location:</h4>
 									<select name="city" required>
 										<option value="">- Location -</option>
@@ -147,6 +147,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 									</script>
 								</br></br>
+                <!--choose a critereon for sorting -->
 									<div class="12u$">
 									<div class="select-wrapper">
 										<h4>Sort results by:</h4>
@@ -154,7 +155,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 											<option value="">- Sort -</option>
 											<option value="1">Price ($/sq ft/month)</option>
 											<option value="2">Rating</option>
-
 										</select>
 									</div>
 								</div>
